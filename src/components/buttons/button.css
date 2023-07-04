@@ -1,0 +1,26 @@
+.infoBtn{
+  background: rgba(255, 255, 255, 0.50);
+}
+
+.infoBtn:hover > .icon,
+.viewBtn:hover > .icon{
+  display: none;
+}
+.infoBtn > .icon,
+.viewBtn > .icon{
+  display: block;
+}
+.infoBtn:hover > .iconlight,
+.viewBtn:hover > .iconlight{
+  display: block;
+}
+.infoBtn > .iconlight,
+.viewBtn > .iconlight{
+  display: none;
+}
+.infoBtn > span{
+  color: #800080;
+}
+.infoBtn:hover > span{
+  color: #FEF;
+}
