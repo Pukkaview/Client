@@ -1,7 +1,18 @@
 import Footer from "../components/Footer/Footer";
+import MovieCard from "../components/MovieCard/MovieCard";
 const Home = () => {
   return (
-    <div>
+    <div className="bg-black">
+      <MovieCard
+        title="Movie Title"
+        content="The Redemption's Path' is a compelling Christian movie that takes viewers on a transformative journey of faith, forgiveness, and spiritual renewal"
+        backgroundColor="#FF5AFF"
+      />
+      <MovieCard
+        title="Movie Title"
+        content="The Redemption's Path' is a compelling Christian movie that takes viewers on a transformative journey of faith, forgiveness, and spiritual renewal"
+        backgroundColor="transparent"
+      />
       <Footer />
     </div>
   );
