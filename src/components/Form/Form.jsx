@@ -3,7 +3,7 @@ const Form = () => {
   return (
     <div>
       <div className="w-full flex flex-col-reverse md:flex-row py-5">
-        <div className=" text-white  bg-fuchsia-800 md:w-[45%] text-[20px] font-normal leading-relaxed">
+        <div className=" text-white  bg-fuchsia-800 md:w-[45%] text-[20px] font-normal">
           <h2 className="p-10 font-bold">
             We Await Your Feedbacks <br /> And Requests
           </h2>
@@ -38,7 +38,7 @@ const Form = () => {
           </form>
         </div>
 
-        <div className="w-full md:w-[55%] bg-cover bg-ContactImage">
+        <div className="w-full md:w-[55%] h-96 md:h-[700px] bg-cover bg-center bg-ContactImage">
           {/* <img src={ContactImage} className="w-full" /> */}
         </div>
       </div>
