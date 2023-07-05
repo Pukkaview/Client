@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.slick-slider .slick-list{
+  overflow: visible;
+}
+.slick-slide > div{
+  display: flex;
+  justify-content: center;
+}
