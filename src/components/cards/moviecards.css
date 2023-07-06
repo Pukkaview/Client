@@ -41,7 +41,8 @@
   background-color: #800080; /* Background color overlay on hover */
   opacity: 0.6;
 }
-.MuiDialog-container .css-1t1j96h-MuiPaper-root-MuiDialog-paper{
+.MuiDialog-container .css-1t1j96h-MuiPaper-root-MuiDialog-paper,
+.MuiDialog-container .css-uhb5lp{
   background:rgba(255, 255, 255, 0);
   background-color:transparent;
   max-width: 800px;

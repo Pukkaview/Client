@@ -13,7 +13,7 @@ export default function MovieDetailCard({open, handleClose, data}) {
           <Dialog open={open} onClose={handleClose}>
             <DialogContent style={{padding:0}}>
               <div className='flex justify-end pb-[100px]'>
-                <img className='sm:w-[80px] sm:h-[80px] w-[60px] h-[60px]' src={cancel} onClick={handleClose} alt="cancel" />
+                <img className='sm:w-[80px] sm:h-[80px] w-[60px] h-[60px] cursor-pointer' src={cancel} onClick={handleClose} alt="cancel" />
                 {/* <Button className='text-white bg-white' onClick={handleClose}>Cancel</Button> */}
               </div>
               <div style={{
