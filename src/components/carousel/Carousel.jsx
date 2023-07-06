@@ -32,7 +32,7 @@ export default function Carousel({children}) {
     ],
     };
     return (
-      <Slider {...settings} className="pt-[30px] pb-[70px] flex flex-col gap-[50px] mx-auto justify-center">
+      <Slider {...settings} className="z-[1] hover:z-[10] pt-[30px] pb-[70px] flex flex-col gap-[50px] mx-auto justify-center">
         {children}
       </Slider>
     );

@@ -1,8 +1,19 @@
 import WatchBtn from '../buttons/WatchBtn'
 import InfoBtn from '../buttons/InfoBtn'
 import PropTypes from 'prop-types';
+import { useState } from 'react';
+import MovieDetailCard from './MovieDetailsCard';
 
 export default function IntroCard({data}) {
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <div style={{
       backgroundImage: `url(${data.coverImage})`,
@@ -18,9 +29,12 @@ export default function IntroCard({data}) {
           <p className='text-[14px] sm:text-[16px]'>{data.bio}</p>
           <div className='flex gap-[50px]'>
               <WatchBtn/>
-              <InfoBtn/>
+              <div onClick={handleClickOpen}>
+                <InfoBtn />
+              </div>
           </div>
         </div>
+        <MovieDetailCard open={open} handleClose={handleClose} data={data}/>
     </div>
   )
 }

@@ -8,13 +8,17 @@ import dummy2 from '../assets/dummy.png'
 
 import Carousel from "../components/carousel/Carousel";
 import ViewBtn from "../components/buttons/ViewBtn";
+import MovieDetailCard from "../components/cards/MovieDetailsCard";
 
 // Sample data. To be replaced by data coming from the backend
 const data = {
   title: 'Interview with God',
   coverImage:dummy,
   bio: "The Redemption's Path is a compelling Christian movie that takes viewers on a transformative journey of faith, forgiveness, and spiritual renewal. Set in a small town struggling with personal struggles and a loss of hope, the film centers around the lives of three main characters whose paths intersect in unexpected ways.",
-  time: "1hr 20min"
+  time: "1hr 20min",
+  year: 2019,
+  genre: 'Action',
+  casts: ['Segun Jackob', "Segun Daniel", "Oguntedo Aremu", "Segun Gabriel", "Jesus Caleb"],
 }
 // Sample data. To be replaced by data coming from the backend
 const movie_data = {
@@ -31,6 +35,9 @@ const Home = () => {
       <Navbar />
       <IntroCard data={data}/>
       <div className="md:px-[59px] px-[20px] pt-[107px] pb-[65px] text-text-color">
+        <div className="bg-[#fff]">
+          <MovieDetailCard/>
+        </div>
         <div>
           <span className="text-[20px]">Watch more</span>
           <Carousel>
