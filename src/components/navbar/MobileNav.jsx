@@ -9,7 +9,7 @@ export default function MobileNav({isVisible, handleClose}) {
     } transition duration-300 ease-in-out`}>
       <img onClick={handleClose} className='absolute top-[9px] right-[11px] cursor-pointer' src={close} alt="close" />
       <div className="bg-black select relative" style={{ width: "100%" }}>
-        <select className="bg-[#FEF] appearance-none cursor-pointer w-full px-[20px] py-[15px] rounded-[5px] bg-[#313131] outline-none text-white font-[700] text-[#000000]" id="csize" style={{ width: "100%" }} name="csize">
+        <select className="bg-[#FEF] appearance-none cursor-pointer w-full px-[20px] py-[15px] rounded-[5px] bg-[#313131] outline-none font-[700] text-[#000000]" id="csize" style={{ width: "100%" }} name="csize">
           <option value={"new"}>New</option>
           <option value={"action"}>Action</option>
           <option value={"comedy"}>Comedy</option>
