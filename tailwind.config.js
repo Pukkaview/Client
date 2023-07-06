@@ -6,8 +6,10 @@ export default {
       colors: {
         primary: "#800080",
         accent4: "#FFBDFF",
+        accent3: "#FF8CFF",
         accent2: "#FF5AFF",
         "text-color": "#FEF",
+        background: "#180018"
       },
 
       backgroundImage: {
