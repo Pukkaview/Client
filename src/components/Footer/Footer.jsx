@@ -27,10 +27,10 @@ const Footer = () => {
         </div>
         <div className="flex items-center my-8 gap-4  md:gap-[196px] justify-center">
           <div className=" h-4 text-center text-fuchsia-50 text-[10px] md:text-[14px] font-medium leading-none">
-            Cookie Preferences
+            <Link to="/contact">Cookie Preferences</Link>
           </div>
           <div className=" h-4 text-center text-fuchsia-50 text-[10px] md:text-[14px] md:mr-16 font-medium leading-none">
-            Terms of Use
+            <Link to="/contact">Terms of Use</Link>
           </div>
           <div className="cursor-pointer  h-4  text-center text-fuchsia-50 text-[10px] md:text-[14px] font-medium leading-none">
             <Link to="/contact">Contact Us</Link>
