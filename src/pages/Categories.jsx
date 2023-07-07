@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Navbar from "../components/navbar/Navbar";
-
 import Footer from "../components/Footer/Footer";
 import IntroCard from "../components/cards/IntroCard";
 import MovieCard from "../components/cards/MovieCard";
@@ -8,10 +7,8 @@ import dummy from "../assets/categorydummy.png";
 import Carousel from "../components/carousel/Carousel";
 import MovieDetailCard from "../components/cards/MovieDetailsCard";
 import { movieDataOptions } from "../../src/movieDataOptions";
-// import data from "../../src/data";
 
-// Sample data. To be replaced by data coming from the backend
-const data = {
+const defaultData = {
   title: "Interview with God",
   coverImage: dummy,
   bio: "The Redemption's Path is a compelling Christian movie that takes viewers on a transformative journey of faith, forgiveness, and spiritual renewal. Set in a small town struggling with personal struggles and a loss of hope, the film centers around the lives of three main characters whose paths intersect in unexpected ways.",
@@ -27,65 +24,71 @@ const data = {
   ],
 };
 
-const Categories = ({}) => {
+const Categories = () => {
   const [selectedOption, setSelectedOption] = useState("Action");
-  const movieData = movieDataOptions[selectedOption];
-  const updatedData = { ...data, genre: selectedOption };
+  const [data, setData] = useState(defaultData);
 
   const handleSelectChange = (event) => {
-    setSelectedOption(event.target.value);
+    const genre = event.target.value;
+    setSelectedOption(genre);
+    const movieData = movieDataOptions[genre];
+    const updatedData = movieData || defaultData;
+    setData(updatedData);
   };
+
   return (
-    <div className="bg-background overflow-x-hidden ">
+    <div className="bg-background overflow-x-hidden">
       <Navbar handleCategoryChange={setSelectedOption} />
-      <IntroCard data={updatedData} />
+      <IntroCard data={data} />
       <div className="md:px-[59px] px-[20px] pt-[107px] pb-[65px] text-text-color">
         <div className="bg-[#fff]">
-          <MovieDetailCard data={movieData} />
+          <MovieDetailCard data={data} />
         </div>
         <div>
           <div className="flex justify-between items-center">
-            <span className="text-[20px]">{selectedOption}</span>
+            <span className="text-[20px] font-bold">{selectedOption}</span>
 
-            <select
-              name=""
-              id=""
-              className="text-black border-0 outline-none rounded-md px-4"
-              onChange={handleSelectChange}
-              value={selectedOption}
-            >
-              <option value="Action">Action</option>
-              <option value="Comedy">Comedy</option>
-              <option value="Sermon">Sermon</option>
-              <option value="Lifestyle">Lifestyle</option>
-              <option value="New">New</option>
-            </select>
+            <div className="bg-[#FFEEFF] px-4 rounded-md py-2">
+              <select
+                name=""
+                id=""
+                className="bg-[#FFEEFF] text-[#180018] font-bold border-0 outline-none rounded-md px-4"
+                onChange={handleSelectChange}
+                value={selectedOption}
+              >
+                <option value="Action">Action</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Sermon">Sermon</option>
+                <option value="Lifestyle">Lifestyle</option>
+                <option value="New">New</option>
+              </select>
+            </div>
           </div>
           <Carousel sliderClassName=" pb-[1px]">
             <MovieCard data={movieDataOptions[selectedOption]} />
-            <MovieCard data={movieData} />
-            <MovieCard data={movieData} />
-            <MovieCard data={movieData} />
-            <MovieCard data={movieData} />
-            <MovieCard data={movieData} />
+            <MovieCard data={movieDataOptions[selectedOption]} />
+            <MovieCard data={movieDataOptions[selectedOption]} />
+            <MovieCard data={movieDataOptions[selectedOption]} />
+            <MovieCard data={movieDataOptions[selectedOption]} />
+            <MovieCard data={movieDataOptions[selectedOption]} />
           </Carousel>
 
           <Carousel sliderClassName=" pb-[1px]">
-            <MovieCard data={movieData} />
-            <MovieCard data={movieData} />
-            <MovieCard data={movieData} />
-            <MovieCard data={movieData} />
-            <MovieCard data={movieData} />
-            <MovieCard data={movieData} />
+            <MovieCard data={movieDataOptions[selectedOption]} />
+            <MovieCard data={data} />
+            <MovieCard data={data} />
+            <MovieCard data={data} />
+            <MovieCard data={data} />
+            <MovieCard data={data} />
           </Carousel>
 
           <Carousel sliderClassName="pb-[1px]">
-            <MovieCard data={movieData} />
-            <MovieCard data={movieData} />
-            <MovieCard data={movieData} />
-            <MovieCard data={movieData} />
-            <MovieCard data={movieData} />
-            <MovieCard data={movieData} />
+            <MovieCard data={data} />
+            <MovieCard data={data} />
+            <MovieCard data={data} />
+            <MovieCard data={data} />
+            <MovieCard data={data} />
+            <MovieCard data={data} />
           </Carousel>
         </div>
       </div>
@@ -93,4 +96,5 @@ const Categories = ({}) => {
     </div>
   );
 };
+
 export default Categories;
