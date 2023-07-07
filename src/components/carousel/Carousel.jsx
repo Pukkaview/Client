@@ -1,16 +1,15 @@
-
 import Slider from "react-slick";
-import PropTypes from 'prop-types';
-export default function Carousel({children}) {
-    const settings = {
-      dots: false,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 4,
-      slidesToScroll: 1,
-      prevArrow: <></>,
-      nextArrow: <></>,
-      responsive: [
+import PropTypes from "prop-types";
+export default function Carousel({ children, sliderClassName }) {
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    prevArrow: <></>,
+    nextArrow: <></>,
+    responsive: [
       {
         breakpoint: 1300,
         settings: {
@@ -30,12 +29,15 @@ export default function Carousel({children}) {
         },
       },
     ],
-    };
-    return (
-      <Slider {...settings} className="z-[1] hover:z-[10] pt-[30px] pb-[70px] flex flex-col gap-[50px] mx-auto justify-center">
-        {children}
-      </Slider>
-    );
+  };
+  return (
+    <Slider
+      {...settings}
+      className={`z-[1] hover:z-[10] pt-[30px] pb-[70px] flex flex-col gap-[50px] mx-auto justify-center ${sliderClassName}`}
+    >
+      {children}
+    </Slider>
+  );
 }
 Carousel.propTypes = {
   children: PropTypes.node.isRequired,

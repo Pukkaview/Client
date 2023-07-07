@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import menu from "../../assets/menu.svg";
 import menuW from "../../assets/menuWhite.svg";
 import logo from "../../assets/logo.svg";
@@ -28,8 +28,14 @@ export default function Navbar() {
     setIsVisible(false);
   };
 
+
+
   return (
-    <div className={`z-50 flex justify-between items-center py-[18px] md:px-[59px] px-[20px] fixed w-full ${scrolled ? 'bg-[#180018] transition duration-300 ease-in-out' : ''}`}>
+    <div
+      className={`z-50 flex justify-between items-center py-[18px] md:px-[59px] px-[20px] fixed w-full ${
+        scrolled ? "bg-[#180018] transition duration-300 ease-in-out" : ""
+      }`}
+    >
       <div className="md:w-[168px] md:h-[22px] w-[102px] h-[18px]">
         {!scrolled && <img src={logo} className="w-full h-full" alt="logo" />}
         {scrolled && <img src={logoW} className="w-full h-full" alt="logo" />}
@@ -54,10 +60,10 @@ export default function Navbar() {
         <div className="lg:flex hidden gap-[18px] items-center text-[#fff] font-[500]">
           <NavLink to="/">Home</NavLink>
           <NavLink>New</NavLink>
-          <NavLink>Action</NavLink>
-          <NavLink>Comedy</NavLink>
-          <NavLink>Sermon</NavLink>
-          <NavLink>Lifestyle</NavLink>
+          <NavLink to="/categories/action">Action</NavLink>
+          <NavLink to="/categories/comedy">Comedy</NavLink>
+          <NavLink to="/categories/sermon">Sermon</NavLink>
+          <NavLink to="/categories/lifestyle">Lifestyle</NavLink>
         </div>
         <div
           className="lg:hidden flex cursor-pointer"
