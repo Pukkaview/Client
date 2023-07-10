@@ -51,13 +51,13 @@ export default function Navbar() {
             />
           </label>
         </form>
-        <div className="lg:flex hidden gap-[18px] items-center text-[#fff] font-[500]">
+        <div className="nav lg:flex hidden gap-[18px] items-center text-[#fff] font-[500] font-[Futura]">
           <NavLink to="/">Home</NavLink>
-          <NavLink>New</NavLink>
-          <NavLink>Action</NavLink>
-          <NavLink>Comedy</NavLink>
-          <NavLink>Sermon</NavLink>
-          <NavLink>Lifestyle</NavLink>
+          <NavLink to='/new'>New</NavLink>
+          <NavLink to='/action'>Action</NavLink>
+          <NavLink to='/comedy'>Comedy</NavLink>
+          <NavLink to='/sermon'>Sermon</NavLink>
+          <NavLink to='lifestyle'>Lifestyle</NavLink>
         </div>
         <div
           className="lg:hidden flex cursor-pointer"

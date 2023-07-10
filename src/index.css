@@ -2,10 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Futura';
+  src: url('./fonts/futura/futura_medium_bt.ttf') format('truetype');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Futura';
+  src: url('./fonts/futura/Futura_Bold_font.ttf') format('truetype');
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'Goemetric-415-Black-BT';
+  src: url('./fonts/goemetric/geometric_415_black_bt.ttf') format('truetype');
+  font-weight: 400;
+}
+h1,h2, h3, h4, h5,h6{
+  font-family: 'Goemetric-415-Black-BT', sans-serif;
+}
+p, span{
+  font-family: 'Futura';
+  font-weight: 500;
+}
 .slick-slider .slick-list{
   overflow: visible;
 }
 .slick-slide > div{
   display: flex;
   justify-content: center;
+}
+.nav .active{
+  color: #C423C4;
 }
