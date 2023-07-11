@@ -36,22 +36,24 @@ export default function Navbar() {
       </div>
       <div className="flex gap-[18px] items-center">
         <form>
-          <label className="relative">
-            <input
-              type="text"
-              placeholder={"Search for title or category"}
-              className={`rounded-[20px] pl-[45px] pr-[10px] py-[8px] border-[0.5px] border-[#FFBDFF] outline-none bg-transparent ${
-                scrolled ? "w-[30px]" : "md:w-[300px] sm:w-[169px] w-[150px]"
-              } md:hover:w-[300px] sm:hover:w-[169px] hover:w-[150px] transition duration-300 ease-in-out text-[#fff]`}
-            />
+          <label className={`block rounded-[20px] pr-[10px] py-[8px] border-[0.5px] border-[#FFBDFF] outline-none bg-transparent ${
+                scrolled ? "w-[60px] pl-[15px]" : "md:w-[300px] sm:w-[169px] w-[150px] pl-[25px]"
+              } md:hover:w-[300px] hover:pl-[25px] sm:hover:w-[169px] hover:w-[150px] transition duration-300 ease-in-out text-[#fff] overflow-hidden flex items-center gap-[15px]`}>
             <img
-              className="absolute top-[6px] left-[20px]"
+              className="w-[18px] h-[18px]"
               src={search}
               alt="search"
             />
+            <input
+              type="text"
+              placeholder={`${
+                scrolled ? "" : "Search for title or category"
+              } `}
+              className={` outline-none bg-transparent pr-[10px] w-[85%]`}
+            />
           </label>
         </form>
-        <div className="nav lg:flex hidden gap-[18px] items-center text-[#fff] font-[500] font-[Futura]">
+        <div className="nav lg:flex hidden gap-[18px] items-center text-[#fff] font-[500] font-[Futura] text-[14px]">
           <NavLink to="/">Home</NavLink>
           <NavLink to='/new'>New</NavLink>
           <NavLink to='/action'>Action</NavLink>

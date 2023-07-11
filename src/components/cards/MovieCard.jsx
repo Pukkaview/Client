@@ -7,12 +7,12 @@ import PropTypes from 'prop-types';
 
 export default function MovieCard({data}) {
   return (
-    <div className='sm:w-[290px] w-[150px] sm:h-[199px] h-[229px]'>
+    <div className='sm:h-[199px] h-[229px] flex items-center justify-center'>
       <div style={{
         backgroundImage: `url(${data.coverImage})`,
         backgroundSize: 'cover',
 
-        }} className='moviecard relative sm:w-[290px] w-[150px] sm:h-[199px] h-[229px] sm:hover:h-[392px] sm:hover:w-[517px] hover:h-[350px] hover:w-[350px] duration-300 ease-in-out hover:z-10 rounded-[15px] overflow-hidden'>
+        }} className='moviecard relative sm:w-[290px] md:w-[330px] desktop-lg:w-[310px] lg:w-[340px] xl:w-[290px] phone-lg:w-[180px] w-[150px] sm:h-[199px] h-[229px] sm:hover:h-[392px] sm:hover:w-[517px] duration-300 ease-in-out hover:z-10 rounded-[15px] overflow-hidden '>
         <div className='play absolute top-[40%] left-[40%]'>
           <PlayBtn/>
         </div>

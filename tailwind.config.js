@@ -3,6 +3,11 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      screens: {
+        'desktop-lg': '1440px',
+        'phone-lg': '425px',
+        // => @media (min-width: 1280px) { ... }
+      },
       colors: {
         primary: "#800080",
         accent4: "#FFBDFF",
