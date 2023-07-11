@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import menu from "../../assets/menu.svg";
 import menuW from "../../assets/menuWhite.svg";
 import logo from "../../assets/logo.svg";
@@ -28,8 +28,14 @@ export default function Navbar() {
     setIsVisible(false);
   };
 
+
+
   return (
-    <div className={`z-50 flex justify-between items-center py-[18px] md:px-[59px] px-[20px] fixed w-full ${scrolled ? 'bg-[#180018] transition duration-300 ease-in-out' : ''}`}>
+    <div
+      className={`z-50 flex justify-between items-center py-[18px] md:px-[59px] px-[20px] fixed w-full ${
+        scrolled ? "bg-[#180018] transition duration-300 ease-in-out" : ""
+      }`}
+    >
       <div className="md:w-[168px] md:h-[22px] w-[102px] h-[18px]">
         {!scrolled && <img src={logo} className="w-full h-full" alt="logo" />}
         {scrolled && <img src={logoW} className="w-full h-full" alt="logo" />}
