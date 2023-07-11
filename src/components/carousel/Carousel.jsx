@@ -11,7 +11,7 @@ export default function Carousel({ children, sliderClassName }) {
     nextArrow: <></>,
     responsive: [
       {
-        breakpoint: 1300,
+        breakpoint: 1280,
         settings: {
           slidesToShow: 3, // Number of components to show for screen width <= 1024px
         },

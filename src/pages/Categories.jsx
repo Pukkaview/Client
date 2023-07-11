@@ -64,7 +64,7 @@ const Categories = () => {
               </select>
             </div>
           </div>
-          <Carousel sliderClassName=" pb-[1px]">
+          <Carousel sliderClassName="pb-[10px]">
             <MovieCard data={movieDataOptions[selectedOption]} />
             <MovieCard data={movieDataOptions[selectedOption]} />
             <MovieCard data={movieDataOptions[selectedOption]} />
@@ -73,7 +73,7 @@ const Categories = () => {
             <MovieCard data={movieDataOptions[selectedOption]} />
           </Carousel>
 
-          <Carousel sliderClassName=" pb-[1px]">
+          <Carousel sliderClassName="pb-[10px]">
             <MovieCard data={movieDataOptions[selectedOption]} />
             <MovieCard data={data} />
             <MovieCard data={data} />

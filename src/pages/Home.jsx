@@ -50,7 +50,7 @@ const Home = () => {
           <MovieDetailCard />
         </div>
         <div>
-          <span className="text-[20px]">Watch more</span>
+          <h2 className="text-[24px] font-[400]">Watch More</h2>
           <Carousel>
             <MovieCard data={movie_data} />
             <MovieCard data={movie_data} />
@@ -62,7 +62,7 @@ const Home = () => {
         </div>
         <div>
           <div className="w-full flex justify-between">
-            <span className="text-[20px]">Action</span>
+            <h2 className="text-[24px] font-goemetric font-[400]">Action</h2>
             <Link to="/categories">
               <ViewBtn />
             </Link>
@@ -77,7 +77,7 @@ const Home = () => {
           </Carousel>
         </div>
         <div>
-          <span className="text-[20px]">Sermon</span>
+          <h2 className="text-[24px] font-goemetric font-[400]">Sermon</h2>
           <Carousel>
             <MovieCard data={movie_data} />
             <MovieCard data={movie_data} />

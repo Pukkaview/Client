@@ -2,13 +2,13 @@ import ContactImage from "../../assets/ContactImage.png";
 const Form = () => {
   return (
     <div>
-      <div className="w-full flex flex-col-reverse md:flex-row py-5">
+      <div className="w-full flex flex-col-reverse md:flex-row pb-0 font-[Futura] bg-[#180018]">
         <div className=" text-white  bg-fuchsia-800 md:w-[45%] text-[20px] font-normal">
           <h2 className="p-10 font-bold">
             We Await Your Feedbacks <br /> And Requests
           </h2>
 
-          <form className="px-10 py-6">
+          <form className="px-10 pb-6 pt-2">
             <label htmlFor="name">Your name</label> <br />
             <input
               type="text"
