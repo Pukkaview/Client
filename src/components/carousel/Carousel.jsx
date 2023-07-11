@@ -1,14 +1,28 @@
 import Slider from "react-slick";
 import PropTypes from "prop-types";
+import { useState } from "react";
+
+import next from "../../assets/next.png";
+import prev from "../../assets/prev.png";
 export default function Carousel({ children, sliderClassName }) {
+  const [infinite, setInfinite] = useState(false);
+  const handleBeforeChange = () => {
+    if (!infinite) {
+      setInfinite(true);
+    }
+  };
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: infinite,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-    prevArrow: <></>,
-    nextArrow: <></>,
+    prevArrow: infinite ? (
+      <img className="h-[32px] w-[32px]" src={prev} alt="prev" />
+    ) : (
+      <></>
+    ),
+    nextArrow: <img className="h-[32px] w-[32px]" src={next} alt="next" />,
     responsive: [
       {
         breakpoint: 1280,
@@ -33,6 +47,7 @@ export default function Carousel({ children, sliderClassName }) {
   return (
     <Slider
       {...settings}
+      afterChange={handleBeforeChange}
       className={`z-[1] hover:z-[10] pt-[30px] pb-[70px] flex flex-col gap-[50px] mx-auto justify-center ${sliderClassName}`}
     >
       {children}
