@@ -4,7 +4,6 @@ import Footer from "../components/Footer/Footer";
 import IntroCard from "../components/cards/IntroCard";
 import MovieCard from "../components/cards/MovieCard";
 import dummy from "../assets/categorydummy.png";
-import Carousel from "../components/carousel/Carousel";
 import MovieDetailCard from "../components/cards/MovieDetailsCard";
 import { movieDataOptions } from "../../src/movieDataOptions";
 
@@ -40,12 +39,12 @@ const Categories = () => {
     <div className="bg-background overflow-x-hidden">
       <Navbar handleCategoryChange={setSelectedOption} />
       <IntroCard data={data} />
-      <div className="md:px-[59px] px-[20px] pt-[107px] pb-[65px] text-text-color">
+      <div className="md:px-[40px] px-[20px] pt-[107px] pb-[65px] text-text-color">
         <div className="bg-[#fff]">
           <MovieDetailCard data={data} />
         </div>
         <div>
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center mx-4 md:mx-9">
             <span className="text-[20px] font-bold">{selectedOption}</span>
 
             <div className="bg-[#FFEEFF] px-4 rounded-md py-2">
@@ -64,32 +63,29 @@ const Categories = () => {
               </select>
             </div>
           </div>
-          <Carousel sliderClassName="pb-[1px] ">
+          <div className="flex items-center justify-center flex-wrap gap-10 pb-10 pt-10">
+            <MovieCard
+              data={movieDataOptions[selectedOption]}
+              style={{ width: "100px" }}
+            />
+            <MovieCard data={data} />
+            <MovieCard data={data} />
+            <MovieCard data={data} />
+            <MovieCard data={data} />
+            <MovieCard data={data} />
             <MovieCard data={movieDataOptions[selectedOption]} />
-            <MovieCard data={movieDataOptions[selectedOption]} />
-            <MovieCard data={movieDataOptions[selectedOption]} />
-            <MovieCard data={movieDataOptions[selectedOption]} />
-            <MovieCard data={movieDataOptions[selectedOption]} />
-            <MovieCard data={movieDataOptions[selectedOption]} />
-          </Carousel>
-
-          <Carousel sliderClassName="pb-[1px] pt-[0]">
-            <MovieCard data={movieDataOptions[selectedOption]} />
-            <MovieCard data={data} />
-            <MovieCard data={data} />
-            <MovieCard data={data} />
-            <MovieCard data={data} />
-            <MovieCard data={data} />
-          </Carousel>
-
-          <Carousel sliderClassName="pb-[1px] pt-[0]">
             <MovieCard data={data} />
             <MovieCard data={data} />
             <MovieCard data={data} />
             <MovieCard data={data} />
             <MovieCard data={data} />
             <MovieCard data={data} />
-          </Carousel>
+            <MovieCard data={data} />
+            <MovieCard data={data} />
+            <MovieCard data={data} />
+            <MovieCard data={data} />
+            <MovieCard data={data} />
+          </div>
         </div>
       </div>
       <Footer />
