@@ -1,12 +1,11 @@
 import React from "react";
 import Slider from "react-slick";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { useState } from "react";
 
-import next from '../../assets/next.png'
-import prev from '../../assets/prev.png'
-
-export default function Carousel({children}) {
+import next from "../../assets/next.png";
+import prev from "../../assets/prev.png";
+export default function Carousel({ children }) {
   const [infinite, setInfinite] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const handleAfterChange = (current) => {
@@ -18,15 +17,37 @@ export default function Carousel({children}) {
   const handleBeforeChange = (current, next) => {
     setCurrentSlide(next);
   };
-    const settings = {
-      dots: false,
-      infinite: infinite,
-      speed: 500,
-      slidesToShow: 4,
-      slidesToScroll: 1,
-      prevArrow: infinite ? <img className="h-[32px] w-[32px]" src={prev} alt='prev'/>: <></>,
-      nextArrow: <img className="h-[32px] w-[32px]" src={next} alt='next'/>,
-      responsive: [
+  const settings = {
+    dots: false,
+    infinite: infinite,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    prevArrow: infinite ? (
+      <img className="h-[32px] w-[32px]" src={prev} alt="prev" />
+    ) : (
+      <></>
+    ),
+    nextArrow: <img className="h-[32px] w-[32px]" src={next} alt="next" />,
+    responsive: [
+      {
+        breakpoint: 2800,
+        settings: {
+          slidesToShow: 6, // Number of components to show for screen width <= 1024px
+        },
+      },
+      {
+        breakpoint: 2000,
+        settings: {
+          slidesToShow: 5, // Number of components to show for screen width <= 1024px
+        },
+      },
+      {
+        breakpoint: 1600,
+        settings: {
+          slidesToShow: 4, // Number of components to show for screen width <= 1024px
+        },
+      },
       {
         breakpoint: 1280,
         settings: {

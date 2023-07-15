@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 export default function MovieCard({data, isLastActive}) {
   return (
-    <div className={`sm:h-[199px] h-[229px] flex items-center ${isLastActive ? 'last' : ''}`}>
+    <div className={`sm:h-[199px] h-[229px] z-[5px] flex items-center ${isLastActive ? 'last' : ''}`}>
       <div style={{
         backgroundImage: `url(${data.coverImage})`,
         backgroundSize: 'cover',

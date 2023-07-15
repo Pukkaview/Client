@@ -55,6 +55,6 @@ export default function MovieDetailCard({open, handleClose, data}) {
 }
 MovieDetailCard.propTypes = {
   data: PropTypes.object.isRequired,
-  open:PropTypes.bool.isRequired,
+  open:PropTypes.bool,
   handleClose:PropTypes.func.isRequired,
 };

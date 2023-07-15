@@ -1,10 +1,20 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import Categories from "./pages/Categories";
 import PlayVideo from "./pages/PlayVideo";
 import ScrollToTop from "./ScrollToTop";
+import { useContext, useEffect } from "react";
+import { ActiveContext } from "./context/useActive";
 function App() {
+  const {dispatch} = useContext(ActiveContext)
+  const location = useLocation()
+  const currentPath = location.pathname
+  useEffect(() => {
+    if(currentPath === '/'){
+      dispatch({type: 'NULL', payload: ''})
+    }
+  }, [currentPath, dispatch])
   return (
     <div className="overflow-x-hiddeen">
       {" "}
@@ -14,6 +24,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/categories" element={<Categories />} />
+
         <Route path="/play" element={<PlayVideo />} />
         {/* <Routes path="*" element={<NotFound />} /> */}
       </Routes>
