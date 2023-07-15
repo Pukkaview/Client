@@ -46,9 +46,7 @@ export default function Navbar() {
             />
             <input
               type="text"
-              placeholder={`${
-                scrolled ? "" : "Search for title or category"
-              } `}
+              placeholder={`Search for title or category`}
               className={` outline-none bg-transparent pr-[10px] w-[85%]`}
             />
           </label>

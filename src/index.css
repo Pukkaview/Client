@@ -31,6 +31,14 @@ p, span{
   display: flex;
   justify-content: center;
 }
+.slick-current.slick-slide ~ div ~ div ~ div > div{
+  display: flex;
+  justify-content: flex-end;
+}
+.slick-current.slick-slide > div{
+  display: flex;
+  justify-content: flex-start;
+}
 .slick-prev{
   z-index: 10;
 }

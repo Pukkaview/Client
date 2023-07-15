@@ -1,4 +1,4 @@
-
+import React from "react";
 import Slider from "react-slick";
 import PropTypes from 'prop-types';
 import { useState } from "react";
@@ -8,11 +8,15 @@ import prev from '../../assets/prev.png'
 
 export default function Carousel({children}) {
   const [infinite, setInfinite] = useState(false);
-
-  const handleBeforeChange = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const handleAfterChange = (current) => {
     if (!infinite) {
       setInfinite(true);
     }
+    setCurrentSlide(current);
+  };
+  const handleBeforeChange = (current, next) => {
+    setCurrentSlide(next);
   };
     const settings = {
       dots: false,
@@ -43,9 +47,29 @@ export default function Carousel({children}) {
       },
     ],
     };
+    // const activeDivs = document.querySelectorAll('.slick-active');
+    // const lastActiveDiv = activeDivs[activeDivs.length - 1];
+    // if (lastActiveDiv) {
+    //   lastActiveDiv.style.backgroundColor = 'red'; // Apply your desired styling here
+    // }
+    const lastActiveSlideIndex = currentSlide + (settings.slidesToShow - 1);
+    const test = document.querySelectorAll('.slick-slide div')
+
     return (
-      <Slider {...settings} afterChange={handleBeforeChange} className="z-[1] relative hover:z-[10] pt-[30px] pb-[70px] flex flex-col gap-[50px] mx-auto justify-center">
-        {children}
+      <Slider {...settings} afterChange={handleAfterChange} beforeChange={handleBeforeChange} className="z-[1] relative hover:z-[10] pt-[30px] pb-[70px] flex flex-col gap-[50px] mx-auto justify-center">
+      {React.Children.map(children, (child, index) => {
+        if(index === lastActiveSlideIndex){
+          test.forEach(element => {
+            element.classList.add('last');
+          });
+        }else{
+          test.forEach(element => {
+            element.classList.remove('last');
+          });
+        }
+        const extraProps = index === lastActiveSlideIndex ? { isLastActive: true } : {};
+        return React.cloneElement(child, extraProps);
+      })}
       </Slider>
     );
 }
