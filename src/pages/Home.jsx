@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import Carousel from "../components/carousel/Carousel";
 import ViewBtn from "../components/buttons/ViewBtn";
 import MovieDetailCard from "../components/cards/MovieDetailsCard";
+import { ActiveContext } from "../context/useActive";
+import { useContext } from "react";
 
 // Sample data. To be replaced by data coming from the backend
 const data = {
@@ -41,11 +43,12 @@ const movie_data = {
   bio: "The Redemption's Path is a compelling Christian movie that takes viewers on a transformative journey of faith, forgiveness, and spiritual renewal. Set in a small town struggling with personal struggles and a loss of hope, the film centers around the lives of three main characters whose paths intersect in unexpected ways.",
 };
 const Home = () => {
+  const {dispatch} = useContext(ActiveContext)
   return (
     <div className="bg-background overflow-x-hidden ">
       <Navbar />
       <IntroCard data={data} />
-      <div className="md:px-[59px] px-[20px] pt-[107px] pb-[65px] text-text-color">
+      <div className="md:px-[59px] px-[20px] pt-[107px] pb-[65px] text-text-color mx-auto">
         <div className="bg-[#fff]">
           <MovieDetailCard />
         </div>
@@ -63,7 +66,7 @@ const Home = () => {
         <div>
           <div className="w-full flex justify-between">
             <h2 className="text-[24px] font-goemetric font-[400]">Action</h2>
-            <Link to="/categories">
+            <Link to="/categories" onClick={() => dispatch({type: 'ACTION', payload: 'Action'})}>
               <ViewBtn />
             </Link>
           </div>
@@ -77,7 +80,12 @@ const Home = () => {
           </Carousel>
         </div>
         <div>
-          <h2 className="text-[24px] font-goemetric font-[400]">Sermon</h2>
+        <div className="w-full flex justify-between">
+            <h2 className="text-[24px] font-goemetric font-[400]">Sermon</h2>
+            <Link to="/categories" onClick={() => dispatch({type: 'SERMON', payload: 'Sermon'})}>
+              <ViewBtn />
+            </Link>
+          </div>
           <Carousel>
             <MovieCard data={movie_data} />
             <MovieCard data={movie_data} />

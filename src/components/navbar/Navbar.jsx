@@ -1,16 +1,17 @@
-import { useState, useEffect } from "react";
-import { NavLink} from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { Link, NavLink} from "react-router-dom";
 import menu from "../../assets/menu.svg";
 import menuW from "../../assets/menuWhite.svg";
 import logo from "../../assets/logo.svg";
 import logoW from "../../assets/logowhite.svg";
 import search from "../../assets/searchIcon.svg";
 import MobileNav from "./MobileNav";
+import { ActiveContext } from "../../context/useActive";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-
+  const {active, dispatch} = useContext(ActiveContext)
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 0;
@@ -52,20 +53,18 @@ export default function Navbar() {
             />
             <input
               type="text"
-              placeholder={`${
-                scrolled ? "" : "Search for title or category"
-              } `}
+              placeholder={`Search for title or category`}
               className={` outline-none bg-transparent pr-[10px] w-[85%]`}
             />
           </label>
         </form>
         <div className="nav lg:flex hidden gap-[18px] items-center text-[#fff] font-[500] font-[Futura] text-[14px]">
           <NavLink to="/">Home</NavLink>
-          <NavLink to='/new'>New</NavLink>
-          <NavLink to='/action'>Action</NavLink>
-          <NavLink to='/comedy'>Comedy</NavLink>
-          <NavLink to='/sermon'>Sermon</NavLink>
-          <NavLink to='lifestyle'>Lifestyle</NavLink>
+          <Link to='/categories' className={`${active === 'New' ? 'active' : ''}`} onClick={() => dispatch({type: 'NEW', payload: 'New'})}>New</Link>
+          <Link to='/categories' className={`${active === 'Action' ? 'active' : ''}`} onClick={() => dispatch({type: 'ACTION', payload: 'Action'})}>Action</Link>
+          <Link to='/categories' className={`${active === 'Comedy' ? 'active' : ''}`} onClick={() => dispatch({type: 'COMEDY', payload: 'Comedy'})}>Comedy</Link>
+          <Link to='/categories' className={`${active === 'Sermon' ? 'active' : ''}`} onClick={() => dispatch({type: 'SERMON', payload: 'Sermon'})}>Sermon</Link>
+          <Link to='/categories' className={`${active === 'Lifestyle' ? 'active' : ''}`} onClick={() => dispatch({type: 'LIFESTYLE', payload: 'Lifestyle'})}>Lifestyle</Link>
         </div>
         <div
           className="lg:hidden flex cursor-pointer"
