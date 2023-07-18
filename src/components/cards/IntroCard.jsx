@@ -27,7 +27,7 @@ export default function IntroCard({data}) {
           </div>
           <h1 className='sm:text-[48px] text-[32px] font-[500] leading-normal'>{data.title}</h1>
           <p className='text-[14px] sm:text-[18px]'>{data.bio}</p>
-          <div className='flex gap-[10px]'>
+          <div className='flex gap-[10px] mt-[22px]'>
               <WatchBtn/>
               <div onClick={handleClickOpen}>
                 <InfoBtn />

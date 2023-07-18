@@ -31,24 +31,6 @@ export default function Carousel({ children }) {
     nextArrow: <img className="h-[32px] w-[32px]" src={next} alt="next" />,
     responsive: [
       {
-        breakpoint: 2800,
-        settings: {
-          slidesToShow: 6, // Number of components to show for screen width <= 1024px
-        },
-      },
-      {
-        breakpoint: 2000,
-        settings: {
-          slidesToShow: 5, // Number of components to show for screen width <= 1024px
-        },
-      },
-      {
-        breakpoint: 1600,
-        settings: {
-          slidesToShow: 4, // Number of components to show for screen width <= 1024px
-        },
-      },
-      {
         breakpoint: 1280,
         settings: {
           slidesToShow: 3, // Number of components to show for screen width <= 1024px

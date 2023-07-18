@@ -31,7 +31,7 @@
   background-color: #800080; /* Background color overlay on hover */
   opacity: 0.6;
 }
-@media(min-width:650px){
+@media(min-width:1024px){
   .moviecard:hover::after {
     background-color: #800080; /* Background color overlay on hover */
     opacity: 0.6;

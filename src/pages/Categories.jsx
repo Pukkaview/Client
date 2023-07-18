@@ -1,12 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import Navbar from "../components/navbar/Navbar";
-import Footer from "../components/Footer/Footer";
 import IntroCard from "../components/cards/IntroCard";
-import MovieCard from "../components/cards/MovieCard";
 import dummy from "../assets/categorydummy.png";
 import MovieDetailCard from "../components/cards/MovieDetailsCard";
 import { movieDataOptions } from "../../src/movieDataOptions";
 import { ActiveContext } from "../context/useActive";
+import MovieCard2 from "../components/cards/MovieCard2";
 
 const defaultData = {
   title: "Interview with God",
@@ -57,10 +55,9 @@ const Categories = () => {
   };
 
   return (
-    <div className="bg-background overflow-x-hidden">
+    <div className="">
       {active && 
       <>      
-        <Navbar />
         <IntroCard data={data} />
         <div className="md:px-[40px] px-[20px] pt-[107px] pb-[65px] text-text-color">
           <div className="bg-[#fff]">
@@ -86,49 +83,48 @@ const Categories = () => {
                 </select>
               </div>
             </div>
-              <div className="flex items-center justify-center flex-wrap gap-10 pb-10 pt-10 max-w-[1300px] mx-auto">
-                <div className=" flex sm:w-[290px] md:w-[330px] lg:w-[340px] xl:w-[290px] phone-lg:w-[180px] w-[150px]">
-                  <MovieCard data={data} />
+              <div className="flex items-center justify-center flex-wrap gap-10 pb-10 pt-10 max-w-[1440px] mx-auto">
+                <div className=" flex sm:w-[290px] md:w-[330px] desktop-lg:w-[310px] lg:w-[340px] xl:w-[260px] phone-lg:w-[180px] w-[150px] justify-center 1180:justify-start">
+                  <MovieCard2 data={data} />
                 </div>
-                <div className=" flex sm:w-[290px] md:w-[330px] lg:w-[340px] xl:w-[290px] phone-lg:w-[180px] w-[150px] justify-center">
-                  <MovieCard data={data} />
+                <div className=" flex sm:w-[290px] md:w-[330px] desktop-lg:w-[310px] lg:w-[340px] xl:w-[260px] phone-lg:w-[180px] w-[150px] justify-center">
+                  <MovieCard2 data={data} />
                 </div>
-                <div className="flex sm:w-[290px] md:w-[330px] lg:w-[340px] xl:w-[290px] phone-lg:w-[180px] w-[150px] justify-center">
-                  <MovieCard data={data} />
+                <div className="flex sm:w-[290px] md:w-[330px] desktop-lg:w-[310px] lg:w-[340px] xl:w-[260px] phone-lg:w-[180px] w-[150px] justify-center 1180:justify-end 1280:justify-center">
+                  <MovieCard2 data={data} />
                 </div>
-                <div className="flex sm:w-[290px] md:w-[330px] lg:w-[340px] xl:w-[290px] phone-lg:w-[180px] w-[150px] justify-end">
-                  <MovieCard data={data} />
+                <div className="flex sm:w-[290px] md:w-[330px] desktop-lg:w-[310px] lg:w-[340px] xl:w-[260px] phone-lg:w-[180px] w-[150px] justify-center 1180:justify-start 1280:justify-end">
+                  <MovieCard2 data={data} />
                 </div>
-                <div className=" flex sm:w-[290px] md:w-[330px] lg:w-[340px] xl:w-[290px] phone-lg:w-[180px] w-[150px]">
-                  <MovieCard data={data} />
+                <div className=" flex sm:w-[290px] md:w-[330px] desktop-lg:w-[310px] lg:w-[340px] xl:w-[260px] phone-lg:w-[180px] w-[150px] justify-center 1280:justify-start">
+                  <MovieCard2 data={data} />
                 </div>
-                <div className=" flex sm:w-[290px] md:w-[330px] lg:w-[340px] xl:w-[290px] phone-lg:w-[180px] w-[150px] justify-center">
-                  <MovieCard data={data} />
+                <div className=" flex sm:w-[290px] md:w-[330px] desktop-lg:w-[310px] lg:w-[340px] xl:w-[260px] phone-lg:w-[180px] w-[150px] justify-center 1180:justify-end 1280:justify-center">
+                  <MovieCard2 data={data} />
                 </div>
-                <div className="flex sm:w-[290px] md:w-[330px] lg:w-[340px] xl:w-[290px] phone-lg:w-[180px] w-[150px] justify-center">
-                  <MovieCard data={data} />
+                <div className="flex sm:w-[290px] md:w-[330px] desktop-lg:w-[310px] lg:w-[340px] xl:w-[260px] phone-lg:w-[180px] w-[150px] justify-center 1180:justify-start 1280:justify-center">
+                  <MovieCard2 data={data} />
                 </div>
-                <div className="flex sm:w-[290px] md:w-[330px] lg:w-[340px] xl:w-[290px] phone-lg:w-[180px] w-[150px] justify-end">
-                  <MovieCard data={data} />
+                <div className="flex sm:w-[290px] md:w-[330px] desktop-lg:w-[310px] lg:w-[340px] xl:w-[260px] phone-lg:w-[180px] w-[150px] justify-center 1280:justify-end">
+                  <MovieCard2 data={data} />
                 </div>
-                <div className=" flex sm:w-[290px] md:w-[330px] lg:w-[340px] xl:w-[290px] phone-lg:w-[180px] w-[150px]">
-                  <MovieCard data={data} />
+                <div className=" flex sm:w-[290px] md:w-[330px] desktop-lg:w-[310px] lg:w-[340px] xl:w-[260px] phone-lg:w-[180px] w-[150px] 1180:justify-end 1280:justify-start">
+                  <MovieCard2 data={data} />
                 </div>
-                <div className=" flex sm:w-[290px] md:w-[330px] lg:w-[340px] xl:w-[290px] phone-lg:w-[180px] w-[150px] justify-center">
-                  <MovieCard data={data} />
+                <div className=" flex sm:w-[290px] md:w-[330px] desktop-lg:w-[310px] lg:w-[340px] xl:w-[260px] phone-lg:w-[180px] w-[150px] justify-center 1180:justify-start 1280:justify-center">
+                  <MovieCard2 data={data} />
                 </div>
-                <div className="flex sm:w-[290px] md:w-[330px] lg:w-[340px] xl:w-[290px] phone-lg:w-[180px] w-[150px] justify-center">
-                  <MovieCard data={data} />
+                <div className="flex sm:w-[290px] md:w-[330px] desktop-lg:w-[310px] lg:w-[340px] xl:w-[260px] phone-lg:w-[180px] w-[150px] justify-center">
+                  <MovieCard2 data={data} />
                 </div>
-                <div className="flex sm:w-[290px] md:w-[330px] lg:w-[340px] xl:w-[290px] phone-lg:w-[180px] w-[150px] justify-end">
-                  <MovieCard data={data} />
+                <div className="flex sm:w-[290px] md:w-[330px] desktop-lg:w-[310px] lg:w-[340px] xl:w-[260px] phone-lg:w-[180px] w-[150px] 1180:justify-end">
+                  <MovieCard2 data={data} />
                 </div>
               </div>
           </div>
         </div>
       </>
       }
-      <Footer />
     </div>
   );
 };

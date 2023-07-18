@@ -31,9 +31,23 @@ p, span{
   display: flex;
   justify-content: center;
 }
-.slick-current.slick-slide ~ div ~ div ~ div > div{
-  display: flex;
-  justify-content: flex-end;
+@media(min-width:1280px){
+  .slick-current.slick-slide ~ div ~ div ~ div > div{
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+@media(min-width:1000px) and (max-width:1279px){
+  .slick-current.slick-slide ~ div ~ div > div {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+@media(max-width:999px){
+  .slick-current.slick-slide ~ div > div{
+    display: flex;
+    justify-content: flex-end;
+  }
 }
 .slick-current.slick-slide > div{
   display: flex;
@@ -45,3 +59,21 @@ p, span{
 .nav .active{
   color: #C423C4;
 }
+.slick-slider .slick-next,
+.slick-slider .slick-prev {
+  display: block;
+}
+
+/* CSS rules for smaller screens */
+@media (max-width: 767px) {
+  .slick-slider .slick-next,
+  .slick-slider .slick-prev {
+    display: none !important;
+  }
+}
+
+
+
+
+
+
