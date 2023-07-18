@@ -10,6 +10,7 @@ import ViewBtn from "../components/buttons/ViewBtn";
 import MovieDetailCard from "../components/cards/MovieDetailsCard";
 import { ActiveContext } from "../context/useActive";
 import { useContext } from "react";
+import Categories from "./Categories";
 
 // Sample data. To be replaced by data coming from the backend
 const data = {
@@ -43,10 +44,12 @@ const movie_data = {
   bio: "The Redemption's Path is a compelling Christian movie that takes viewers on a transformative journey of faith, forgiveness, and spiritual renewal. Set in a small town struggling with personal struggles and a loss of hope, the film centers around the lives of three main characters whose paths intersect in unexpected ways.",
 };
 const Home = () => {
-  const {dispatch} = useContext(ActiveContext)
+  const {active, dispatch} = useContext(ActiveContext)
   return (
-    <div className="bg-background overflow-x-hidden ">
+    <div className="bg-background overflow-x-hidden">
       <Navbar />
+      {!active && 
+      <>
       <IntroCard data={data} />
       <div className="md:px-[59px] px-[20px] pt-[107px] pb-[65px] text-text-color mx-auto">
         <div className="bg-[#fff]">
@@ -96,6 +99,9 @@ const Home = () => {
           </Carousel>
         </div>
       </div>
+      </>
+      }
+      {active && <Categories/>}
       <Footer />
     </div>
   );

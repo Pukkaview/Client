@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { Link, NavLink} from "react-router-dom";
+import { Link } from "react-router-dom";
 import menu from "../../assets/menu.svg";
 import menuW from "../../assets/menuWhite.svg";
 import logo from "../../assets/logo.svg";
@@ -37,10 +37,10 @@ export default function Navbar() {
         scrolled ? "bg-[#180018] transition duration-300 ease-in-out" : ""
       }`}
     >
-      <div className="md:w-[168px] md:h-[22px] w-[102px] h-[18px]">
+      <Link o="/" onClick={() => dispatch({type: 'NULL', payload: ''})} className={`${active === '' ? 'active' : ''} md:w-[168px] md:h-[22px] w-[102px] h-[18px]`}>
         {!scrolled && <img src={logo} className="w-full h-full" alt="logo" />}
         {scrolled && <img src={logoW} className="w-full h-full" alt="logo" />}
-      </div>
+      </Link>
       <div className="flex gap-[18px] items-center">
         <form>
           <label className={`block rounded-[20px] pr-[10px] py-[8px] border-[0.5px] border-[#FFBDFF] outline-none bg-transparent ${
@@ -59,12 +59,12 @@ export default function Navbar() {
           </label>
         </form>
         <div className="nav lg:flex hidden gap-[18px] items-center text-[#fff] font-[500] font-[Futura] text-[14px]">
-          <NavLink to="/">Home</NavLink>
-          <Link to='/categories' className={`${active === 'New' ? 'active' : ''}`} onClick={() => dispatch({type: 'NEW', payload: 'New'})}>New</Link>
-          <Link to='/categories' className={`${active === 'Action' ? 'active' : ''}`} onClick={() => dispatch({type: 'ACTION', payload: 'Action'})}>Action</Link>
-          <Link to='/categories' className={`${active === 'Comedy' ? 'active' : ''}`} onClick={() => dispatch({type: 'COMEDY', payload: 'Comedy'})}>Comedy</Link>
-          <Link to='/categories' className={`${active === 'Sermon' ? 'active' : ''}`} onClick={() => dispatch({type: 'SERMON', payload: 'Sermon'})}>Sermon</Link>
-          <Link to='/categories' className={`${active === 'Lifestyle' ? 'active' : ''}`} onClick={() => dispatch({type: 'LIFESTYLE', payload: 'Lifestyle'})}>Lifestyle</Link>
+          <Link to="/" onClick={() => dispatch({type: 'NULL', payload: ''})} className={`${active === '' ? 'active' : ''}`} >Home</Link>
+          <Link to='/' className={`${active === 'New' ? 'active' : ''}`} onClick={() => dispatch({type: 'NEW', payload: 'New'})}>New</Link>
+          <Link to='/' className={`${active === 'Action' ? 'active' : ''}`} onClick={() => dispatch({type: 'ACTION', payload: 'Action'})}>Action</Link>
+          <Link to='/' className={`${active === 'Comedy' ? 'active' : ''}`} onClick={() => dispatch({type: 'COMEDY', payload: 'Comedy'})}>Comedy</Link>
+          <Link to='/' className={`${active === 'Sermon' ? 'active' : ''}`} onClick={() => dispatch({type: 'SERMON', payload: 'Sermon'})}>Sermon</Link>
+          <Link to='/' className={`${active === 'Lifestyle' ? 'active' : ''}`} onClick={() => dispatch({type: 'LIFESTYLE', payload: 'Lifestyle'})}>Lifestyle</Link>
         </div>
         <div
           className="lg:hidden flex cursor-pointer"

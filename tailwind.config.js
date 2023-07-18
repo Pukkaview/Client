@@ -4,8 +4,15 @@ export default {
   theme: {
     extend: {
       screens: {
+        "tv-sm": "1599px",
+        "tv-md": "1700px",
+        "tv-lg": "1850px",
+        "tv-xl": "1950px",
+        "tv-xxl": "2100px",
         "desktop-lg": "1440px",
-        "phone-lg": "425px",
+        "phone-lg": "520px",
+        "1180": "1180px",
+        "1280": "1280px"
         // => @media (min-width: 1280px) { ... }
       },
       colors: {

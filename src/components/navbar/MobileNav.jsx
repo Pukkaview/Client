@@ -1,20 +1,51 @@
 import close from '../../assets/close.svg'
 import PropTypes from 'prop-types';
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { ActiveContext } from "../../context/useActive";
+import { useContext, useEffect, useState } from 'react';
 
 export default function MobileNav({isVisible, handleClose}) {
+  const {active, dispatch} = useContext(ActiveContext)
+  const [selectedOption, setSelectedOption] = useState("Action");
+  console.log(active);
+  useEffect(() => {
+    setSelectedOption(active)
+  }, [active])
+
+  const handleSelectChange = (event) => {
+    const genre = event.target.value;
+    setSelectedOption(genre);
+    if(genre === 'New'){
+      dispatch({type:'NEW', payload:genre})
+    }
+    if(genre === 'Action'){
+      dispatch({type:'ACTION', payload:genre})
+    }
+    if(genre === 'Comedy'){
+      dispatch({type:'COMEDY', payload:genre})
+    }
+    if(genre === 'Lifestyle'){
+      dispatch({type:'LIFESTYLE', payload:genre})
+    }
+    if(genre === 'Sermon'){
+      dispatch({type:'SERMON', payload:genre})
+    }
+  };
   return (
     <div className={`bg-[#180018] px-[33px] pb-[26px] pt-[58px] w-[337px] absolute top-0 right-0 text-[#fff] flex flex-col gap-[23px] ${
       isVisible ? "" : "transform translate-x-[120%]"
     } transition duration-300 ease-in-out`}>
       <img onClick={handleClose} className='absolute top-[9px] right-[11px] cursor-pointer' src={close} alt="close" />
       <div className="bg-black select relative" style={{ width: "100%" }}>
-        <select className="bg-[#FEF] appearance-none cursor-pointer w-full px-[20px] py-[15px] rounded-[5px] bg-[#313131] outline-none font-[700] text-[#000000]" id="csize" style={{ width: "100%" }} name="csize">
-          <option value={"new"}>New</option>
-          <option value={"action"}>Action</option>
-          <option value={"comedy"}>Comedy</option>
-          <option value={"sermon"}>Sermon</option>
-          <option value={"lifestyle"}>Lifestyle</option>
+        <select className="bg-[#FEF] appearance-none cursor-pointer w-full px-[20px] py-[15px] rounded-[5px] bg-[#313131] outline-none font-[700] text-[#000000]" id="csize" style={{ width: "100%" }} name="csize"
+        onChange={handleSelectChange}
+        value={selectedOption}
+        >
+          <option value={"New"}>New</option>
+          <option value={"Action"}>Action</option>
+          <option value={"Comedy"}>Comedy</option>
+          <option value={"Sermon"}>Sermon</option>
+          <option value={"Lifestyle"}>Lifestyle</option>
         </select>
         <div className="pointer-events-none absolute top-[15px] right-[10px] flex items-center px-2 text-white ">
         <svg className="fill-current h-8 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -22,7 +53,8 @@ export default function MobileNav({isVisible, handleClose}) {
         </svg>
         </div>
       </div>
-      <NavLink to='/'>Home</NavLink>
+      <Link to="/" onClick={() => dispatch({type: 'NULL', payload: ''})} className={`${active === '' ? 'active' : ''}`} >Home</Link>
+
     </div>
   )
 }
