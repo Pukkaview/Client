@@ -17,7 +17,7 @@
   src: url('./fonts/goemetric/geometric_415_black_bt.ttf') format('truetype');
   font-weight: 400;
 }
-h1,h2, h3, h4, h5,h6{
+h1,h2, h3, h4, h5,h6, textarea{
   font-family: 'Goemetric-415-Black-BT', sans-serif;
 }
 p, span{
@@ -72,6 +72,34 @@ p, span{
   }
 }
 
+/* Assuming you're using some custom class or ID to style the player */
+input[type="range"] {
+  /* For WebKit browsers (e.g., Chrome, Safari) */
+  --track-color: #800080; /* Change to your desired color */
+
+  /* For Firefox */
+  --moz-range-progress: #800080; /* Change to your desired color */
+
+  /* For Microsoft Edge */
+  --ms-thumb-color: #800080; /* Change to your desired color */
+}
+
+/* Custom styles for the track (optional) */
+input[type="range"] {
+  accent-color: var(--track-color);
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+accent-color: var(--track-color);
+}
+
+input[type="range"]::-moz-range-progress {
+  accent-color: var(--moz-range-progress);
+}
+
+input[type="range"]::-ms-thumb {
+  accent-color: var(--ms-thumb-color);
+}
 
 
 
