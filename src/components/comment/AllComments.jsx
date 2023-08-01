@@ -6,21 +6,30 @@ import like from '../../assets/like.svg'
 
 export default function AllComments() {
   const {comments, dispatch} = useContext(CommentContext)
-  const sortedComments = comments.sort((a, b) => b.id - a.id)
   const [show, setShow] = useState(window.innerWidth > 1025)
+  const [sortedComments, setSortedComments] = useState([])
+  const [hideReply, setHideReply] = useState(true)
+  const [commentId, setCommentId] = useState(0)
+
+
+  useEffect(() => {
+    if(comments){
+      console.log(comments);
+      const sorted = comments.sort((a, b) => b.id - a.id)
+      setSortedComments(sorted)
+    }
+  }, [comments])
   console.log(show);
 
   const handleToggle=()=> {
     show ? setShow(false):setShow(true)
   }
-
-  console.log(sortedComments);
   useEffect(() => {
     // Function to fetch the video URL
     const getComment = async () => {
       try {
         const fetchResponse = await Fetcher("https://pukkaview.onrender.com/videoplayer/api/videos/1/getcomments/", {
-          method: "POST",
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
@@ -34,6 +43,36 @@ export default function AllComments() {
 
     getComment();
   }, [dispatch]);
+
+  const likeComment = async(id) => {
+    try {
+      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/1/comments/${id}/like/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(fetchResponse);
+      dispatch({type:"LIKE_COMMENT", payload: id})
+    } catch (error) {
+      console.error('Error fetching video URL:', error);
+    }
+  }
+  const likeReply = async(commentId, replyId) => {
+    console.log(commentId, replyId);
+    try {
+      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/1/comments/${replyId}/like/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(fetchResponse);
+      dispatch({type:"LIKE_REPLY", payload: {commentId, replyId}})
+    } catch (error) {
+      console.error('Error fetching video URL:', error);
+    }
+  }
   return (
     <div className="w-full">
       <div className="flex items-center mt-[43px] mb-[29px]">
@@ -55,7 +94,32 @@ export default function AllComments() {
             <p className="text-[12px]">{formatDistanceToNow(new Date(c.created_at).setMinutes(new Date(c.created_at).getMinutes() + 60), {addSuffix: true})}</p>
             <span>Reply</span>
             </div>
-            <img src={like} alt="" />
+            <div className="flex gap-[2px]">
+              <img src={like} alt="" className="cursor-pointer" onClick={() => likeComment(c.id)}/>
+              <span>{c.likes}</span>
+            </div>
+            {c.replies.length > 0 && (
+              <>
+              <div className="my-[10px] cursor-pointer" onClick={() => {
+                hideReply ? setHideReply(false) : setHideReply(true)
+                setCommentId(c.id)
+              }}>
+                <span className="text-accent1">{c.replies.length} {c.replies.length === 1 ? 'Reply': 'Replies'}</span>
+              </div>
+              {(!hideReply && commentId === c.id) && c.replies.map(r => (
+                <div key={r.id} className='sm:w-[40%] w-[60%] ml-[41px]'>
+                  <h6 className="text-text-color ">{r.comment}</h6>
+                  <div className="flex justify-between items-center">
+                  <p className="text-[12px]">{formatDistanceToNow(new Date(r.created_at).setMinutes(new Date(r.created_at).getMinutes() + 60), {addSuffix: true})}</p>
+                  </div>
+                  <div className="flex gap-[2px]">
+                    <img src={like} alt="" className="cursor-pointer" onClick={() => likeReply(c.id, r.id)}/>
+                    <span>{r.likes}</span>
+                  </div>
+                </div>
+              ))}
+              </>
+            )}
           </div>
         ))}
       </div>}

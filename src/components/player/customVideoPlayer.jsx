@@ -3,20 +3,28 @@ import ReactPlayer from 'react-player';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import screenfull from 'screenfull';
 
+import logo from '../../assets/logo.svg'
+
 // eslint-disable-next-line react/prop-types
 const CustomVideoPlayer = ({ videoUrl }) => {
   const videoRef = useRef(null);
   const containerRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
-  const [volume, setVolume] = useState(1); // 0 to 1
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
+  const [volume, setVolume] = useState(0); // 0 to 1
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [showControls, setShowControls] = useState(true);
+  const [isBuffering, setIsBuffering] = useState(true);
   const controlTimeoutRef = useRef(null);
-
+  // useEffect(() => {
+  //   if(currentTime > 1){
+  //     setIsMuted(false)
+  //     setVolume(1)
+  //   }
+  // }, [currentTime])
   useEffect(() => {
     if (screenfull.isEnabled) {
       screenfull.on('change', handleFullscreenChange);
@@ -28,6 +36,13 @@ const CustomVideoPlayer = ({ videoUrl }) => {
       }
     };
   }, []);
+  // useEffect(() => {
+  //   // Retrieve the stored progress from localStorage when the component mounts
+  //   const storedProgress = localStorage.getItem('videoProgress');
+  //   if (storedProgress !== null) {
+  //     setProgress(parseFloat(storedProgress/100));
+  //   }
+  // }, []);
 
   const handleFullscreenChange = () => {
     setIsFullScreen(screenfull.isFullscreen);
@@ -69,8 +84,10 @@ const CustomVideoPlayer = ({ videoUrl }) => {
   };
 
   const handleProgress = (state) => {
-    setProgress(state.played * 100);
+    const playedProgress = state.played * 100;
+    setProgress(playedProgress);
     setCurrentTime(state.playedSeconds);
+    localStorage.setItem('videoProgress', playedProgress);
   };
 
   const handleDuration = (duration) => {
@@ -94,6 +111,9 @@ const CustomVideoPlayer = ({ videoUrl }) => {
     if (videoRef.current) {
       videoRef.current.seekTo(played);
     }
+    setProgress(played * 100);
+    setCurrentTime(played * duration);
+    localStorage.setItem('videoProgress', played * 100);
   };
 
   const hideControls = () => {
@@ -113,6 +133,38 @@ const CustomVideoPlayer = ({ videoUrl }) => {
         clearTimeout(controlTimeoutRef.current);
       };
     }, []);
+    const handleOnReady = () => {
+      setIsBuffering(false);
+      setIsPlaying(true); // Auto-play the video when it's ready
+      if (videoRef.current) {
+        // Retrieve the stored progress from localStorage and convert it back to seconds
+        const storedProgressSeconds = parseFloat(localStorage.getItem('videoProgress')) || 0;
+        videoRef.current.seekTo(storedProgressSeconds);
+      }
+    };
+  
+    useEffect(() => {
+      // Seek to the stored progress when the component mounts
+      if (videoRef.current ) {
+        const storedProgressSeconds = parseFloat(localStorage.getItem('videoProgress')) || 0;
+        videoRef.current.seekTo(storedProgressSeconds);
+      }
+    }, []);
+  
+    // const handleOnBufferEnd = () => {
+    //   setIsPlaying(true); // Start playing once buffering is complete
+    // };
+    const handleOnBufferEnd = () => {
+      setIsBuffering(false); // Video buffering is complete, update state
+      if (videoRef.current) {
+        setIsPlaying(true); // Set isPlaying to true only when the video is ready to play
+      }
+    };
+  
+    const handleOnBuffer = () => {
+      setIsBuffering(true);
+      setIsPlaying(false);
+    };
 
   return (
     <div 
@@ -122,6 +174,12 @@ const CustomVideoPlayer = ({ videoUrl }) => {
     onMouseMove={showControlsOnHover}
     onMouseLeave={hideControls}
     >
+    {isBuffering && (
+        <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center">
+          {/* Replace zoomInImage with the URL of your zooming in image */}
+          <img src={logo} alt="Zoom In Image" className="zoom-in-out-animation" />
+        </div>
+      )}
       <div>
         <ReactPlayer
           ref={videoRef}
@@ -132,8 +190,12 @@ const CustomVideoPlayer = ({ videoUrl }) => {
           controls={false} // Hide the default controls
           width="100%"
           height="100vh"
+          preload="auto"
           onProgress={handleProgress}
           onDuration={handleDuration}
+          onBufferEnd={handleOnBufferEnd}
+          onReady={handleOnReady}
+          onBuffer={handleOnBuffer}
         />
       </div>
 

@@ -101,6 +101,23 @@ input[type="range"]::-ms-thumb {
   accent-color: var(--ms-thumb-color);
 }
 
+/* Replace with the appropriate image dimensions and animation values */
+.zoom-in-out-animation {
+  animation: zoomInOut 0.7s infinite alternate;
+  transition: transform 0.7s ease-in-out;
+  width: 200px;
+  height: 200px;
+}
+
+@keyframes zoomInOut {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.3);
+  }
+}
+
 
 
 

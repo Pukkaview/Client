@@ -18,13 +18,26 @@ const CommentReducer = (state, action) => {
         ...state,
         comments: [...state.comments, action.payload],
       };
-    case 'LIKE':
+    case 'LIKE_COMMENT':
       return {
         ...state,
-        comments: action.payload,
+        comments: state.comments.map((comment) => comment.id === action.payload ? { ...comment, likes: comment.likes++ } : comment)
       };
+      case 'LIKE_REPLY':
+        return {
+          ...state,
+          comments: state.comments.map((comment) =>
+        comment.id === action.payload.commentId
+          ? { ...comment, replies: comment.replies.map((reply) =>
+              reply.id === action.payload.replyId ? { ...reply, likes: reply.likes + 1 } : reply
+            )}
+          : comment
+      )}
+        // return{ 
+        //   ...state ,
+        //   comments: state.comments.map((comment) => comment.id === action.payload.commentId ? comment.replies.map(reply => reply.id === action.payload.replyId ? { ...comment, ...reply, likes: reply.likes++ }: reply) : comment)
+        // };
     case 'GET_COMMENTS':
-      localStorage.setItem('comment', action.payload);
       return {
         ...state,
         comments: action.payload,

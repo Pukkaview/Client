@@ -20,6 +20,7 @@ export default {
         accent4: "#FFBDFF",
         accent3: "#FF8CFF",
         accent2: "#FF5AFF",
+        accent1: "#C423C4",
         "text-color": "#FEF",
         background: "#180018",
       },
