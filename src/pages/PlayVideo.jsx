@@ -13,7 +13,7 @@ const PlayVideo = () => {
     // Function to fetch the video URL
     const fetchVideoUrl = async () => {
       try {
-        const fetchResponse = await Fetcher("https://pukkaview.onrender.com/videoplayer/11/play/", {
+        const fetchResponse = await Fetcher("https://pukkaview.onrender.com/videoplayer/16/play/", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

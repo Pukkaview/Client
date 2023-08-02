@@ -13,7 +13,7 @@ export default function Comment() {
     e.preventDefault()
     try {
       setLoading(true)
-      const fetchResponse = await Fetcher("https://pukkaview.onrender.com/videoplayer/api/videos/1/addcomments/", {
+      const fetchResponse = await Fetcher("https://pukkaview.onrender.com/videoplayer/api/videos/16/addcomments/", {
         method: "POST",
         body: JSON.stringify({
           comment
@@ -23,7 +23,7 @@ export default function Comment() {
         },
       });
       console.log(fetchResponse);
-      dispatch({type:"POST_COMMENT", payload: fetchResponse})
+      dispatch({type:"POST_COMMENT", payload: {...fetchResponse, replies:[], likes:0}})
       setLoading(false)
     } catch (error) {
       console.error('Error adding comment:', error);

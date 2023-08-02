@@ -18,6 +18,12 @@ const CommentReducer = (state, action) => {
         ...state,
         comments: [...state.comments, action.payload],
       };
+      case 'POST_REPLY':
+        console.log(action.payload.res);
+        return {
+          ...state,
+          comments: state.comments.map((comment) => comment.id === action.payload.id ? { ...comment, replies: [...comment.replies, action.payload.res] } : comment)
+        };
     case 'LIKE_COMMENT':
       return {
         ...state,

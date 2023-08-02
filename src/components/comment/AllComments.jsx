@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react"
 import { CommentContext } from "../../context/useComment"
 import Fetcher from "../../utils/fetcher";
 import like from '../../assets/like.svg'
+import ReplyComment from "./ReplyComment";
 
 export default function AllComments() {
   const {comments, dispatch} = useContext(CommentContext)
@@ -10,6 +11,16 @@ export default function AllComments() {
   const [sortedComments, setSortedComments] = useState([])
   const [hideReply, setHideReply] = useState(true)
   const [commentId, setCommentId] = useState(0)
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = (id) => {
+    setOpen(true);
+    setCommentId(id)
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
 
   useEffect(() => {
@@ -28,7 +39,7 @@ export default function AllComments() {
     // Function to fetch the video URL
     const getComment = async () => {
       try {
-        const fetchResponse = await Fetcher("https://pukkaview.onrender.com/videoplayer/api/videos/1/getcomments/", {
+        const fetchResponse = await Fetcher("https://pukkaview.onrender.com/videoplayer/api/videos/16/getcomments/", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -46,7 +57,7 @@ export default function AllComments() {
 
   const likeComment = async(id) => {
     try {
-      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/1/comments/${id}/like/`, {
+      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/16/comments/${id}/like/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -61,7 +72,7 @@ export default function AllComments() {
   const likeReply = async(commentId, replyId) => {
     console.log(commentId, replyId);
     try {
-      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/1/comments/${replyId}/like/`, {
+      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/16/comments/${replyId}/like/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -92,12 +103,13 @@ export default function AllComments() {
             <h6 className="text-text-color ">{c.comment}</h6>
             <div className="flex justify-between items-center">
             <p className="text-[12px]">{formatDistanceToNow(new Date(c.created_at).setMinutes(new Date(c.created_at).getMinutes() + 60), {addSuffix: true})}</p>
-            <span>Reply</span>
+            <span className="cursor-pointer" onClick={() => handleClickOpen(c.id)}>Reply</span>
             </div>
             <div className="flex gap-[2px]">
               <img src={like} alt="" className="cursor-pointer" onClick={() => likeComment(c.id)}/>
               <span>{c.likes}</span>
             </div>
+            <ReplyComment open={open} handleClose={handleClose} id={commentId}/>
             {c.replies.length > 0 && (
               <>
               <div className="my-[10px] cursor-pointer" onClick={() => {

@@ -87,7 +87,7 @@ const CustomVideoPlayer = ({ videoUrl }) => {
     const playedProgress = state.played * 100;
     setProgress(playedProgress);
     setCurrentTime(state.playedSeconds);
-    localStorage.setItem('videoProgress', playedProgress);
+    // localStorage.setItem('videoProgress', playedProgress);
   };
 
   const handleDuration = (duration) => {
@@ -136,30 +136,30 @@ const CustomVideoPlayer = ({ videoUrl }) => {
     const handleOnReady = () => {
       setIsBuffering(false);
       setIsPlaying(true); // Auto-play the video when it's ready
-      if (videoRef.current) {
-        // Retrieve the stored progress from localStorage and convert it back to seconds
-        const storedProgressSeconds = parseFloat(localStorage.getItem('videoProgress')) || 0;
-        videoRef.current.seekTo(storedProgressSeconds);
-      }
+      // if (videoRef.current) {
+      //   // Retrieve the stored progress from localStorage and convert it back to seconds
+      //   const storedProgressSeconds = parseFloat(localStorage.getItem('videoProgress')) || 0;
+      //   videoRef.current.seekTo(storedProgressSeconds);
+      // }
     };
   
-    useEffect(() => {
-      // Seek to the stored progress when the component mounts
-      if (videoRef.current ) {
-        const storedProgressSeconds = parseFloat(localStorage.getItem('videoProgress')) || 0;
-        videoRef.current.seekTo(storedProgressSeconds);
-      }
-    }, []);
+    // useEffect(() => {
+    //   // Seek to the stored progress when the component mounts
+    //   if (videoRef.current ) {
+    //     const storedProgressSeconds = parseFloat(localStorage.getItem('videoProgress')) || 0;
+    //     videoRef.current.seekTo(storedProgressSeconds);
+    //   }
+    // }, []);
   
     // const handleOnBufferEnd = () => {
     //   setIsPlaying(true); // Start playing once buffering is complete
     // };
-    const handleOnBufferEnd = () => {
-      setIsBuffering(false); // Video buffering is complete, update state
-      if (videoRef.current) {
-        setIsPlaying(true); // Set isPlaying to true only when the video is ready to play
-      }
-    };
+    // const handleOnBufferEnd = () => {
+    //   setIsBuffering(false); // Video buffering is complete, update state
+    //   if (videoRef.current) {
+    //     setIsPlaying(true); // Set isPlaying to true only when the video is ready to play
+    //   }
+    // };
   
     const handleOnBuffer = () => {
       setIsBuffering(true);
@@ -193,7 +193,7 @@ const CustomVideoPlayer = ({ videoUrl }) => {
           preload="auto"
           onProgress={handleProgress}
           onDuration={handleDuration}
-          onBufferEnd={handleOnBufferEnd}
+          // onBufferEnd={handleOnBufferEnd}
           onReady={handleOnReady}
           onBuffer={handleOnBuffer}
         />
