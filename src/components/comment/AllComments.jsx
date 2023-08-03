@@ -56,6 +56,7 @@ export default function AllComments() {
   }, [dispatch]);
 
   const likeComment = async(id) => {
+    dispatch({type:"LIKE_COMMENT", payload: id})
     try {
       const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/16/comments/${id}/like/`, {
         method: "POST",
@@ -64,13 +65,13 @@ export default function AllComments() {
         },
       });
       console.log(fetchResponse);
-      dispatch({type:"LIKE_COMMENT", payload: id})
     } catch (error) {
       console.error('Error fetching video URL:', error);
     }
   }
   const likeReply = async(commentId, replyId) => {
     console.log(commentId, replyId);
+    dispatch({type:"LIKE_REPLY", payload: {commentId, replyId}})
     try {
       const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/16/comments/${replyId}/like/`, {
         method: "POST",
@@ -79,7 +80,6 @@ export default function AllComments() {
         },
       });
       console.log(fetchResponse);
-      dispatch({type:"LIKE_REPLY", payload: {commentId, replyId}})
     } catch (error) {
       console.error('Error fetching video URL:', error);
     }

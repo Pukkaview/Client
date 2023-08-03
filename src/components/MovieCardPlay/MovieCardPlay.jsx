@@ -8,11 +8,10 @@ const MovieCard = ({ title, content, backgroundColor }) => {
     <div>
       <div
         style={cardStyle}
-        className="justify-start border-0 rounded-xl gap-[21px] flex hover:bg-accent3 transition duration-300"
+        className="cursor-pointer justify-start border-0 rounded-xl gap-[21px] flex hover:bg-accent3 transition duration-300"
       >
         <div className="w-[30%] justify-center items-center flex bg-movieCardBg bg-cover bg-no-repeat ">
           <div className="">
-            <div className=" w-[37px] h-[37px]  justify-start items-start flex " />
             <img src={Play} alt="" />
           </div>
         </div>

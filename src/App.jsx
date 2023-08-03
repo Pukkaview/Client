@@ -4,19 +4,22 @@ import Contact from "./pages/Contact";
 import Categories from "./pages/Categories";
 import PlayVideo from "./pages/PlayVideo";
 import ScrollToTop from "./ScrollToTop";
-// import { useContext, useEffect } from "react";
-// import { ActiveContext } from "./context/useActive";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 function App() {
-  // const {dispatch} = useContext(ActiveContext)
-  // const location = useLocation()
-  // const currentPath = location.pathname
-  // useEffect(() => {
-  //   if(currentPath === '/'){
-  //     dispatch({type: 'NULL', payload: ''})
-  //   }
-  // }, [currentPath, dispatch])
   return (
     <div className="overflow-x-hiddeen">
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          />
       {" "}
       {/* the min-h-[1000px] was used just to show how the navbar react on scroll. When there are contents available on each pages, it will be removed */}
       <ScrollToTop />

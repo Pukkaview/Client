@@ -52,20 +52,20 @@ const CustomVideoPlayer = ({ videoUrl }) => {
     setIsPlaying((prevIsPlaying) => !prevIsPlaying);
   };
  // Event listener for space key press
- useEffect(() => {
-  const handleKeyPress = (event) => {
-    if (event.code === 'Space') {
-      event.preventDefault();
-      setIsPlaying((prevIsPlaying) => !prevIsPlaying); // Toggle play/pause on space key press
-    }
-  };
+//  useEffect(() => {
+//   const handleKeyPress = (event) => {
+//     if (event.code === 'Space') {
+//       event.preventDefault();
+//       setIsPlaying((prevIsPlaying) => !prevIsPlaying); // Toggle play/pause on space key press
+//     }
+//   };
 
-  window.addEventListener('keydown', handleKeyPress);
+//   window.addEventListener('keydown', handleKeyPress);
 
-  return () => {
-    window.removeEventListener('keydown', handleKeyPress);
-  };
-}, []);
+//   return () => {
+//     window.removeEventListener('keydown', handleKeyPress);
+//   };
+// }, []);
 
   const handleMute = () => {
     setIsMuted((prevIsMuted) => !prevIsMuted);

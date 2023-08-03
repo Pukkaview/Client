@@ -3,6 +3,7 @@ import InfoBtn from '../buttons/InfoBtn'
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import MovieDetailCard from './MovieDetailsCard';
+import { Link } from 'react-router-dom';
 
 export default function IntroCard({data}) {
   const [open, setOpen] = useState(false);
@@ -28,7 +29,9 @@ export default function IntroCard({data}) {
           <h1 className='sm:text-[48px] text-[32px] font-[500] leading-normal'>{data.title}</h1>
           <p className='text-[14px] sm:text-[18px]'>{data.bio}</p>
           <div className='flex gap-[10px] mt-[22px]'>
+            <Link to='/play'>
               <WatchBtn/>
+            </Link>
               <div onClick={handleClickOpen}>
                 <InfoBtn />
               </div>
