@@ -5,7 +5,7 @@ import Fetcher from "../../utils/fetcher";
 import like from '../../assets/like.svg'
 import ReplyComment from "./ReplyComment";
 
-export default function AllComments() {
+export default function AllComments({videoId}) {
   const {comments, dispatch} = useContext(CommentContext)
   const [show, setShow] = useState(window.innerWidth > 1025)
   const [sortedComments, setSortedComments] = useState([])
@@ -39,7 +39,7 @@ export default function AllComments() {
     // Function to fetch the video URL
     const getComment = async () => {
       try {
-        const fetchResponse = await Fetcher("https://pukkaview.onrender.com/videoplayer/api/videos/16/getcomments/", {
+        const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/${videoId}/getcomments/`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -58,7 +58,7 @@ export default function AllComments() {
   const likeComment = async(id) => {
     dispatch({type:"LIKE_COMMENT", payload: id})
     try {
-      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/16/comments/${id}/like/`, {
+      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/${videoId}/comments/${id}/like/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -73,7 +73,7 @@ export default function AllComments() {
     console.log(commentId, replyId);
     dispatch({type:"LIKE_REPLY", payload: {commentId, replyId}})
     try {
-      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/16/comments/${replyId}/like/`, {
+      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/${videoId}/comments/${replyId}/like/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -109,7 +109,7 @@ export default function AllComments() {
               <img src={like} alt="" className="cursor-pointer" onClick={() => likeComment(c.id)}/>
               <span>{c.likes}</span>
             </div>
-            <ReplyComment open={open} handleClose={handleClose} id={commentId}/>
+            <ReplyComment open={open} handleClose={handleClose} id={commentId} videoId={videoId}/>
             {c.replies.length > 0 && (
               <>
               <div className="my-[10px] cursor-pointer" onClick={() => {
@@ -119,7 +119,7 @@ export default function AllComments() {
                 <span className="text-accent1">{c.replies.length} {c.replies.length === 1 ? 'Reply': 'Replies'}</span>
               </div>
               {(!hideReply && commentId === c.id) && c.replies.map(r => (
-                <div key={r.id} className='sm:w-[40%] w-[60%] ml-[41px]'>
+                <div key={r.id} className='ml-[41px]'>
                   <h6 className="text-text-color ">{r.comment}</h6>
                   <div className="flex justify-between items-center">
                   <p className="text-[12px]">{formatDistanceToNow(new Date(r.created_at).setMinutes(new Date(r.created_at).getMinutes() + 60), {addSuffix: true})}</p>

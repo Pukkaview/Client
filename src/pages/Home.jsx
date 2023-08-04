@@ -11,6 +11,7 @@ import MovieDetailCard from "../components/cards/MovieDetailsCard";
 import { ActiveContext } from "../context/useActive";
 import { useContext } from "react";
 import Categories from "./Categories";
+import Rate from "../components/feedback/Rate";
 
 // Sample data. To be replaced by data coming from the backend
 const data = {
@@ -43,14 +44,16 @@ const movie_data = {
   ],
   bio: "The Redemption's Path is a compelling Christian movie that takes viewers on a transformative journey of faith, forgiveness, and spiritual renewal. Set in a small town struggling with personal struggles and a loss of hope, the film centers around the lives of three main characters whose paths intersect in unexpected ways.",
 };
-const Home = () => {
+const Home = ({comedy, action}) => {
   const {active, dispatch} = useContext(ActiveContext)
+
   return (
     <div className="bg-background overflow-x-hidden">
       <Navbar />
       {!active && 
       <>
       <IntroCard data={data} />
+      <Rate/>
       <div className="md:px-[59px] px-[20px] pt-[107px] pb-[65px] text-text-color mx-auto">
         <div className="bg-[#fff]">
           <MovieDetailCard />
@@ -73,30 +76,34 @@ const Home = () => {
               <ViewBtn />
             </Link>
           </div>
-          <Carousel>
+          { action.length > 0 && <Carousel>
+            {action.length > 0 && action.map(a => (
+            <MovieCard key={a.id} data={a} />
+            )) }
             <MovieCard data={movie_data} />
             <MovieCard data={movie_data} />
             <MovieCard data={movie_data} />
             <MovieCard data={movie_data} />
             <MovieCard data={movie_data} />
-            <MovieCard data={movie_data} />
-          </Carousel>
+          </Carousel>}
         </div>
         <div>
         <div className="w-full flex justify-between">
-            <h2 className="text-[24px] font-goemetric font-[400]">Sermon</h2>
+            <h2 className="text-[24px] font-goemetric font-[400]">Comedy</h2>
             <Link to="/categories" onClick={() => dispatch({type: 'SERMON', payload: 'Sermon'})}>
               <ViewBtn />
             </Link>
           </div>
-          <Carousel>
+          {comedy.length > 0 &&<Carousel>
+            {comedy.map(c=> (
+            <MovieCard key={c.id} data={c} />
+            ))}
             <MovieCard data={movie_data} />
             <MovieCard data={movie_data} />
             <MovieCard data={movie_data} />
             <MovieCard data={movie_data} />
             <MovieCard data={movie_data} />
-            <MovieCard data={movie_data} />
-          </Carousel>
+          </Carousel>}
         </div>
       </div>
       </>

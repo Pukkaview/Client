@@ -1,9 +1,11 @@
+import { Link } from 'react-router-dom';
 import PlayBtn from '../buttons/PlayBtn'
 import ShareBtn from '../buttons/ShareBtn'
 import WatchBtn from '../buttons/WatchBtn'
 import './moviecards.css'
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import dummy2 from "../../assets/dummy.png";
 
 
 export default function MovieCard({data, isLastActive}) {
@@ -54,7 +56,7 @@ export default function MovieCard({data, isLastActive}) {
   return (
     <div className={`sm:h-[199px] h-[229px] z-[5px] flex items-center ${isLastActive ? 'last' : ''}`}>
       <div style={{
-        backgroundImage: `url(${data.coverImage})`,
+        backgroundImage: `url(${dummy2})`,
         backgroundSize: 'cover',
         width: hovered ? divWidth + 170 : divWidth - 40,
         transition: 'all 0.3s ease',
@@ -67,25 +69,28 @@ export default function MovieCard({data, isLastActive}) {
         </div>
         <div className='details absolute w-full text-text-color px-[18px] py-[33px] flex flex-col gap-[25px] left-0'>
           <div className='flex justify-between w-full'>
-            <div className='flex flex-col gap-[5px] w-[30%]'>
-              <span className='sm:text-[16px] text-[12px]'><b>Year:</b> {data.year}</span>
+            <div className='flex flex-col gap-[5px] w-[40%]'>
+              <span className='sm:text-[16px] text-[12px]'><b>Year:</b> 2019</span>
               <span className='sm:text-[16px] text-[12px]'><b>Genre:</b> {data.genre}</span>
             </div>
-            <div className='flex gap-[5px] w-[60%]'>
+            <div className='flex gap-[5px] w-[50%]'>
               <span className='sm:text-[16px] text-[12px]'> <b>Casts:</b>  </span>
               <div className='flex flex-wrap'>
-                {data && data.casts.map(cast => (
-                  <span className='sm:text-[16px] text-[12px]' key={cast}>{cast},</span>
-                ))}
+                
+                <span className='sm:text-[16px] text-[12px]'>{data.cast}</span>
+                {/* {data && data.casts.map(cast => (
+                ))} */}
               </div>
             </div>
           </div>
           <div>
             <h2 className='uppercase sm:text-[24px] text-[16px] font-[700]'>{data.title}</h2>
-            <p className='sm:text-[16px] text-[12px]'>{data.bio}</p>
+            <p className='sm:text-[16px] text-[12px]'>The Redemption's Path is a compelling Christian movie that takes viewers on a transformative journey of faith, forgiveness, and spiritual renewal. Set in a small town struggling with personal struggles and a loss of hope, the film centers around the lives of three main characters whose paths intersect in unexpected ways.</p>
           </div>
           <div className='flex gap-[50px]'>
-            <WatchBtn/>
+            <Link to={`/play/${data.id}`}>
+              <WatchBtn/>
+            </Link>
             <ShareBtn/>
           </div>
         </div>

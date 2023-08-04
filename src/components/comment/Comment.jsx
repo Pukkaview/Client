@@ -5,7 +5,7 @@ import AllComments from "./AllComments";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-export default function Comment() {
+export default function Comment({videoId}) {
   const { dispatch }  = useContext(CommentContext)
   const [comment, setComment] = useState('')
   const [loading, setLoading] = useState(false)
@@ -40,7 +40,7 @@ export default function Comment() {
     e.preventDefault()
     setLoading(true)
     try {
-      const fetchResponse = await Fetcher("https://pukkaview.onrender.com/videoplayer/api/videos/16/addcomments/", {
+      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/${videoId}/addcomments/`, {
         method: "POST",
         body: JSON.stringify({
           comment
@@ -74,7 +74,7 @@ export default function Comment() {
         </form>
       </div>
       <div>
-      <AllComments/>
+      <AllComments videoId={videoId}/>
       </div>
     </div>
   )

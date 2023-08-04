@@ -8,7 +8,7 @@ import './popup.css'
 import cancel from '../../assets/cancel.svg'
 import { toast } from "react-toastify";
 
-export default function ReplyComment({id, open, handleClose}) {
+export default function ReplyComment({id, open, handleClose, videoId}) {
   const { dispatch }  = useContext(CommentContext)
   const [comment, setComment] = useState('')
   const [loading, setLoading] = useState(false)
@@ -43,7 +43,7 @@ export default function ReplyComment({id, open, handleClose}) {
     console.log(id);
     setLoading(true)
     try {
-      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/16/comment/${id}/reply/`, {
+      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/${videoId}/comment/${id}/reply/`, {
         method: "POST",
         body: JSON.stringify({
           reply:comment
