@@ -46,8 +46,36 @@ export default function Rate({open, handleClose }) {
       progress: undefined,
     });
   };
+
+  const handleReview = async(e) => {
+    e.preventDefault()
+    setLoading(true)
+    try {
+      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/forms/api/review-form/`, {
+        method: "POST",
+        body: JSON.stringify({
+          email,
+          review
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (fetchResponse.failure) throw new Error(fetchResponse.message);
+      console.log(fetchResponse);
+      setLoading(false)
+      handleSuccess(fetchResponse.message)
+      setEmail('')
+      setReview('')
+      handleClose()
+    } catch (error) {
+      handleError('Something went wrong, try again')
+      console.error('Error adding comment:', error);
+      setLoading(false)
+    }
+  };
+
   const handleRating = async() => {
-    console.log(id);
     setLoading(true)
     if(!rating){
       handleError('Please select a rating')
@@ -73,31 +101,6 @@ export default function Rate({open, handleClose }) {
         setLoading(false)
         handleError('Error!, Try again')
       }
-    }
-  };
-  const handleReview = async(e) => {
-    e.preventDefault()
-    setLoading(true)
-    try {
-      const fetchResponse = await Fetcher(`http://127.0.0.1:8000/forms/api/review-form/`, {
-        method: "POST",
-        body: JSON.stringify({
-          email,
-          review
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      console.log(fetchResponse);
-      setLoading(false)
-      handleSuccess()
-      setEmail('')
-      setReview('')
-    } catch (error) {
-      handleError()
-      console.error('Error adding comment:', error);
-      setLoading(false)
     }
   };
   return (
@@ -163,7 +166,7 @@ export default function Rate({open, handleClose }) {
             </label>
             <label className="w-full">
               <h2 className="text-[18px] text-text-color font-[400] mb-[10px]">Review</h2>
-              <textarea required className="w-full bg-[#FEF] p-[10px] rounded-[10px] text-black" placeholder="Your review" onChange={(e) => setReview(e.target.value)} value={email} />
+              <textarea required className="w-full bg-[#FEF] p-[10px] rounded-[10px] text-black" placeholder="Your review" onChange={(e) => setReview(e.target.value)} value={review} />
             </label>
             <button disabled={loading} className='w-[150px] px-[18px] sm:px-[29px] py-[18px] bg-primary hover:bg-accent2 transition duration-300 ease-in-out cursor-pointer flex sm:gap-[19px] gap-[10px] justify-center rounded-[10px] mt-[20px]'>
             <span className='text-text-color sm:text-[16px] text-[14px] font-[Goemetric-415-Black-BT]'>{loading ?<i className="fa-solid fa-circle-notch fa-spin fa-lg " style={{ animationDuration: "1s" }}></i> :'Comment'}</span>

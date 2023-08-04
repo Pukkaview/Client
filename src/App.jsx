@@ -12,7 +12,7 @@ import Rate from "./components/feedback/Rate";
 function App() {
     const [comedy, setComedy] = useState([])
     const [action, setAction] = useState([])
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(true);
 
     // const handleClickOpen = (id) => {
     //   setOpen(true);
@@ -24,19 +24,6 @@ function App() {
     console.log(comedy, action);
 
     useEffect(() => {
-      const handleBeforeUnload = (event) => {
-        event.preventDefault();
-        event.returnValue = ''; // Chrome requires this to display the confirmation message
-        setOpen(true);
-      };
-  
-      window.addEventListener('beforeunload', handleBeforeUnload);
-  
-      return () => {
-        window.removeEventListener('beforeunload', handleBeforeUnload);
-      };
-    }, []);
-    useEffect(() => {
       // Function to fetch the video URL
       const fetchComedy = async () => {
         try {
@@ -47,6 +34,7 @@ function App() {
             },
           });
           // console.log(fetchResponse);
+          if (fetchResponse.failure) throw new Error(fetchResponse.message);
           setComedy(fetchResponse)
         } catch (error) {
           console.error('Error fetching video URL:', error);
@@ -61,6 +49,7 @@ function App() {
             },
           });
           // console.log(fetchResponse);
+          if (fetchResponse.failure) throw new Error(fetchResponse.message);
           setAction(fetchResponse)
         } catch (error) {
           console.error('Error fetching video URL:', error);

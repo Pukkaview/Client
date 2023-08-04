@@ -45,6 +45,7 @@ export default function AllComments({videoId}) {
             "Content-Type": "application/json",
           },
         });
+        if (fetchResponse.failure) throw new Error(fetchResponse.message);
         console.log(fetchResponse);
         dispatch({type:"GET_COMMENTS", payload: fetchResponse})
       } catch (error) {
@@ -64,6 +65,7 @@ export default function AllComments({videoId}) {
           "Content-Type": "application/json",
         },
       });
+      if (fetchResponse.failure) throw new Error(fetchResponse.message);
       console.log(fetchResponse);
     } catch (error) {
       console.error('Error fetching video URL:', error);
@@ -79,6 +81,7 @@ export default function AllComments({videoId}) {
           "Content-Type": "application/json",
         },
       });
+      if (fetchResponse.failure) throw new Error(fetchResponse.message);
       console.log(fetchResponse);
     } catch (error) {
       console.error('Error fetching video URL:', error);

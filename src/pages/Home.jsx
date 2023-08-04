@@ -12,6 +12,8 @@ import { ActiveContext } from "../context/useActive";
 import { useContext } from "react";
 import Categories from "./Categories";
 import Rate from "../components/feedback/Rate";
+import {Skeleton} from '@mui/material'
+
 
 // Sample data. To be replaced by data coming from the backend
 const data = {
@@ -76,6 +78,14 @@ const Home = ({comedy, action}) => {
               <ViewBtn />
             </Link>
           </div>
+          {action.length === 0 && 
+          <div className="flex justify-between my-[10px]">
+            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+          </div>
+          }
           { action.length > 0 && <Carousel>
             {action.length > 0 && action.map(a => (
             <MovieCard key={a.id} data={a} />
@@ -94,6 +104,12 @@ const Home = ({comedy, action}) => {
               <ViewBtn />
             </Link>
           </div>
+          {comedy.length === 0 && <div className="flex justify-between my-[10px]">
+            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+          </div>}
           {comedy.length > 0 &&<Carousel>
             {comedy.map(c=> (
             <MovieCard key={c.id} data={c} />

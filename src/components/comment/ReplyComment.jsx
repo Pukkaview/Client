@@ -52,6 +52,7 @@ export default function ReplyComment({id, open, handleClose, videoId}) {
           "Content-Type": "application/json",
         },
       });
+      if (fetchResponse.failure) throw new Error(fetchResponse.message);
       console.log(fetchResponse);
       dispatch({type:"POST_REPLY", payload: {res:fetchResponse, id}})
       setLoading(false)

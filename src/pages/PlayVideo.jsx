@@ -21,7 +21,7 @@ const PlayVideo = () => {
             "Content-Type": "application/json",
           },
         });
-        console.log(fetchResponse.videolink);
+        if (fetchResponse.failure) throw new Error(fetchResponse.message);
         setData(fetchResponse)
       } catch (error) {
         console.error('Error fetching video URL:', error);
