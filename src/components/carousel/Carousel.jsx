@@ -17,6 +17,9 @@ export default function Carousel({ children }) {
   const handleBeforeChange = (current, next) => {
     setCurrentSlide(next);
   };
+  // const Next = () => (
+  //   <img className="h-[32px] w-[32px]" src={next} alt="next" />
+  // )
   const settings = {
     dots: false,
     infinite: infinite,

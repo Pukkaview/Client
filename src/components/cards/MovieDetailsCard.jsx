@@ -4,6 +4,7 @@ import cancel from '../../assets/cancel.svg'
 import WatchBtn from '../buttons/WatchBtn';
 import ShareBtn from '../buttons/ShareBtn';
 import './moviecards.css'
+import { Link } from 'react-router-dom';
 
 export default function MovieDetailCard({open, handleClose, data}) {
   return (
@@ -12,12 +13,12 @@ export default function MovieDetailCard({open, handleClose, data}) {
         <div>
           <Dialog open={open} onClose={handleClose}>
             <DialogContent style={{padding:0}}>
-              <div className='flex justify-end pb-[100px]'>
+              <div className='flex justify-end'>
                 <img className='sm:w-[80px] sm:h-[80px] w-[60px] h-[60px] cursor-pointer' src={cancel} onClick={handleClose} alt="cancel" />
                 {/* <Button className='text-white bg-white' onClick={handleClose}>Cancel</Button> */}
               </div>
               <div style={{
-              backgroundImage: `url(${data.coverImage})`,
+              backgroundImage: `url(${encodeURI(data.thumbnaillink)})`,
               backgroundSize: 'cover',
 
               }} className='moviecard2 relative sm:h-[392px] sm:w-[517px] w-[350px] h-[350px] mx-auto  rounded-[15px] overflow-hidden'>
@@ -30,18 +31,18 @@ export default function MovieDetailCard({open, handleClose, data}) {
                   <div className='flex gap-[5px] w-[60%]'>
                     <span className='sm:text-[16px] text-[12px]'> <b>Casts:</b>  </span>
                     <div className='flex flex-wrap'>
-                      {data && data.casts.map(cast => (
-                        <span className='sm:text-[16px] text-[12px]' key={cast}>{cast},</span>
-                      ))}
+                        <span className='sm:text-[16px] text-[12px]'>{data.cast}</span>
                     </div>
                   </div>
                 </div>
                 <div className='z-10'>
                   <h2 className='uppercase sm:text-[24px] text-[16px] font-[700]'>{data.title}</h2>
-                  <p className='sm:text-[16px] text-[12px]'>{data.bio}</p>
+                  <p className='sm:text-[16px] text-[12px]'>{data.plot}</p>
                 </div>
                 <div className='flex gap-[50px] z-10'>
+                <Link to={`/play/${data.id}`}>
                   <WatchBtn/>
+                </Link>
                   <ShareBtn/>
                 </div>
               </div>

@@ -12,7 +12,9 @@ import Rate from "./components/feedback/Rate";
 function App() {
     const [comedy, setComedy] = useState([])
     const [action, setAction] = useState([])
-    const [open, setOpen] = useState(true);
+    const [drama, setDrama] = useState([])
+
+    const [open, setOpen] = useState(false);
 
     // const handleClickOpen = (id) => {
     //   setOpen(true);
@@ -55,8 +57,24 @@ function App() {
           console.error('Error fetching video URL:', error);
         }
       };
+      const fetchDrama = async () => {
+        try {
+          const fetchResponse = await Fetcher("https://pukkaview.onrender.com/videoplayer/api/search-videos/?genre=Drama", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          // console.log(fetchResponse);
+          if (fetchResponse.failure) throw new Error(fetchResponse.message);
+          setDrama(fetchResponse)
+        } catch (error) {
+          console.error('Error fetching video URL:', error);
+        }
+      };
       fetchComedy();
-      fetchAction()
+      fetchAction();
+      fetchDrama();
     }, []);
   return (
     <div className="overflow-x-hiddeen">
@@ -76,9 +94,9 @@ function App() {
       {/* the min-h-[1000px] was used just to show how the navbar react on scroll. When there are contents available on each pages, it will be removed */}
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={<Home comedy={comedy} action={action}  />} />
+        <Route path="/" element={<Home comedy={comedy} action={action} drama={drama}  />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/categories" element={<Categories comedy={comedy} action={action} />} />
+        <Route path="/categories" element={<Categories comedy={comedy} action={action} drama={drama}  />} />
 
         <Route path="/play/:id" element={<PlayVideo />} />
         {/* <Routes path="*" element={<NotFound />} /> */}

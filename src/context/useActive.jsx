@@ -36,6 +36,12 @@ const activeReducer = (state, action) => {
         ...state,
         active: action.payload,
       };
+    case 'DRAMA':
+      localStorage.setItem('active', action.payload);
+      return {
+        ...state,
+        active: action.payload,
+      };
     case 'LIFESTYLE':
       localStorage.setItem('active', action.payload);
       return {

@@ -2,11 +2,16 @@ import { useRef, useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import screenfull from 'screenfull';
-
+import like from '../../assets/like.svg'
 import logo from '../../assets/logo.svg'
+
+import { VideoContext } from '../../context/useVideo';
+import { useContext } from 'react';
+import Fetcher from '../../utils/fetcher';
 
 // eslint-disable-next-line react/prop-types
 const CustomVideoPlayer = ({ videoUrl }) => {
+  const {video, dispatch} = useContext(VideoContext)
   const videoRef = useRef(null);
   const containerRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -166,6 +171,21 @@ const CustomVideoPlayer = ({ videoUrl }) => {
       setIsPlaying(false);
     };
 
+    const handleLike = async(id) => {
+      dispatch({type:"LIKE_VIDEO", payload: id})
+      try {
+        const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/${id}/like/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (fetchResponse.failure) throw new Error(fetchResponse.message);
+        console.log(fetchResponse);
+      } catch (error) {
+        console.error('Error fetching video URL:', error);
+      }
+    }
   return (
     <div 
     className="relative" 
@@ -246,6 +266,10 @@ const CustomVideoPlayer = ({ videoUrl }) => {
 
           <div className="text-white mx-4">
             {formatTime(currentTime)} / {formatTime(duration)}
+          </div>
+          <div className='flex gap-[2px] items-center'>
+            <img src={like} onClick={() => handleLike(video.id)} alt="" className="cursor-pointer h-[16px]"/>
+            <span className='text-white'>{video.likes}</span>
           </div>
           </div>
           <div>

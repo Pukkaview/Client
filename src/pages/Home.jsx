@@ -46,7 +46,7 @@ const movie_data = {
   ],
   bio: "The Redemption's Path is a compelling Christian movie that takes viewers on a transformative journey of faith, forgiveness, and spiritual renewal. Set in a small town struggling with personal struggles and a loss of hope, the film centers around the lives of three main characters whose paths intersect in unexpected ways.",
 };
-const Home = ({comedy, action}) => {
+const Home = ({comedy, action, drama}) => {
   const {active, dispatch} = useContext(ActiveContext)
 
   return (
@@ -54,22 +54,11 @@ const Home = ({comedy, action}) => {
       <Navbar />
       {!active && 
       <>
-      <IntroCard data={data} />
+      <IntroCard data={action[0]} />
       <Rate/>
       <div className="md:px-[59px] px-[20px] pt-[107px] pb-[65px] text-text-color mx-auto">
         <div className="bg-[#fff]">
           <MovieDetailCard />
-        </div>
-        <div>
-          <h2 className="text-[24px] font-[400]">Watch More</h2>
-          <Carousel>
-            <MovieCard data={movie_data} />
-            <MovieCard data={movie_data} />
-            <MovieCard data={movie_data} />
-            <MovieCard data={movie_data} />
-            <MovieCard data={movie_data} />
-            <MovieCard data={movie_data} />
-          </Carousel>
         </div>
         <div>
           <div className="w-full flex justify-between">
@@ -90,11 +79,6 @@ const Home = ({comedy, action}) => {
             {action.length > 0 && action.map(a => (
             <MovieCard key={a.id} data={a} />
             )) }
-            <MovieCard data={movie_data} />
-            <MovieCard data={movie_data} />
-            <MovieCard data={movie_data} />
-            <MovieCard data={movie_data} />
-            <MovieCard data={movie_data} />
           </Carousel>}
         </div>
         <div>
@@ -114,11 +98,25 @@ const Home = ({comedy, action}) => {
             {comedy.map(c=> (
             <MovieCard key={c.id} data={c} />
             ))}
-            <MovieCard data={movie_data} />
-            <MovieCard data={movie_data} />
-            <MovieCard data={movie_data} />
-            <MovieCard data={movie_data} />
-            <MovieCard data={movie_data} />
+          </Carousel>}
+        </div>
+        <div>
+        <div className="w-full flex justify-between">
+            <h2 className="text-[24px] font-goemetric font-[400]">Drama</h2>
+            <Link to="/categories" onClick={() => dispatch({type: 'DRAMA', payload: 'Drama'})}>
+              <ViewBtn />
+            </Link>
+          </div>
+          {drama.length === 0 && <div className="flex justify-between my-[10px]">
+            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+          </div>}
+          {drama.length > 0 &&<Carousel>
+            {drama.map(c=> (
+            <MovieCard key={c.id} data={c} />
+            ))}
           </Carousel>}
         </div>
       </div>

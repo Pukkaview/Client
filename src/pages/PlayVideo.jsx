@@ -7,10 +7,13 @@ import PlayCat from '../components/playCat/playCat';
 import CustomVideoPlayer from '../components/player/customVideoPlayer';
 import Fetcher from '../utils/fetcher';
 import { useParams } from 'react-router-dom';
-
+import { VideoContext } from '../context/useVideo';
+import { useContext } from 'react';
 const PlayVideo = () => {
   const {id} = useParams()
   const [data, setData] = useState('')
+  const {video, dispatch} = useContext(VideoContext)
+  console.log(video);
   useEffect(() => {
     // Function to fetch the video URL
     const fetchVideoUrl = async () => {
@@ -22,7 +25,9 @@ const PlayVideo = () => {
           },
         });
         if (fetchResponse.failure) throw new Error(fetchResponse.message);
+
         setData(fetchResponse)
+        dispatch({type: 'GET_VIDEO', payload:fetchResponse})
       } catch (error) {
         console.error('Error fetching video URL:', error);
       }

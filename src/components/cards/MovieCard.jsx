@@ -56,7 +56,7 @@ export default function MovieCard({data, isLastActive}) {
   return (
     <div className={`sm:h-[199px] h-[229px] z-[5px] flex items-center ${isLastActive ? 'last' : ''}`}>
       <div style={{
-        backgroundImage: `url(${dummy2})`,
+        backgroundImage: `url(${encodeURI(data.thumbnaillink)})`,
         backgroundSize: 'cover',
         width: hovered ? divWidth + 170 : divWidth - 40,
         transition: 'all 0.3s ease',
@@ -85,7 +85,7 @@ export default function MovieCard({data, isLastActive}) {
           </div>
           <div>
             <h2 className='uppercase sm:text-[24px] text-[16px] font-[700]'>{data.title}</h2>
-            <p className='sm:text-[16px] text-[12px]'>The Redemption's Path is a compelling Christian movie that takes viewers on a transformative journey of faith, forgiveness, and spiritual renewal. Set in a small town struggling with personal struggles and a loss of hope, the film centers around the lives of three main characters whose paths intersect in unexpected ways.</p>
+            <p className='sm:text-[16px] text-[12px]'>{data.plot}</p>
           </div>
           <div className='flex gap-[50px]'>
             <Link to={`/play/${data.id}`}>

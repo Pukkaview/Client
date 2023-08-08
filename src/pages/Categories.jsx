@@ -52,6 +52,9 @@ const Categories = () => {
     if(genre === 'Sermon'){
       dispatch({type:'SERMON', payload:genre})
     }
+    if(genre === 'Drama'){
+      dispatch({type:'DRAMA', payload:genre})
+    }
   };
 
   return (
@@ -77,9 +80,9 @@ const Categories = () => {
                 >
                   <option value="Action">Action</option>
                   <option value="Comedy">Comedy</option>
-                  <option value="Sermon">Sermon</option>
-                  <option value="Lifestyle">Lifestyle</option>
-                  <option value="New">New</option>
+                  <option value="Drama">Drama</option>
+                  {/* <option value="Lifestyle">Lifestyle</option> */}
+                  {/* <option value="New">New</option> */}
                 </select>
               </div>
             </div>
