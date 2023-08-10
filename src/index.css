@@ -1,3 +1,6 @@
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css);
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,7 +20,7 @@
   src: url('./fonts/goemetric/geometric_415_black_bt.ttf') format('truetype');
   font-weight: 400;
 }
-h1,h2, h3, h4, h5,h6{
+h1,h2, h3, h4, h5,h6, textarea{
   font-family: 'Goemetric-415-Black-BT', sans-serif;
 }
 p, span{
@@ -26,6 +29,14 @@ p, span{
 }
 .slick-slider .slick-list{
   overflow: visible;
+}
+.slick-slide[aria-hidden="true"] {
+  pointer-events: none;
+}
+.slick-slide[aria-hidden="true"] .moviecard:after{
+  opacity: 0.7;
+  background-color: black;
+  z-index: 0;
 }
 .slick-slide > div{
   display: flex;
@@ -72,6 +83,51 @@ p, span{
   }
 }
 
+/* Assuming you're using some custom class or ID to style the player */
+input[type="range"] {
+  /* For WebKit browsers (e.g., Chrome, Safari) */
+  --track-color: #800080; /* Change to your desired color */
+
+  /* For Firefox */
+  --moz-range-progress: #800080; /* Change to your desired color */
+
+  /* For Microsoft Edge */
+  --ms-thumb-color: #800080; /* Change to your desired color */
+}
+
+/* Custom styles for the track (optional) */
+input[type="range"] {
+  accent-color: var(--track-color);
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+accent-color: var(--track-color);
+}
+
+input[type="range"]::-moz-range-progress {
+  accent-color: var(--moz-range-progress);
+}
+
+input[type="range"]::-ms-thumb {
+  accent-color: var(--ms-thumb-color);
+}
+
+/* Replace with the appropriate image dimensions and animation values */
+.zoom-in-out-animation {
+  animation: zoomInOut 0.7s infinite alternate;
+  transition: transform 0.7s ease-in-out;
+  width: 200px;
+  height: 200px;
+}
+
+@keyframes zoomInOut {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.3);
+  }
+}
 
 
 

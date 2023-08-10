@@ -1,6 +1,6 @@
 import Play from "../../assets/play.png";
 import PropTypes from "prop-types";
-const MovieCard = ({ title, content, backgroundColor }) => {
+const MovieCardPlay = ({ title, content, backgroundColor, img }) => {
   const cardStyle = {
     backgroundColor: backgroundColor || "",
   };
@@ -8,19 +8,21 @@ const MovieCard = ({ title, content, backgroundColor }) => {
     <div>
       <div
         style={cardStyle}
-        className=" md:w-[497px] py-6 h-[130px] justify-start items-center border-0 rounded-xl gap-[21px] flex"
+        className="cursor-pointer justify-start border-0 rounded-xl gap-[21px] flex hover:bg-accent3 transition duration-300"
       >
-        <div className=" w-[175px] md:w-[189px] h-[140px]  justify-center items-center flex bg-movieCardBg bg-center bg-auto bg-no-repeat">
+        <div style={{
+        backgroundImage: `url(${encodeURI(img)})`,
+        
+      }}  className="w-[30%] justify-center items-center flex bg-movieCardBg bg-cover bg-no-repeat ">
           <div className="">
-            <div className=" w-[37px] h-[37px]  justify-start items-start flex " />
             <img src={Play} alt="" />
           </div>
         </div>
-        <div className=" flex-col  justify-start items-start gap-2 flex">
+        <div className=" flex-col w-[70%]  justify-start items-start gap-2 flex">
           <div className="text-fuchsia-50 text-[24px] font-normal leading-relaxed">
             <h3 className="card-title">{title}</h3>
           </div>
-          <div className="w-[287px] text-fuchsia-50  text-[14px] pb-3 font-bold">
+          <div className="text-fuchsia-50  mg:text-[14px] text-[12px] pb-3 font-bold">
             <p>{content}</p>
           </div>
         </div>
@@ -28,9 +30,11 @@ const MovieCard = ({ title, content, backgroundColor }) => {
     </div>
   );
 };
-MovieCard.propTypes = {
+MovieCardPlay.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   backgroundColor: PropTypes.string,
+  img: PropTypes.string,
+
 };
-export default MovieCard;
+export default MovieCardPlay;

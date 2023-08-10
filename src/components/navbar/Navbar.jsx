@@ -37,7 +37,7 @@ export default function Navbar() {
         scrolled ? "bg-[#180018] transition duration-300 ease-in-out" : ""
       }`}
     >
-      <Link o="/" onClick={() => dispatch({type: 'NULL', payload: ''})} className={`${active === '' ? 'active' : ''} md:w-[168px] md:h-[22px] w-[102px] h-[18px]`}>
+      <Link to="/" onClick={() => dispatch({type: 'NULL', payload: ''})} className={`${active === '' ? 'active' : ''} md:w-[168px] md:h-[22px] w-[102px] h-[18px]`}>
         {!scrolled && <img src={logo} className="w-full h-full" alt="logo" />}
         {scrolled && <img src={logoW} className="w-full h-full" alt="logo" />}
       </Link>
@@ -60,11 +60,11 @@ export default function Navbar() {
         </form>
         <div className="nav lg:flex hidden gap-[18px] items-center text-[#fff] font-[500] font-[Futura] text-[14px]">
           <Link to="/" onClick={() => dispatch({type: 'NULL', payload: ''})} className={`${active === '' ? 'active' : ''}`} >Home</Link>
-          <Link to='/' className={`${active === 'New' ? 'active' : ''}`} onClick={() => dispatch({type: 'NEW', payload: 'New'})}>New</Link>
+          {/* <Link to='/' className={`${active === 'New' ? 'active' : ''}`} onClick={() => dispatch({type: 'NEW', payload: 'New'})}>New</Link> */}
           <Link to='/' className={`${active === 'Action' ? 'active' : ''}`} onClick={() => dispatch({type: 'ACTION', payload: 'Action'})}>Action</Link>
           <Link to='/' className={`${active === 'Comedy' ? 'active' : ''}`} onClick={() => dispatch({type: 'COMEDY', payload: 'Comedy'})}>Comedy</Link>
-          <Link to='/' className={`${active === 'Sermon' ? 'active' : ''}`} onClick={() => dispatch({type: 'SERMON', payload: 'Sermon'})}>Sermon</Link>
-          <Link to='/' className={`${active === 'Lifestyle' ? 'active' : ''}`} onClick={() => dispatch({type: 'LIFESTYLE', payload: 'Lifestyle'})}>Lifestyle</Link>
+          <Link to='/' className={`${active === 'Drama' ? 'active' : ''}`} onClick={() => dispatch({type: 'DRAMA', payload: 'Drama'})}>Drama</Link>
+          {/* <Link to='/' className={`${active === 'Lifestyle' ? 'active' : ''}`} onClick={() => dispatch({type: 'LIFESTYLE', payload: 'Lifestyle'})}>Lifestyle</Link> */}
         </div>
         <div
           className="lg:hidden flex cursor-pointer"

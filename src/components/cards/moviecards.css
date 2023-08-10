@@ -51,4 +51,25 @@
   max-width: 800px;
   width: 800px;
   margin: 0;
+  box-shadow: none;
 }
+
+.contain {
+  position: relative;
+  width: 100%;
+}
+
+.contain::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity and color as needed */
+  z-index: -1; /* Ensure the overlay is on top of the background image */
+}
+
+
+
+/* Rest of your existing styles */
