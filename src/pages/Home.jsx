@@ -33,9 +33,9 @@ const Home = ({comedy, action, drama}) => {
         <div>
           <div className="w-full flex justify-between">
             <h2 className="text-[24px] font-goemetric font-[400]">Action</h2>
-            <Link to="/categories" onClick={() => dispatch({type: 'ACTION', payload: 'Action'})}>
+            <div onClick={() => dispatch({type: 'ACTION', payload: 'Action'})}>
               <ViewBtn />
-            </Link>
+            </div>
           </div>
           {action.length === 0 && 
           <div className="flex justify-between my-[10px]">
@@ -54,9 +54,9 @@ const Home = ({comedy, action, drama}) => {
         <div>
         <div className="w-full flex justify-between">
             <h2 className="text-[24px] font-goemetric font-[400]">Comedy</h2>
-            <Link to="/categories" onClick={() => dispatch({type: 'SERMON', payload: 'Sermon'})}>
+            <div onClick={() => dispatch({type: 'COMEDY', payload: 'Comedy'})}>
               <ViewBtn />
-            </Link>
+            </div>
           </div>
           {comedy.length === 0 && <div className="flex justify-between my-[10px]">
             <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
@@ -73,9 +73,9 @@ const Home = ({comedy, action, drama}) => {
         <div>
         <div className="w-full flex justify-between">
             <h2 className="text-[24px] font-goemetric font-[400]">Drama</h2>
-            <Link to="/categories" onClick={() => dispatch({type: 'DRAMA', payload: 'Drama'})}>
+            <div onClick={() => dispatch({type: 'DRAMA', payload: 'Drama'})}>
               <ViewBtn />
-            </Link>
+            </div>
           </div>
           {drama.length === 0 && <div className="flex justify-between my-[10px]">
             <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
