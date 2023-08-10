@@ -1,5 +1,8 @@
+import { useState } from "react";
 import dummy from "../../assets/categorydummy.png";
-import MovieCard from "../MovieCardPlay/MovieCardPlay";
+import MovieCardPlay from "../MovieCardPlay/MovieCardPlay";
+import { useEffect } from "react";
+import { Skeleton } from "@mui/material";
 const defaultData = {
   title: "Interview with God",
   coverImage: dummy,
@@ -15,7 +18,27 @@ const defaultData = {
     "Jesus Caleb",
   ],
 };
-export default function PlayCat() {
+export default function PlayCat({comedy, action, drama}) {
+  const [selectedOption, setSelectedOption] = useState("Action");
+  const [data, setData] = useState([])
+  console.log(action, drama, comedy);
+  useEffect(() => {
+    setData(action)
+  }, [action])
+  const handleSelectChange = (event) => {
+    const genre = event.target.value;
+    setSelectedOption(genre);
+    if(genre === 'Drama'){
+      setData(drama)
+    }
+    if(genre === 'Comedy'){
+      setData(comedy)
+    }
+    if(genre === 'Action'){
+      setData(action)
+    }
+  };
+  console.log(data);
   return (
     <div className="lg:w-[48%] flex flex-col gap-[37px]">
       <div className="flex justify-between items-center mx-4 md:mx-9">
@@ -26,23 +49,27 @@ export default function PlayCat() {
                   name=""
                   id=""
                   className="bg-[#FFEEFF] text-[#180018] font-bold border-0 outline-none rounded-md px-4"
+                  onChange={handleSelectChange}
+                  value={selectedOption}
                 >
                   <option value="Action">Action</option>
                   <option value="Comedy">Comedy</option>
-                  <option value="Sermon">Sermon</option>
-                  <option value="Lifestyle">Lifestyle</option>
-                  <option value="New">New</option>
+                  <option value="Drama">Drama</option>
                 </select>
               </div>
       </div>
-      <div className="flex flex-col gap-[20px]">
-        <MovieCard title={defaultData.title} content={defaultData.bio}/>
-        <MovieCard title={defaultData.title} content={defaultData.bio}/>
-        <MovieCard title={defaultData.title} content={defaultData.bio}/>
-        <MovieCard title={defaultData.title} content={defaultData.bio}/>
-        <MovieCard title={defaultData.title} content={defaultData.bio}/>
-        <MovieCard title={defaultData.title} content={defaultData.bio}/>
-      </div>
+      {data.length === 0 && <div className="flex flex-col gap-[20px]">
+      <Skeleton variant="rectangular" width={'100%'} height={77} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white' }} />
+      <Skeleton variant="rectangular" width={'100%'} height={77} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white' }} />
+      <Skeleton variant="rectangular" width={'100%'} height={77} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white' }} />
+      <Skeleton variant="rectangular" width={'100%'} height={77} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white' }} />
+        
+      </div>}
+      {data.length > 0 && <div className="flex flex-col gap-[20px]">
+        {data.map(c=> (
+        <MovieCardPlay id={c.id} title={c.title} content={c.plot} img={c.thumbnaillink} />
+        ))}
+      </div>}
     </div>
   )
 }

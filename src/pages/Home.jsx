@@ -13,39 +13,9 @@ import { useContext } from "react";
 import Categories from "./Categories";
 import Rate from "../components/feedback/Rate";
 import {Skeleton} from '@mui/material'
+// import { action, comedy, drama } from "../utils/cat";
 
 
-// Sample data. To be replaced by data coming from the backend
-const data = {
-  title: "Interview with God",
-  coverImage: dummy,
-  bio: "The Redemption's Path is a compelling Christian movie that takes viewers on a transformative journey of faith, forgiveness, and spiritual renewal. Set in a small town struggling with personal struggles and a loss of hope, the film centers around the lives of three main characters whose paths intersect in unexpected ways.",
-  time: "1hr 20min",
-  year: 2019,
-  genre: "Action",
-  casts: [
-    "Segun Jackob",
-    "Segun Daniel",
-    "Oguntedo Aremu",
-    "Segun Gabriel",
-    "Jesus Caleb",
-  ],
-};
-// Sample data. To be replaced by data coming from the backend
-const movie_data = {
-  title: "Rapture",
-  coverImage: dummy2,
-  year: 2019,
-  genre: "Action",
-  casts: [
-    "Segun Jackob",
-    "Segun Daniel",
-    "Oguntedo Aremu",
-    "Segun Gabriel",
-    "Jesus Caleb",
-  ],
-  bio: "The Redemption's Path is a compelling Christian movie that takes viewers on a transformative journey of faith, forgiveness, and spiritual renewal. Set in a small town struggling with personal struggles and a loss of hope, the film centers around the lives of three main characters whose paths intersect in unexpected ways.",
-};
 const Home = ({comedy, action, drama}) => {
   const {active, dispatch} = useContext(ActiveContext)
 
@@ -122,7 +92,7 @@ const Home = ({comedy, action, drama}) => {
       </div>
       </>
       }
-      {active && <Categories/>}
+      {active && <Categories comedy={comedy} action={action} drama={drama}/>}
       <Footer />
     </div>
   );

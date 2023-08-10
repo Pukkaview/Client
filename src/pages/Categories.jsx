@@ -5,6 +5,7 @@ import MovieDetailCard from "../components/cards/MovieDetailsCard";
 import { movieDataOptions } from "../../src/movieDataOptions";
 import { ActiveContext } from "../context/useActive";
 import MovieCard2 from "../components/cards/MovieCard2";
+import { Skeleton } from "@mui/material";
 
 const defaultData = {
   title: "Interview with God",
@@ -22,17 +23,25 @@ const defaultData = {
   ],
 };
 
-const Categories = () => {
+const Categories = ({comedy, action, drama}) => {
   const {active, dispatch} = useContext(ActiveContext)
   const [selectedOption, setSelectedOption] = useState("Action");
-  const [data, setData] = useState(defaultData);
+  const [data, setData] = useState([])
   console.log(active);
+  console.log(action, drama, comedy);
   useEffect(() => {
     setSelectedOption(active)
-    const movieData = movieDataOptions[active];
-    const updatedData = movieData || defaultData;
-    setData(updatedData);
-  }, [active])
+    if(active === 'Drama'){
+      setData(drama)
+    }
+    if(active === 'Comedy'){
+      setData(comedy)
+    }
+    if(active === 'Action'){
+      setData(action)
+    }
+  }, [active, action, drama, comedy])
+  console.log(data);
 
   const handleSelectChange = (event) => {
     const genre = event.target.value;
@@ -61,13 +70,13 @@ const Categories = () => {
     <div className="">
       {active && 
       <>      
-        <IntroCard data={data} />
+        <IntroCard data={data[0]} />
         <div className="md:px-[40px] px-[20px] pt-[107px] pb-[65px] text-text-color">
           <div className="bg-[#fff]">
             <MovieDetailCard data={data} />
           </div>
           <div>
-            <div className="flex justify-between items-center mx-4 md:mx-9">
+            <div className="flex justify-between items-center max-w-[1440px] mx-auto">
               <span className="text-[20px] font-bold">{selectedOption}</span>
 
               <div className="bg-[#FFEEFF] px-4 rounded-md py-2">
@@ -86,44 +95,20 @@ const Categories = () => {
                 </select>
               </div>
             </div>
-              <div className="flex items-center justify-center flex-wrap gap-10 pb-10 pt-10 max-w-[1440px] mx-auto">
-                <div className=" flex sm:w-[290px] md:w-[330px] desktop-lg:w-[310px] lg:w-[340px] xl:w-[260px] phone-lg:w-[180px] w-[150px] justify-center 1180:justify-start">
-                  <MovieCard2 data={data} />
+            {data.length === 0 && <div className="flex items-center justify-between flex-wrap pb-10 pt-10 max-w-[1440px] mx-auto">
+            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+              </div>}
+              {data.length > 0 && <div className="flex items-center flex-wrap gap-[10px] pb-10 pt-10 max-w-[1440px] mx-auto">
+              {data.map((c,i)=> (
+                <div className={`flex sm:w-[49%] md:w-[32%] lg:w-[24%] mb-[20px]  w-[100%] ${(i + 4)%4 === 0 ? 'justify-start': i %3 === 0 & i !== 0 ? 'justify-end': 'justify-center'}`}>
+                  <MovieCard2 key={c.id} data={c} />
                 </div>
-                <div className=" flex sm:w-[290px] md:w-[330px] desktop-lg:w-[310px] lg:w-[340px] xl:w-[260px] phone-lg:w-[180px] w-[150px] justify-center">
-                  <MovieCard2 data={data} />
-                </div>
-                <div className="flex sm:w-[290px] md:w-[330px] desktop-lg:w-[310px] lg:w-[340px] xl:w-[260px] phone-lg:w-[180px] w-[150px] justify-center 1180:justify-end 1280:justify-center">
-                  <MovieCard2 data={data} />
-                </div>
-                <div className="flex sm:w-[290px] md:w-[330px] desktop-lg:w-[310px] lg:w-[340px] xl:w-[260px] phone-lg:w-[180px] w-[150px] justify-center 1180:justify-start 1280:justify-end">
-                  <MovieCard2 data={data} />
-                </div>
-                <div className=" flex sm:w-[290px] md:w-[330px] desktop-lg:w-[310px] lg:w-[340px] xl:w-[260px] phone-lg:w-[180px] w-[150px] justify-center 1280:justify-start">
-                  <MovieCard2 data={data} />
-                </div>
-                <div className=" flex sm:w-[290px] md:w-[330px] desktop-lg:w-[310px] lg:w-[340px] xl:w-[260px] phone-lg:w-[180px] w-[150px] justify-center 1180:justify-end 1280:justify-center">
-                  <MovieCard2 data={data} />
-                </div>
-                <div className="flex sm:w-[290px] md:w-[330px] desktop-lg:w-[310px] lg:w-[340px] xl:w-[260px] phone-lg:w-[180px] w-[150px] justify-center 1180:justify-start 1280:justify-center">
-                  <MovieCard2 data={data} />
-                </div>
-                <div className="flex sm:w-[290px] md:w-[330px] desktop-lg:w-[310px] lg:w-[340px] xl:w-[260px] phone-lg:w-[180px] w-[150px] justify-center 1280:justify-end">
-                  <MovieCard2 data={data} />
-                </div>
-                <div className=" flex sm:w-[290px] md:w-[330px] desktop-lg:w-[310px] lg:w-[340px] xl:w-[260px] phone-lg:w-[180px] w-[150px] 1180:justify-end 1280:justify-start">
-                  <MovieCard2 data={data} />
-                </div>
-                <div className=" flex sm:w-[290px] md:w-[330px] desktop-lg:w-[310px] lg:w-[340px] xl:w-[260px] phone-lg:w-[180px] w-[150px] justify-center 1180:justify-start 1280:justify-center">
-                  <MovieCard2 data={data} />
-                </div>
-                <div className="flex sm:w-[290px] md:w-[330px] desktop-lg:w-[310px] lg:w-[340px] xl:w-[260px] phone-lg:w-[180px] w-[150px] justify-center">
-                  <MovieCard2 data={data} />
-                </div>
-                <div className="flex sm:w-[290px] md:w-[330px] desktop-lg:w-[310px] lg:w-[340px] xl:w-[260px] phone-lg:w-[180px] w-[150px] 1180:justify-end">
-                  <MovieCard2 data={data} />
-                </div>
-              </div>
+                ))}
+                
+              </div>}
           </div>
         </div>
       </>

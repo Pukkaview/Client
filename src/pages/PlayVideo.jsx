@@ -9,7 +9,8 @@ import Fetcher from '../utils/fetcher';
 import { useParams } from 'react-router-dom';
 import { VideoContext } from '../context/useVideo';
 import { useContext } from 'react';
-const PlayVideo = () => {
+import { Skeleton } from '@mui/material';
+const PlayVideo = ({comedy, action, drama}) => {
   const {id} = useParams()
   const [data, setData] = useState('')
   const {video, dispatch} = useContext(VideoContext)
@@ -39,7 +40,7 @@ const PlayVideo = () => {
       <div className='bg-[#180018]'>
         <Navbar/>
         <CustomVideoPlayer videoUrl={data.videolink}/>
-        <Marquee style={{width: "100%"}}>
+        {data && <Marquee style={{width: "100%"}}>
         <div className="flex gap-[20px] items-center w-full mt-[70px]">
           <h2 className='sm:text-[48px] text-[32px] font-[500] leading-normal text-text-color ml-[20px]' >{data.title}</h2>
           <span className="px-[30px] py-[5px] rounded-[5px] bg-accent3 text-black">{data.genre}</span>
@@ -48,10 +49,10 @@ const PlayVideo = () => {
           <span className="text-[14px] text-text-color"><b>Plot:</b> {data.plot}</span>
 
         </div>
-      </Marquee>
+      </Marquee>}
         <div className='max-w-[1400px] mx-auto mt-[20px] pt-[100px] md:px-[59px] px-[20px] flex lg:flex-row flex-col justify-between gap-[30px]'>
           <Comment videoId={id}/>
-          <PlayCat/>
+          <PlayCat comedy={comedy} action={action} drama={drama}/>
         </div>
         <Footer/>
       </div>

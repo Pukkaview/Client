@@ -1,6 +1,6 @@
 import Play from "../../assets/play.png";
 import PropTypes from "prop-types";
-const MovieCard = ({ title, content, backgroundColor }) => {
+const MovieCardPlay = ({ title, content, backgroundColor, img }) => {
   const cardStyle = {
     backgroundColor: backgroundColor || "",
   };
@@ -10,7 +10,10 @@ const MovieCard = ({ title, content, backgroundColor }) => {
         style={cardStyle}
         className="cursor-pointer justify-start border-0 rounded-xl gap-[21px] flex hover:bg-accent3 transition duration-300"
       >
-        <div className="w-[30%] justify-center items-center flex bg-movieCardBg bg-cover bg-no-repeat ">
+        <div style={{
+        backgroundImage: `url(${encodeURI(img)})`,
+        
+      }}  className="w-[30%] justify-center items-center flex bg-movieCardBg bg-cover bg-no-repeat ">
           <div className="">
             <img src={Play} alt="" />
           </div>
@@ -27,9 +30,11 @@ const MovieCard = ({ title, content, backgroundColor }) => {
     </div>
   );
 };
-MovieCard.propTypes = {
+MovieCardPlay.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   backgroundColor: PropTypes.string,
+  img: PropTypes.string,
+
 };
-export default MovieCard;
+export default MovieCardPlay;

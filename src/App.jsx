@@ -98,7 +98,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/categories" element={<Categories comedy={comedy} action={action} drama={drama}  />} />
 
-        <Route path="/play/:id" element={<PlayVideo />} />
+        <Route path="/play/:id" element={<PlayVideo comedy={comedy} action={action} drama={drama} />} />
         {/* <Routes path="*" element={<NotFound />} /> */}
       </Routes>
     </div>

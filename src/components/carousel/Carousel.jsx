@@ -27,11 +27,11 @@ export default function Carousel({ children }) {
     slidesToShow: 4,
     slidesToScroll: 1,
     prevArrow: infinite ? (
-      <img className="h-[32px] w-[32px]" src={prev} alt="prev" />
+      <img className="h-[32px] w-[32px] cursor-pointer" src={prev} alt="prev" />
     ) : (
       <></>
     ),
-    nextArrow: <img className="h-[32px] w-[32px]" src={next} alt="next" />,
+    nextArrow: <img className="h-[32px] w-[32px] cursor-pointer" src={next} alt="next" />,
     responsive: [
       {
         breakpoint: 1280,

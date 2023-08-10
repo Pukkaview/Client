@@ -30,6 +30,14 @@ p, span{
 .slick-slider .slick-list{
   overflow: visible;
 }
+.slick-slide[aria-hidden="true"] {
+  pointer-events: none;
+}
+.slick-slide[aria-hidden="true"] .moviecard:after{
+  opacity: 0.7;
+  background-color: black;
+  z-index: 0;
+}
 .slick-slide > div{
   display: flex;
   justify-content: center;
