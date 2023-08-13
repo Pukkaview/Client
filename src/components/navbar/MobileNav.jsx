@@ -1,12 +1,13 @@
 import close from '../../assets/close.svg'
 import PropTypes from 'prop-types';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ActiveContext } from "../../context/useActive";
 import { useContext, useEffect, useState } from 'react';
 
 export default function MobileNav({isVisible, handleClose}) {
   const {active, dispatch} = useContext(ActiveContext)
   const [selectedOption, setSelectedOption] = useState("Action");
+  const navigate = useNavigate()
   console.log(active);
   useEffect(() => {
     setSelectedOption(active)
@@ -17,18 +18,23 @@ export default function MobileNav({isVisible, handleClose}) {
     setSelectedOption(genre);
     if(genre === 'New'){
       dispatch({type:'NEW', payload:genre})
+      navigate('/')
     }
     if(genre === 'Action'){
       dispatch({type:'ACTION', payload:genre})
+      navigate('/')
     }
     if(genre === 'Comedy'){
       dispatch({type:'COMEDY', payload:genre})
+      navigate('/')
     }
     if(genre === 'Lifestyle'){
       dispatch({type:'LIFESTYLE', payload:genre})
+      navigate('/')
     }
-    if(genre === 'Sermon'){
-      dispatch({type:'SERMON', payload:genre})
+    if(genre === 'Drama'){
+      dispatch({type:'DRAMA', payload:genre})
+      navigate('/')
     }
   };
   return (
@@ -41,11 +47,9 @@ export default function MobileNav({isVisible, handleClose}) {
         onChange={handleSelectChange}
         value={selectedOption}
         >
-          <option value={"New"}>New</option>
           <option value={"Action"}>Action</option>
           <option value={"Comedy"}>Comedy</option>
-          <option value={"Sermon"}>Sermon</option>
-          <option value={"Lifestyle"}>Lifestyle</option>
+          <option value={"Drama"}>Drama</option>
         </select>
         <div className="pointer-events-none absolute top-[15px] right-[10px] flex items-center px-2 text-white ">
         <svg className="fill-current h-8 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

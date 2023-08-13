@@ -54,7 +54,7 @@ export default function AllComments({videoId}) {
     };
 
     getComment();
-  }, [dispatch]);
+  }, [dispatch, videoId]);
 
   const likeComment = async(id) => {
     dispatch({type:"LIKE_COMMENT", payload: id})
