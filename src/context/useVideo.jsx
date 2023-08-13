@@ -17,7 +17,7 @@ const VideoReducer = (state, action) => {
     case 'LIKE_VIDEO':
       return {
         ...state,
-        likes: state.likes++
+        likes: state.likes + 1
       };
     default:
       return state;

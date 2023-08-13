@@ -69,7 +69,7 @@ export default function ReplyComment({id, open, handleClose, videoId}) {
     <div>
       <Dialog open={open} onClose={handleClose}>
             <DialogContent style={{padding:0}}>
-            <form className="flex flex-col w-[464px] mx-auto bg-[#FEF] px-[24px] pb-[24px] pt-[35px] rounded-[10px] relative" onSubmit={handleReply}>
+            <form className="flex flex-col sm:w-[464px] w-[310px] mx-auto bg-[#FEF] px-[24px] pb-[24px] pt-[35px] rounded-[10px] relative" onSubmit={handleReply}>
               <img src={cancel} onClick={handleClose} alt="" className="h-[25px] absolute top-[5px] right-[5px] cursor-pointer"  />
               <label className="w-full">
                 <textarea required className="w-full bg-[#180018] p-[10px] rounded-[10px] text-[#fef] h-[180px]" placeholder="Reply" onChange={(e) => setComment(e.target.value)} value={comment} />
