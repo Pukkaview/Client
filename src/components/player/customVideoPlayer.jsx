@@ -188,7 +188,7 @@ const CustomVideoPlayer = ({ videoUrl }) => {
     }
   return (
     <div 
-    className="relative md:min-h-[400px] min-h-[300px] flex flex-col justify-end" 
+    className="relative md:min-h-[400px] min-h-[300px] flex justify-center flex-col" 
     ref={containerRef}
     onMouseEnter={showControlsOnHover}
     onMouseMove={showControlsOnHover}
@@ -219,7 +219,7 @@ const CustomVideoPlayer = ({ videoUrl }) => {
         />
       </div>
 
-      {showControls && <div className="absolute sm:bottom-10 botom-6 left-4 right-4 flex flex-col">
+      {showControls && <div className="absolute sm:bottom-10 bottom-6 left-4 right-4 flex flex-col">
         <div>
         <input
             type="range"
