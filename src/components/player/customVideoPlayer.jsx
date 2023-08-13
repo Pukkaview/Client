@@ -14,9 +14,9 @@ const CustomVideoPlayer = ({ videoUrl }) => {
   const {video, dispatch} = useContext(VideoContext)
   const videoRef = useRef(null);
   const containerRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
-  const [volume, setVolume] = useState(0); // 0 to 1
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const [volume, setVolume] = useState(0.5); // 0 to 1
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
@@ -141,6 +141,8 @@ const CustomVideoPlayer = ({ videoUrl }) => {
     const handleOnReady = () => {
       setIsBuffering(false);
       setIsPlaying(true); // Auto-play the video when it's ready
+      setTimeout(() => {setIsPlaying(true)}, 100)
+      
       // if (videoRef.current) {
       //   // Retrieve the stored progress from localStorage and convert it back to seconds
       //   const storedProgressSeconds = parseFloat(localStorage.getItem('videoProgress')) || 0;
@@ -241,14 +243,14 @@ const CustomVideoPlayer = ({ videoUrl }) => {
           <div className='flex'>
 
           <button
-            className="text-white mr-4"
+            className="text-white sm:mr-4 mr-2"
             onClick={handlePlayPause}
           >
             {isPlaying ? <FontAwesomeIcon icon="pause" /> : <FontAwesomeIcon icon="play" />}
           </button>
 
           <button
-            className="text-white mr-4"
+            className="text-white sm:mr-4 mr-2"
             onClick={handleMute}
           >
             {isMuted ? <FontAwesomeIcon icon="volume-mute" /> : <FontAwesomeIcon icon="volume-up" />}
@@ -261,7 +263,7 @@ const CustomVideoPlayer = ({ videoUrl }) => {
             step={0.01}
             value={volume}
             onChange={handleVolumeChange}
-            className="w-16 mr-4 bg-primary"
+            className="sm:w-16 w-12 sm:mr-4 mr-2 bg-primary"
           />
 
           <div className="text-white mx-4">
