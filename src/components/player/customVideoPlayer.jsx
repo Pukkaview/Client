@@ -188,19 +188,19 @@ const CustomVideoPlayer = ({ videoUrl }) => {
     }
   return (
     <div 
-    className="relative" 
+    className="relative md:min-h-[400px] min-h-[300px] flex flex-col justify-end" 
     ref={containerRef}
     onMouseEnter={showControlsOnHover}
     onMouseMove={showControlsOnHover}
     onMouseLeave={hideControls}
     >
     {isBuffering && (
-        <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center">
+        <div className="absolute md:top-0 sm:top-[40px] left-0 w-full h-full flex justify-center items-center">
           {/* Replace zoomInImage with the URL of your zooming in image */}
           <img src={logo} alt="Zoom In Image" className="zoom-in-out-animation" />
         </div>
       )}
-      <div>
+      <div className='flex items-center'>
         <ReactPlayer
           ref={videoRef}
           url={videoUrl}
@@ -209,7 +209,7 @@ const CustomVideoPlayer = ({ videoUrl }) => {
           volume={volume}
           controls={false} // Hide the default controls
           width="100%"
-          height="100vh"
+          height={`${window.innerWidth < 1000 ? 'auto': '100vh'}`}
           preload="auto"
           onProgress={handleProgress}
           onDuration={handleDuration}
@@ -219,7 +219,7 @@ const CustomVideoPlayer = ({ videoUrl }) => {
         />
       </div>
 
-      {showControls && <div className="absolute bottom-4 left-4 right-4 flex flex-col">
+      {showControls && <div className="absolute sm:bottom-10 botom-6 left-4 right-4 flex flex-col">
         <div>
         <input
             type="range"

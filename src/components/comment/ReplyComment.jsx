@@ -5,7 +5,7 @@ import { CommentContext } from "../../context/useComment";
 import { useState } from "react";
 import Fetcher from "../../utils/fetcher";
 import './popup.css'
-import cancel from '../../assets/cancel.svg'
+import cancel from '../../assets/eva_close-outline.svg'
 import { toast } from "react-toastify";
 
 export default function ReplyComment({id, open, handleClose, videoId}) {
@@ -69,14 +69,12 @@ export default function ReplyComment({id, open, handleClose, videoId}) {
     <div>
       <Dialog open={open} onClose={handleClose}>
             <DialogContent style={{padding:0}}>
-            <form className="flex flex-col w-[464px] mx-auto bg-[#FEF] p-[24px]" onSubmit={handleReply}>
+            <form className="flex flex-col w-[464px] mx-auto bg-[#FEF] px-[24px] pb-[24px] pt-[35px] rounded-[10px] relative" onSubmit={handleReply}>
+              <img src={cancel} onClick={handleClose} alt="" className="h-[25px] absolute top-[5px] right-[5px] cursor-pointer"  />
               <label className="w-full">
                 <textarea required className="w-full bg-[#180018] p-[10px] rounded-[10px] text-[#fef] h-[180px]" placeholder="Reply" onChange={(e) => setComment(e.target.value)} value={comment} />
               </label>
               <div className="flex justify-between">
-              <div onClick={handleClose} className='px-[18px] sm:px-[29px] py-[18px] bg-primary hover:bg-accent2 transition duration-300 ease-in-out cursor-pointer flex sm:gap-[19px] gap-[10px] justify-center rounded-[10px] mt-[20px]'>
-              <span className='text-text-color sm:text-[16px] text-[14px] font-[Goemetric-415-Black-BT]'>Close</span>
-              </div>
               <button disabled={loading} className='w-[150px] px-[18px] sm:px-[29px] py-[18px] bg-primary hover:bg-accent2 transition duration-300 ease-in-out cursor-pointer flex sm:gap-[19px] gap-[10px] justify-center rounded-[10px] mt-[20px]'>
               <span className='text-text-color sm:text-[16px] text-[14px] font-[Goemetric-415-Black-BT]'>{loading ?<i className="fa-solid fa-circle-notch fa-spin fa-lg " style={{ animationDuration: "1s" }}></i> :'Send Reply'}</span>
               </button>

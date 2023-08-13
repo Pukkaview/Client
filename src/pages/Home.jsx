@@ -38,11 +38,19 @@ const Home = ({comedy, action, drama}) => {
             </div>
           </div>
           {action.length === 0 && 
-          <div className="flex justify-between my-[10px]">
-            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
-            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
-            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
-            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-[10px]">
+            <div>
+            <Skeleton variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+            </div>
+            <div>
+            <Skeleton variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+            </div>
+            <div className="hidden md:block">
+            <Skeleton variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+            </div>
+            <div className="hidden lg:block">
+            <Skeleton variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+            </div>
           </div>
           }
           { action.length > 0 && <Carousel>
@@ -58,11 +66,19 @@ const Home = ({comedy, action, drama}) => {
               <ViewBtn />
             </div>
           </div>
-          {comedy.length === 0 && <div className="flex justify-between my-[10px]">
-            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
-            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
-            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
-            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+          {comedy.length === 0 && <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-[10px]">
+          <div>
+            <Skeleton variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+            </div>
+            <div>
+            <Skeleton variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+            </div>
+            <div className="hidden md:block">
+            <Skeleton variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+            </div>
+            <div className="hidden lg:block">
+            <Skeleton variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+            </div>
           </div>}
           {comedy.length > 0 &&<Carousel>
             {comedy.map(c=> (
@@ -77,11 +93,19 @@ const Home = ({comedy, action, drama}) => {
               <ViewBtn />
             </div>
           </div>
-          {drama.length === 0 && <div className="flex justify-between my-[10px]">
-            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
-            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
-            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
-            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+          {drama.length === 0 && <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-[10px]">
+            <div>
+            <Skeleton variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+            </div>
+            <div>
+            <Skeleton variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+            </div>
+            <div className="hidden md:block">
+            <Skeleton variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+            </div>
+            <div className="hidden lg:block">
+            <Skeleton variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+            </div>
           </div>}
           {drama.length > 0 &&<Carousel>
             {drama.map(c=> (

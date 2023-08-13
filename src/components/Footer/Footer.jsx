@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="pt-6">
           <img src={pukka} alt="" />
         </div>
-        <div className="mt-10">
+        <div className="mt-4">
           <img src={logo} alt="" />
         </div>
         <div className="justify-center items-center gap-[45px] flex mt-4">

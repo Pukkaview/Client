@@ -7,28 +7,11 @@ import { ActiveContext } from "../context/useActive";
 import MovieCard2 from "../components/cards/MovieCard2";
 import { Skeleton } from "@mui/material";
 
-const defaultData = {
-  title: "Interview with God",
-  coverImage: dummy,
-  bio: "The Redemption's Path is a compelling Christian movie that takes viewers on a transformative journey of faith, forgiveness, and spiritual renewal. Set in a small town struggling with personal struggles and a loss of hope, the film centers around the lives of three main characters whose paths intersect in unexpected ways.",
-  time: "1hr 20min",
-  year: 2019,
-  genre: "Action",
-  casts: [
-    "Segun Jackob",
-    "Segun Daniel",
-    "Oguntedo Aremu",
-    "Segun Gabriel",
-    "Jesus Caleb",
-  ],
-};
 
 const Categories = ({comedy, action, drama}) => {
   const {active, dispatch} = useContext(ActiveContext)
   const [selectedOption, setSelectedOption] = useState("Action");
   const [data, setData] = useState([])
-  console.log(active);
-  console.log(action, drama, comedy);
   useEffect(() => {
     setSelectedOption(active)
     if(active === 'Drama'){
@@ -95,15 +78,15 @@ const Categories = ({comedy, action, drama}) => {
                 </select>
               </div>
             </div>
-            {data.length === 0 && <div className="flex items-center justify-between flex-wrap pb-10 pt-10 max-w-[1440px] mx-auto">
-            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
-            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
-            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
-            <Skeleton variant="rectangular" width={'24%'} height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+            {data.length === 0 && <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pb-10 pt-10 max-w-[1440px] mx-auto">
+            <Skeleton variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+            <Skeleton variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+            <Skeleton variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
+            <Skeleton variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
               </div>}
-              {data.length > 0 && <div className="flex items-center flex-wrap gap-[10px] pb-10 pt-10 max-w-[1440px] mx-auto">
+              {data.length > 0 && <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pb-10 pt-10 max-w-[1440px] mx-auto">
               {data.map((c,i)=> (
-                <div className={`flex sm:w-[49%] md:w-[32%] lg:w-[24%] mb-[20px]  w-[100%] ${(i + 4)%4 === 0 ? 'justify-start': i %3 === 0 & i !== 0 ? 'justify-end': 'justify-center'}`}>
+                <div className={`flex mb-[20px] ${(i + 4)%4 === 0 ? 'lg:justify-start': (i + 1)%4 === 0 ? 'lg:justify-end': 'lg:justify-center'}`}>
                   <MovieCard2 key={c.id} data={c} />
                 </div>
                 ))}

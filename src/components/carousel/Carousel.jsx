@@ -23,6 +23,8 @@ export default function Carousel({ children }) {
   const settings = {
     dots: false,
     infinite: infinite,
+    // centerMode: true,
+    centerPadding: '50px',
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,

@@ -33,7 +33,7 @@ export default function Navbar() {
 
   return (
     <div
-      className={`z-50 flex justify-between items-center py-[18px] md:px-[59px] px-[20px] fixed w-full ${
+      className={`z-50 flex justify-between items-center py-[18px] md:px-[59px] px-[10px] fixed w-full ${
         scrolled ? "bg-[#180018] transition duration-300 ease-in-out" : ""
       }`}
     >

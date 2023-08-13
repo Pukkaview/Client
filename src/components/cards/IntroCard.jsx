@@ -25,7 +25,7 @@ export default function IntroCard({data}) {
       backgroundImage: `url(${encodeURI(data.thumbnaillink)})`,
       backgroundSize: 'cover',
 
-      }} className="contain pt-[250px] md:px-[59px] px-[20px] pb-[95px] text-text-color z-10">
+      }} className="contain pt-[250px] md:px-[59px] px-[10px] pb-[95px] text-text-color z-10">
         <div className='sm:max-w-[615px] max-w-[349px] flex flex-col gap-[18px] z-10'>
           <div className='flex gap-[18px] items-center'>
             <span className='bg-accent3 py-[7px] text-center rounded-[4px] text-[#000] w-[71px] font-bold text-[12px] sm:text-[14px] font-[Goemetric-415-Black-BT]'>All</span>

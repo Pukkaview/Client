@@ -62,7 +62,7 @@ export default function Comment({videoId}) {
     }
   };
   return (
-    <div className="lg:w-[48%] text-text-color">
+    <div className="lg:w-[50%] text-text-color">
       <div>
         <form className="flex flex-col justify-end items-end" onSubmit={handlePost}>
           <label className="w-full">

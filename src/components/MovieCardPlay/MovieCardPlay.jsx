@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import Play from "../../assets/play.png";
 import PropTypes from "prop-types";
-const MovieCardPlay = ({ title, content, backgroundColor, img }) => {
+const MovieCardPlay = ({ title, content, backgroundColor, img, id }) => {
   const cardStyle = {
     backgroundColor: backgroundColor || "",
   };
@@ -13,10 +14,10 @@ const MovieCardPlay = ({ title, content, backgroundColor, img }) => {
         <div style={{
         backgroundImage: `url(${encodeURI(img)})`,
         
-      }}  className="w-[30%] justify-center items-center flex bg-movieCardBg bg-cover bg-no-repeat ">
-          <div className="">
+      }}  className="w-[30%] justify-center items-center flex bg-movieCardBg rounded-l-xl bg-cover bg-no-repeat ">
+          <Link to={`/play/${id}`} className="">
             <img src={Play} alt="" />
-          </div>
+          </Link>
         </div>
         <div className=" flex-col w-[70%]  justify-start items-start gap-2 flex">
           <div className="text-fuchsia-50 text-[24px] font-normal leading-relaxed">

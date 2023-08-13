@@ -29,10 +29,8 @@ export default function MovieCard2({data, isLastActive}) {
       const screenWidth = window.innerWidth;
       let width = 0;
 
-      if (screenWidth < 640) {
-        width = screenWidth ;
-      } else if (screenWidth >= 641 && screenWidth < 768) {
-        width = screenWidth / 2.2;
+      if (screenWidth < 768) {
+        width = screenWidth / 2;
       }else if (screenWidth >= 769 && screenWidth < 1024) {
         width = screenWidth / 3.1;
       } else if (screenWidth >= 1024 && screenWidth < 1440) {
@@ -66,9 +64,9 @@ export default function MovieCard2({data, isLastActive}) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
         className={`moviecard relative sm:h-[219px] h-[229px] lg:hover:h-[392px] duration-300 ease-in-out hover:z-10 rounded-[15px] flex justify-end overflow-hidden`}>
-        <div className='play absolute top-[40%] left-[40%]'>
+        <Link to={`/play/${data.id}`} className='play absolute top-[40%] left-[40%] cursor-pointer z-10'>
           <PlayBtn/>
-        </div>
+        </Link>
         <div className='details absolute w-full text-text-color px-[18px] py-[33px] flex flex-col gap-[25px] left-0'>
           <div className='flex justify-between w-full'>
             <div className='flex flex-col gap-[5px] w-[40%]'>
