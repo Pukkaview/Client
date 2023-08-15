@@ -61,7 +61,6 @@ export default function MobileNav({isVisible, handleClose}) {
         </div>
       </div>
       <Link to="/" onClick={() => {dispatch({type: 'NULL', payload: ''}); handleClose()}} className={`${active === '' ? 'active' : ''}`} >Home</Link>
-
     </div>
   )
 }
