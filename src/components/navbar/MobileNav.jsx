@@ -23,10 +23,12 @@ export default function MobileNav({isVisible, handleClose}) {
     if(genre === 'Action'){
       dispatch({type:'ACTION', payload:genre})
       navigate('/')
+      handleClose()
     }
     if(genre === 'Comedy'){
       dispatch({type:'COMEDY', payload:genre})
       navigate('/')
+      handleClose()
     }
     if(genre === 'Lifestyle'){
       dispatch({type:'LIFESTYLE', payload:genre})
@@ -35,6 +37,7 @@ export default function MobileNav({isVisible, handleClose}) {
     if(genre === 'Drama'){
       dispatch({type:'DRAMA', payload:genre})
       navigate('/')
+      handleClose()
     }
   };
   return (
@@ -57,7 +60,7 @@ export default function MobileNav({isVisible, handleClose}) {
         </svg>
         </div>
       </div>
-      <Link to="/" onClick={() => dispatch({type: 'NULL', payload: ''})} className={`${active === '' ? 'active' : ''}`} >Home</Link>
+      <Link to="/" onClick={() => {dispatch({type: 'NULL', payload: ''}); handleClose()}} className={`${active === '' ? 'active' : ''}`} >Home</Link>
 
     </div>
   )

@@ -33,7 +33,7 @@ export default function MovieCard2({data, isLastActive}) {
         width = screenWidth / 2;
       }else if (screenWidth >= 769 && screenWidth < 1024) {
         width = screenWidth / 3.1;
-      } else if (screenWidth >= 1024 && screenWidth < 1440) {
+      } else if (screenWidth >= 1024 && screenWidth < 1480) {
         width = screenWidth / 4;
       }else{
         width = 384.25
@@ -54,20 +54,19 @@ export default function MovieCard2({data, isLastActive}) {
     };
   }, []);
   return (
-    <div className={`sm:h-[199px] h-[229px] z-[5px] flex items-center ${isLastActive ? 'last' : ''}`}>
+    <div className={`sm:h-[199px] phone-sm:h-[180px] h-[140px] flex items-center ${window.innerWidth < 1001 ? 'w-full' : ''}`}>
       <div style={{
-        backgroundImage: `url(${encodeURI(data.thumbnaillink)})`,
-        backgroundSize: 'cover',
         width: hovered ? divWidth + 170 : divWidth - 40,
         transition: 'all 0.3s ease',
       }} 
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-        className={`moviecard relative sm:h-[219px] h-[229px] lg:hover:h-[392px] duration-300 ease-in-out hover:z-10 rounded-[15px] flex justify-end overflow-hidden`}>
-        <Link to={`/play/${data.id}`} className='play absolute top-[40%] left-[40%] cursor-pointer z-10'>
+        className={`moviecard2 relative sm:h-[219px] phone-sm:h-[180px] h-[140px] lg:hover:h-[392px] duration-300 ease-in-out hover:z-20 rounded-[15px] flex justify-end overflow-hidden`}>
+        <img className='h-full w-full absolute z-[0]' src={encodeURI(data.thumbnaillink)} alt="" />
+        <Link to={`/play/${data.id}`} className='play absolute top-[40%] left-[40%] cursor-pointer z-10 '>
           <PlayBtn/>
         </Link>
-        <div className='details absolute w-full text-text-color px-[18px] py-[33px] flex flex-col gap-[25px] left-0'>
+        <div className='details z-[10] absolute w-full text-text-color px-[18px] py-[33px] flex flex-col gap-[25px] left-0'>
           <div className='flex justify-between w-full'>
             <div className='flex flex-col gap-[5px] w-[40%]'>
               <span className='sm:text-[16px] text-[12px]'><b>Year:</b> 2019</span>
