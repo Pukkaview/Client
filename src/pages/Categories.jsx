@@ -53,8 +53,8 @@ const Categories = ({comedy, action, drama}) => {
     <div className="">
       {active && 
       <>      
-        <IntroCard data={data[0]} />
-        <div className="md:px-[40px] px-[20px] pt-[107px] pb-[65px] text-text-color">
+        <IntroCard data={data[0]} tag={selectedOption} />
+        <div className="md:px-[40px] px-[20px] pt-[30px] pb-[65px] text-text-color">
           <div className="bg-[#fff]">
             <MovieDetailCard data={data} />
           </div>

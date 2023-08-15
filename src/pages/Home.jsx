@@ -24,9 +24,9 @@ const Home = ({comedy, action, drama}) => {
       <Navbar />
       {!active && 
       <>
-      <IntroCard data={action[0]} />
+      <IntroCard data={action[0]} tag="All" />
       <Rate/>
-      <div className="md:px-[59px] px-[20px] pt-[107px] pb-[65px] text-text-color mx-auto">
+      <div className="md:px-[59px] px-[20px] pt-[30px] pb-[65px] text-text-color mx-auto">
         <div className="bg-[#fff]">
           <MovieDetailCard />
         </div>

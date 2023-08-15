@@ -12,7 +12,8 @@ export default {
         "desktop-lg": "1440px",
         "phone-lg": "520px",
         "1180": "1180px",
-        "1280": "1280px"
+        "1280": "1280px",
+        "phone-sm": "400px"
         // => @media (min-width: 1280px) { ... }
       },
       colors: {
