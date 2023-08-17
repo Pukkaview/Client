@@ -22,7 +22,7 @@ export default function ShareBtn({data}) {
   return (
     <button onClick={handleShare} className='text-accent4 flex items-center gap-[5px] cursor-pointer'>
       <img className='iconlight' src={share} alt="share" />
-      <span className='font-[Goemetric-415-Black-BT]'>Share Now</span>
+      <span className='font-[Goemetric-415-Black-BT] sm:text-[16px] text-[14px]'>Share Now</span>
     </button>
   )
 }

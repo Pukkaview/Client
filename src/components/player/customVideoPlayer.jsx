@@ -8,9 +8,10 @@ import logo from '../../assets/logo.svg'
 import { VideoContext } from '../../context/useVideo';
 import { useContext } from 'react';
 import Fetcher from '../../utils/fetcher';
+import ShareBtn from '../buttons/ShareBtn';
 
 // eslint-disable-next-line react/prop-types
-const CustomVideoPlayer = ({ videoUrl }) => {
+const CustomVideoPlayer = ({ data }) => {
   const {video, dispatch} = useContext(VideoContext)
   const videoRef = useRef(null);
   const containerRef = useRef(null);
@@ -205,7 +206,7 @@ const CustomVideoPlayer = ({ videoUrl }) => {
       <div className='flex items-center'>
         <ReactPlayer
           ref={videoRef}
-          url={videoUrl}
+          url={data.videolink}
           playing={isPlaying}
           muted={isMuted}
           volume={volume}
@@ -274,8 +275,7 @@ const CustomVideoPlayer = ({ videoUrl }) => {
             <span className='text-white'>{video.likes}</span>
           </div>
           </div>
-          <div>
-
+          <div className='flex gap-[10px]'>
             <button
               className="text-white mx-4"
               onClick={handleFullscreen}
@@ -286,6 +286,9 @@ const CustomVideoPlayer = ({ videoUrl }) => {
                 <FontAwesomeIcon icon="expand" />
               )}
             </button>
+            <div onClick={() =>setIsPlaying(false)}>
+              <ShareBtn data={data}/>
+            </div>
           </div>
         </div>
 

@@ -61,7 +61,7 @@ export default function MovieCard({data, isLastActive}) {
       }} 
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-        className={`moviecard relative sm:h-[219px] phone-sm:h-[180px] h-[140px] lg:hover:h-[392px] duration-300 ease-in-out hover:z-20 rounded-[15px] flex justify-end overflow-hidden`}>
+        className={`moviecard relative sm:h-[219px] phone-sm:h-[180px] h-[140px] lg:hover:h-[392px] duration-300 ease-in-out hover:lg:z-20 rounded-[15px] flex justify-end overflow-hidden`}>
         <img className='h-full w-full absolute z-[-2]' src={encodeURI(data.thumbnaillink)} alt="" />
         <Link to={`/play/${data.id}`} className='play absolute top-[40%] left-[40%] cursor-pointer z-10 '>
           <PlayBtn/>

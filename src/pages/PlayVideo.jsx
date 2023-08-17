@@ -52,7 +52,7 @@ const PlayVideo = ({comedy, action, drama}) => {
   return (
       <div className='bg-[#180018]'>
         <Navbar/>
-        <CustomVideoPlayer videoUrl={data.videolink}/>
+        <CustomVideoPlayer data={data}/>
         {data && <Marquee style={{width: "100%"}}>
         <div id='marquee-text' ref={marqueeTextRef} className="flex gap-[20px] items-center mt-[30px] ml-[30px]">
           <h2 className='sm:text-[48px] text-[25px] font-[500] leading-normal text-text-color ml-[20px]' >{data.title}</h2>
