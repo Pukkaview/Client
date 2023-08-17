@@ -9,6 +9,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPlay, faPause, faVolumeUp, faVolumeMute, faExpand, faCompress, faStepBackward, faStepForward } from '@fortawesome/free-solid-svg-icons';
 import { CommentProvider } from "./context/useComment.jsx";
 import { VideoProvider } from "./context/useVideo.jsx";
+import { SearchProvider } from "./context/useSearch.jsx";
 library.add(faPlay, faPause, faVolumeUp, faVolumeMute, faExpand, faCompress, faStepBackward, faStepForward);
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -16,7 +17,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <ActiveProvider>
         <VideoProvider>
           <CommentProvider>
-            <App />
+            <SearchProvider>
+              <App />
+            </SearchProvider>
           </CommentProvider>
         </VideoProvider>
       </ActiveProvider>

@@ -43,7 +43,7 @@ export default function MovieDetailCard({open, handleClose, data}) {
                 <Link to={`/play/${data.id}`}>
                   <WatchBtn/>
                 </Link>
-                  <ShareBtn/>
+                  <ShareBtn data={data}/>
                 </div>
               </div>
             </div>

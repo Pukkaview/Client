@@ -7,11 +7,17 @@ import logoW from "../../assets/logowhite.svg";
 import search from "../../assets/searchIcon.svg";
 import MobileNav from "./MobileNav";
 import { ActiveContext } from "../../context/useActive";
+import Fetcher from "../../utils/fetcher";
+import { SearchContext } from "../../context/useSearch";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const {active, dispatch} = useContext(ActiveContext)
+  const {dispatch:dispatch2} = useContext(SearchContext)
+  
+
+
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 0;
@@ -29,7 +35,64 @@ export default function Navbar() {
     setIsVisible(false);
   };
 
-
+  const handleChange = async(e) => {
+    if(e.target.value === ''){
+      dispatch2({type: 'CANCEL_SEARCH'})
+      dispatch2({type: 'UPDATE_BY_CAT', payload:[]})
+      dispatch2({type: 'UPDATE_BY_NAME', payload:[]})
+      dispatch2({type: 'UPDATE_BY_CAST', payload:[]})
+    }else{
+      dispatch2({type: 'SEARCH'})
+    }
+    try {
+      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/search-videos/?genre=${e.target.value}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      // console.log(fetchResponse);
+      if (fetchResponse.failure) throw new Error('No match found');
+      if(!fetchResponse.message){
+        dispatch2({type: 'UPDATE_BY_CAT', payload:fetchResponse})
+      }
+    } catch (error) {
+      console.log(error.message);
+      dispatch2({type: 'UPDATE_BY_CAT', payload:[]})
+    }
+    try {
+      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/search-videos/?video_name=${e.target.value}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      // console.log(fetchResponse);
+      if (fetchResponse.failure) throw new Error('No match found');
+      if(!fetchResponse.message){
+        dispatch2({type: 'UPDATE_BY_NAME', payload:fetchResponse})
+      }
+    } catch (error) {
+      console.log(error.message);
+      dispatch2({type: 'UPDATE_BY_NAME', payload:[]})
+    }
+    try {
+      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/search-videos/?cast=${e.target.value}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      // console.log(fetchResponse);
+      if (fetchResponse.failure) throw new Error('No match found');
+      if(!fetchResponse.message){
+        dispatch2({type: 'UPDATE_BY_CAST', payload:fetchResponse})
+      }
+    } catch (error) {
+      console.log(error.message);
+      dispatch2({type: 'UPDATE_BY_CAST', payload:[]})
+    }
+  }
 
   return (
     <div
@@ -55,6 +118,7 @@ export default function Navbar() {
               type="text"
               placeholder={`Search for title or category`}
               className={` outline-none bg-transparent pr-[10px] w-[85%]`}
+              onChange={handleChange}
             />
           </label>
         </form>
