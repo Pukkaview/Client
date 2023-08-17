@@ -90,7 +90,7 @@ export default function MovieCard2({data, isLastActive}) {
             <Link to={`/play/${data.id}`}>
               <WatchBtn/>
             </Link>
-            <ShareBtn/>
+            <ShareBtn data={data}/>
           </div>
         </div>
       </div>
