@@ -39,10 +39,15 @@ export default function Navbar() {
     if(e.target.value === ''){
       dispatch2({type: 'CANCEL_SEARCH'})
       dispatch2({type: 'UPDATE_BY_NAME', payload:[]})
+      dispatch2({type: 'LOADING', payload:false})
+      dispatch2({type: 'ERROR', payload:false})
     }else{
       dispatch2({type: 'SEARCH'})
     }
     try {
+      dispatch2({type: 'UPDATE_BY_NAME', payload:[]})
+      dispatch2({type: 'LOADING', payload:true})
+      dispatch2({type: 'ERROR', payload:false})
       const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/search-videos/?video_name=${e.target.value}`, {
         method: "POST",
         headers: {
@@ -53,10 +58,14 @@ export default function Navbar() {
       if (fetchResponse.failure) throw new Error('No match found');
       if(!fetchResponse.message){
         dispatch2({type: 'UPDATE_BY_NAME', payload:fetchResponse})
+        dispatch2({type: 'LOADING', payload:false})
       }
     } catch (error) {
       console.log(error.message);
       dispatch2({type: 'UPDATE_BY_NAME', payload:[]})
+      dispatch2({type: 'LOADING', payload:false})
+      dispatch2({type: 'ERROR', payload:true})
+
     }
   }
 
@@ -89,11 +98,11 @@ export default function Navbar() {
           </label>
         </form>
         <div className="nav lg:flex hidden gap-[18px] items-center text-[#fff] font-[500] font-[Futura] text-[14px]">
-          <Link to="/" onClick={() => dispatch({type: 'NULL', payload: ''})} className={`${active === '' ? 'active' : ''}`} >Home</Link>
+          <Link to="/" onClick={() => dispatch({type: 'NULL', payload: ''})} className={`${active === '' ? 'active' : ''} hover:text-[#C423C4]`} >Home</Link>
           {/* <Link to='/' className={`${active === 'New' ? 'active' : ''}`} onClick={() => dispatch({type: 'NEW', payload: 'New'})}>New</Link> */}
-          <Link to='/' className={`${active === 'Action' ? 'active' : ''}`} onClick={() => dispatch({type: 'ACTION', payload: 'Action'})}>Action</Link>
-          <Link to='/' className={`${active === 'Comedy' ? 'active' : ''}`} onClick={() => dispatch({type: 'COMEDY', payload: 'Comedy'})}>Comedy</Link>
-          <Link to='/' className={`${active === 'Drama' ? 'active' : ''}`} onClick={() => dispatch({type: 'DRAMA', payload: 'Drama'})}>Drama</Link>
+          <Link to='/' className={`${active === 'Action' ? 'active' : ''} hover:text-[#C423C4]`} onClick={() => dispatch({type: 'ACTION', payload: 'Action'})}>Action</Link>
+          <Link to='/' className={`${active === 'Comedy' ? 'active' : ''} hover:text-[#C423C4]`} onClick={() => dispatch({type: 'COMEDY', payload: 'Comedy'})}>Comedy</Link>
+          <Link to='/' className={`${active === 'Drama' ? 'active' : ''} hover:text-[#C423C4]`} onClick={() => dispatch({type: 'DRAMA', payload: 'Drama'})}>Drama</Link>
           {/* <Link to='/' className={`${active === 'Lifestyle' ? 'active' : ''}`} onClick={() => dispatch({type: 'LIFESTYLE', payload: 'Lifestyle'})}>Lifestyle</Link> */}
         </div>
         <div

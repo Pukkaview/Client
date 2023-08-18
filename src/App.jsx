@@ -77,7 +77,7 @@ function App() {
       fetchDrama();
     }, []);
   return (
-    <div className="overflow-x-hiddeen">
+    <div className="overflow-x-hidden min-h-screen">
         <ToastContainer
           position="top-center"
           autoClose={5000}

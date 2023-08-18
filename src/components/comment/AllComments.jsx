@@ -12,6 +12,8 @@ export default function AllComments({videoId}) {
   const [hideReply, setHideReply] = useState(true)
   const [commentId, setCommentId] = useState(0)
   const [open, setOpen] = useState(false);
+  const [ids, setIds] = useState([])
+
 
   const handleClickOpen = (id) => {
     setOpen(true);
@@ -57,6 +59,8 @@ export default function AllComments({videoId}) {
   }, [dispatch, videoId]);
 
   const likeComment = async(id) => {
+    if(ids.includes(id)) return
+    setIds((prev) => [...prev, id])
     dispatch({type:"LIKE_COMMENT", payload: id})
     try {
       const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/${videoId}/comments/${id}/like/`, {
@@ -73,6 +77,8 @@ export default function AllComments({videoId}) {
   }
   const likeReply = async(commentId, replyId) => {
     console.log(commentId, replyId);
+    if(ids.includes(replyId)) return
+    setIds((pre) => [...pre, replyId])
     dispatch({type:"LIKE_REPLY", payload: {commentId, replyId}})
     try {
       const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/${videoId}/comments/${replyId}/like/`, {
@@ -109,7 +115,10 @@ export default function AllComments({videoId}) {
             <span className="cursor-pointer" onClick={() => handleClickOpen(c.id)}>Reply</span>
             </div>
             <div className="flex gap-[2px]">
-              <img src={like} alt="" className="cursor-pointer" onClick={() => likeComment(c.id)}/>
+              <button onClick={() => likeComment(c.id)}>
+
+              <img src={like} alt="" className="cursor-pointer" />
+              </button>
               <span>{c.likes}</span>
             </div>
             <ReplyComment open={open} handleClose={handleClose} id={commentId} videoId={videoId}/>
@@ -128,7 +137,9 @@ export default function AllComments({videoId}) {
                   <p className="text-[12px]">{formatDistanceToNow(new Date(r.created_at).setMinutes(new Date(r.created_at).getMinutes() + 60), {addSuffix: true})}</p>
                   </div>
                   <div className="flex gap-[2px]">
-                    <img src={like} alt="" className="cursor-pointer" onClick={() => likeReply(c.id, r.id)}/>
+                    <button onClick={() => likeReply(c.id, r.id)}>
+                    <img src={like} alt="" className="cursor-pointer" />
+                    </button>
                     <span>{r.likes}</span>
                   </div>
                 </div>

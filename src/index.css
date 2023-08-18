@@ -134,10 +134,10 @@ input[type="range"]::-ms-thumb {
 }
 
 
-.video_container .play_btn{
+/* .video_container .play_btn{
   display: none;
 }
 .video_container:hover .play_btn{
   display: flex;
-}
+} */
 
