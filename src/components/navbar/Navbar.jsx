@@ -38,27 +38,9 @@ export default function Navbar() {
   const handleChange = async(e) => {
     if(e.target.value === ''){
       dispatch2({type: 'CANCEL_SEARCH'})
-      dispatch2({type: 'UPDATE_BY_CAT', payload:[]})
       dispatch2({type: 'UPDATE_BY_NAME', payload:[]})
-      dispatch2({type: 'UPDATE_BY_CAST', payload:[]})
     }else{
       dispatch2({type: 'SEARCH'})
-    }
-    try {
-      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/search-videos/?genre=${e.target.value}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      // console.log(fetchResponse);
-      if (fetchResponse.failure) throw new Error('No match found');
-      if(!fetchResponse.message){
-        dispatch2({type: 'UPDATE_BY_CAT', payload:fetchResponse})
-      }
-    } catch (error) {
-      console.log(error.message);
-      dispatch2({type: 'UPDATE_BY_CAT', payload:[]})
     }
     try {
       const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/search-videos/?video_name=${e.target.value}`, {
@@ -75,22 +57,6 @@ export default function Navbar() {
     } catch (error) {
       console.log(error.message);
       dispatch2({type: 'UPDATE_BY_NAME', payload:[]})
-    }
-    try {
-      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/search-videos/?cast=${e.target.value}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      // console.log(fetchResponse);
-      if (fetchResponse.failure) throw new Error('No match found');
-      if(!fetchResponse.message){
-        dispatch2({type: 'UPDATE_BY_CAST', payload:fetchResponse})
-      }
-    } catch (error) {
-      console.log(error.message);
-      dispatch2({type: 'UPDATE_BY_CAST', payload:[]})
     }
   }
 
