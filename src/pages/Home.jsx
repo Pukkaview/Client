@@ -31,7 +31,7 @@ const Home = ({comedy, action, drama}) => {
         <>
         <IntroCard data={action[0]} tag="All" />
         <Rate/>
-        <div className="md:px-[59px] px-[20px] pt-[30px] pb-[65px] text-text-color mx-auto">
+        <div className="md:px-[59px] px-[20px] pt-[30px] sm:pb-[65px] pb-[10px] text-text-color mx-auto">
           <div className="bg-[#fff]">
             <MovieDetailCard />
           </div>

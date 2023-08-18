@@ -54,7 +54,7 @@ const Categories = ({comedy, action, drama}) => {
       {active && 
       <>      
         <IntroCard data={data[0]} tag={selectedOption} />
-        <div className="md:px-[40px] px-[20px] pt-[30px] pb-[65px] text-text-color">
+        <div className="md:px-[40px] px-[20px] pt-[30px] sm:pb-[65px] pb-[10px] text-text-color">
           <div className="bg-[#fff]">
             <MovieDetailCard data={data} />
           </div>
@@ -78,13 +78,13 @@ const Categories = ({comedy, action, drama}) => {
                 </select>
               </div>
             </div>
-            {data.length === 0 && <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pb-10 pt-10 mx-auto">
+            {data.length === 0 && <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-10 mx-auto">
             <Skeleton variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
             <Skeleton variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
             <Skeleton variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
             <Skeleton variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
               </div>}
-              {data.length > 0 && <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pb-10 pt-10 mx-auto">
+              {data.length > 0 && <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-10 mx-auto">
               {data.map((c,i)=> (
                 <div className={`flex mb-[20px] ${(i + 4)%4 === 0 ? 'lg:justify-start': (i + 1)%4 === 0 ? 'lg:justify-end': 'lg:justify-center'}`}>
                   <MovieCard2 key={c.id} data={c} />
