@@ -25,6 +25,7 @@ const CustomVideoPlayer = ({ data }) => {
   const [showControls, setShowControls] = useState(true);
   const [isBuffering, setIsBuffering] = useState(true);
   const controlTimeoutRef = useRef(null);
+  const [ids, setIds] = useState([])
   // useEffect(() => {
   //   if(currentTime > 1){
   //     setIsMuted(false)
@@ -175,6 +176,8 @@ const CustomVideoPlayer = ({ data }) => {
     };
 
     const handleLike = async(id) => {
+      if(ids.includes(id)) return
+      setIds((prev) => [...prev, id])
       dispatch({type:"LIKE_VIDEO", payload: id})
       try {
         const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/${id}/like/`, {
@@ -203,7 +206,7 @@ const CustomVideoPlayer = ({ data }) => {
           <img src={logo} alt="Zoom In Image" className="zoom-in-out-animation" />
         </div>
       )}
-      <div className="play_btn absolute md:top-0 sm:top-[40px] z-10 left-0 w-full h-full flex justify-center items-center">
+      {showControls && <div className="play_btn absolute md:top-0 sm:top-[40px] z-10 left-0 w-full h-full flex justify-center items-center">
           {/* Replace zoomInImage with the URL of your zooming in image */}
           <button
             className="text-white sm:mr-4 mr-2 bg-white bg-opacity-10 h-[100px] w-[100px] rounded-[50%]"
@@ -211,7 +214,7 @@ const CustomVideoPlayer = ({ data }) => {
           >
             {isPlaying ? <FontAwesomeIcon icon="pause" size={`${window.innerWidth>500? '3x' : '2x'}`} /> : <FontAwesomeIcon icon="play" size={`${window.innerWidth>500? '3x' : '2x'}`} />}
           </button>
-        </div>
+        </div>}
       <div className='flex items-center'>
         <ReactPlayer
           ref={videoRef}
@@ -280,7 +283,9 @@ const CustomVideoPlayer = ({ data }) => {
             {formatTime(currentTime)} / {formatTime(duration)}
           </div>
           <div className='flex gap-[2px] items-center'>
-            <img src={like} onClick={() => handleLike(video.id)} alt="" className="cursor-pointer h-[16px]"/>
+            <button onClick={() => handleLike(video.id)}>
+              <img src={like}  alt="" className="cursor-pointer h-[16px]"/>
+            </button>
             <span className='text-white'>{video.likes}</span>
           </div>
           </div>

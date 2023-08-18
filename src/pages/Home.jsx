@@ -24,7 +24,7 @@ const Home = ({comedy, action, drama}) => {
 
 
   return (
-    <div className="bg-background overflow-x-hidden">
+    <div className="bg-background overflow-x-hidden min-h-screen flex flex-col justify-between">
       <Navbar />
       {!search &&<div>
         {!active && 

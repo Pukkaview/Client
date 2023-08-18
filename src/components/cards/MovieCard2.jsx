@@ -31,12 +31,10 @@ export default function MovieCard2({data, isLastActive}) {
 
       if (screenWidth < 768) {
         width = screenWidth / 2;
-      }else if (screenWidth >= 769 && screenWidth < 1024) {
+      } else if (screenWidth >= 769 && screenWidth < 1024) {
         width = screenWidth / 3.1;
-      } else if (screenWidth >= 1024 && screenWidth < 1480) {
+      }else if (screenWidth >= 1024) {
         width = screenWidth / 4;
-      }else{
-        width = 384.25
       }
 
       setDivWidth(width);

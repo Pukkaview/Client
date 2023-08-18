@@ -10,6 +10,8 @@ const initialState = {
   byName: [],
   byCat: [],
   byCast: [],
+  loading: false,
+  error: false,
 };
 
 // Define the reducer function
@@ -40,6 +42,18 @@ const searchReducer = (state, action) => {
         ...state,
         search: false
     };
+    case 'LOADING':
+      console.log('loading', action.payload);
+    return {
+        ...state,
+        loading: action.payload
+    };
+    case 'ERROR':
+      console.log('error', action.payload);
+    return {
+        ...state,
+        error: action.payload
+    };
     default:
       return state;
   }
@@ -54,6 +68,9 @@ const SearchProvider = ({ children }) => {
     byCat: state.byCat,
     byCast: state.byCast,
     search: state.search,
+    loading: state.loading,
+    error: state.error,
+
     dispatch,
   };
 
