@@ -191,7 +191,7 @@ const CustomVideoPlayer = ({ data }) => {
     }
   return (
     <div 
-    className="relative md:min-h-[400px] min-h-[300px] flex justify-center flex-col" 
+    className="video_container relative md:min-h-[400px] min-h-[300px] flex justify-center flex-col" 
     ref={containerRef}
     onMouseEnter={showControlsOnHover}
     onMouseMove={showControlsOnHover}
@@ -203,6 +203,15 @@ const CustomVideoPlayer = ({ data }) => {
           <img src={logo} alt="Zoom In Image" className="zoom-in-out-animation" />
         </div>
       )}
+      <div className="play_btn absolute md:top-0 sm:top-[40px] z-10 left-0 w-full h-full flex justify-center items-center">
+          {/* Replace zoomInImage with the URL of your zooming in image */}
+          <button
+            className="text-white sm:mr-4 mr-2 bg-white bg-opacity-10 h-[100px] w-[100px] rounded-[50%]"
+            onClick={handlePlayPause}
+          >
+            {isPlaying ? <FontAwesomeIcon icon="pause" size={`${window.innerWidth>500? '3x' : '2x'}`} /> : <FontAwesomeIcon icon="play" size={`${window.innerWidth>500? '3x' : '2x'}`} />}
+          </button>
+        </div>
       <div className='flex items-center'>
         <ReactPlayer
           ref={videoRef}
@@ -222,7 +231,7 @@ const CustomVideoPlayer = ({ data }) => {
         />
       </div>
 
-      {showControls && <div className="absolute sm:bottom-10 bottom-6 left-4 right-4 flex flex-col">
+      {showControls && <div className="absolute sm:bottom-10 bottom-6 left-4 right-4 z-20 flex flex-col">
         <div>
         <input
             type="range"
@@ -244,7 +253,7 @@ const CustomVideoPlayer = ({ data }) => {
           <div className='flex'>
 
           <button
-            className="text-white sm:mr-4 mr-2"
+            className="text-white sm:mr-4 mr-2 sm:block hidden"
             onClick={handlePlayPause}
           >
             {isPlaying ? <FontAwesomeIcon icon="pause" /> : <FontAwesomeIcon icon="play" />}
@@ -264,7 +273,7 @@ const CustomVideoPlayer = ({ data }) => {
             step={0.01}
             value={volume}
             onChange={handleVolumeChange}
-            className="sm:w-16 w-12 sm:mr-4 mr-2 bg-primary"
+            className="sm:w-16 w-12 sm:mr-4 mr-2 bg-primary sm:block hidden"
           />
 
           <div className="text-white mx-4">
@@ -287,7 +296,7 @@ const CustomVideoPlayer = ({ data }) => {
               )}
             </button>
             <div onClick={() =>setIsPlaying(false)}>
-              <ShareBtn data={data}/>
+              <ShareBtn data={data} hideText={true}/>
             </div>
           </div>
         </div>
