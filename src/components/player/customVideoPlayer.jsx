@@ -4,11 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import screenfull from 'screenfull';
 import like from '../../assets/like.svg'
 import logo from '../../assets/logo.svg'
+import share from '../../assets/share.svg'
 
 import { VideoContext } from '../../context/useVideo';
 import { useContext } from 'react';
 import Fetcher from '../../utils/fetcher';
 import ShareBtn from '../buttons/ShareBtn';
+import ShareCard from '../cards/shareCard';
 
 // eslint-disable-next-line react/prop-types
 const CustomVideoPlayer = ({ data }) => {
@@ -26,12 +28,7 @@ const CustomVideoPlayer = ({ data }) => {
   const [isBuffering, setIsBuffering] = useState(true);
   const controlTimeoutRef = useRef(null);
   const [ids, setIds] = useState([])
-  // useEffect(() => {
-  //   if(currentTime > 1){
-  //     setIsMuted(false)
-  //     setVolume(1)
-  //   }
-  // }, [currentTime])
+
   useEffect(() => {
     if (screenfull.isEnabled) {
       screenfull.on('change', handleFullscreenChange);
@@ -302,6 +299,7 @@ const CustomVideoPlayer = ({ data }) => {
             </button>
             <div onClick={() =>setIsPlaying(false)}>
               <ShareBtn data={data} hideText={true}/>
+              {/* <img src={share} alt="" /> */}
             </div>
           </div>
         </div>
