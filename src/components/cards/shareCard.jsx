@@ -7,7 +7,7 @@ import facebook from '../../assets/facebook.png'
 import twitter from '../../assets/twitter.png'
 import CopyButton from '../buttons/copyBtn';
 
-export default function ShareCard({open, handleClose, data}) {
+export default function ShareCard({ handleClose, data, width}) {
     const url = `https://pukkaview.vercel.app/play/${data.id}`
     const handleShare = (platform, url, title, imageUrl) => {
   let shareText = '';
@@ -35,37 +35,37 @@ export default function ShareCard({open, handleClose, data}) {
       
       
   return (
-    <div>
-        <Dialog open={open} onClose={handleClose}>
-            <DialogContent style={{padding:0}}>
-            <div className="flex flex-col sm:w-[464px] w-[310px] mx-auto bg-[#FEF] px-[24px] pb-[24px] pt-[35px] rounded-[10px] relative">
+      <div>
+            <div 
+            style={{
+              width:width
+            }}
+            className="flex flex-col mx-auto bg-[#FEF] px-[24px] pb-[24px] pt-[35px] rounded-[10px] relative">
               <div>
                 <div className='flex justify-between'>
                   <h2 className="text-[24px] text-[#000] mb-[22px]">Share</h2>
                   <img src={cancel} onClick={handleClose} alt="" className="h-[25px] cursor-pointer"  />
                 </div>
                 <div className='flex gap-[15px]'>
-                  <div className='flex flex-col gap-[6px]'>
+                  <div className='flex flex-col gap-[6px] items-center'>
                     <img className='cursor-pointer h-[44px] w-[44px]' src={whatsApp} alt="" onClick={() => handleShare('whatsapp', url)}/>
-                    <span className='text-[#000]'>WhatsApp</span>
+                    <span className='text-[#000] text-[12px]'>WhatsApp</span>
                   </div>
-                  <div className='flex flex-col gap-[6px]'>
+                  <div className='flex flex-col gap-[6px] items-center'>
                   <img className='cursor-pointer h-[44px] w-[44px]' src={facebook} alt="" onClick={() => handleShare('facebook', url)}/>
-                    <span className='text-[#000]'>Facebook</span>
+                    <span className='text-[#000] text-[12px]'>Facebook</span>
                   </div>
-                  <div className='flex flex-col gap-[6px]'>
+                  <div className='flex flex-col gap-[6px] items-center'>
                     <img className='cursor-pointer h-[44px] w-[44px]' src={twitter} alt="" onClick={() => handleShare('twitter', url)}/>
-                    <span className='text-[#000] font-[500]'>Twitter</span>
+                    <span className='text-[#000] font-[500] text-[12px]'>Twitter</span>
                   </div>
                 </div>
                 <div className='mt-[20px] flex justify-between bg-[#FFF] rounded-[10px] px-[23px] py-[10px]'>
-                  <span>{url}</span>
+                  <span className='text-[#000]'>{url}</span>
                   <CopyButton text={url}/>
                 </div>
               </div>
             </div>
-            </DialogContent>
-      </Dialog>
     </div>
   )
 }

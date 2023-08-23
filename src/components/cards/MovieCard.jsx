@@ -6,11 +6,13 @@ import './moviecards.css'
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import dummy2 from "../../assets/dummy.png";
+import ShareCard from './shareCard';
 
 
 export default function MovieCard({data, isLastActive}) {
   const [divWidth, setDivWidth] = useState(0);
   const [hovered, setHovered] = useState(false);
+  const [open, setOpen] = useState(false)
 
   const handleMouseEnter = () => {
     const screenWidth = window.innerWidth;
@@ -23,6 +25,8 @@ export default function MovieCard({data, isLastActive}) {
 
   const handleMouseLeave = () => {
     setHovered(false);
+    setOpen(false)
+
   };
   useEffect(() => {
     const handleResize = () => {
@@ -53,6 +57,12 @@ export default function MovieCard({data, isLastActive}) {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+  const handleOpen = () => {
+    setOpen(true)
+  }
+  const handleClose = () => {
+    setOpen(false)
+  }
   return (
     <div className={`sm:h-[199px] phone-sm:h-[180px] h-[140px] flex items-center ${window.innerWidth < 1001 ? 'w-full' : ''}`}>
       <div style={{
@@ -90,9 +100,14 @@ export default function MovieCard({data, isLastActive}) {
             <Link to={`/play/${data.id}`}>
               <WatchBtn/>
             </Link>
-            <ShareBtn data={data}/>
+            <ShareBtn data={data} handleOpen={handleOpen}/>
           </div>
         </div>
+        {open &&
+          <div className='absolute z-[100] bottom-0 left-0'>
+            <ShareCard width={divWidth+170} handleClose={handleClose} data={data}/>
+          </div>
+          }
       </div>
     </div>
   )
