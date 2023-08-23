@@ -5,8 +5,17 @@ import WatchBtn from '../buttons/WatchBtn';
 import ShareBtn from '../buttons/ShareBtn';
 import './moviecards.css'
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import ShareCard from './shareCard';
 
 export default function MovieDetailCard({open, handleClose, data}) {
+  const [openShare, setOpenShare] = useState(false)
+  const handleOpen = () => {
+    setOpenShare(true)
+  }
+  const handleCloseShare = () => {
+    setOpenShare(false)
+  }
   return (
     <div className=''>
       {data && 
@@ -43,9 +52,14 @@ export default function MovieDetailCard({open, handleClose, data}) {
                 <Link to={`/play/${data.id}`}>
                   <WatchBtn/>
                 </Link>
-                  <ShareBtn data={data}/>
+                  <ShareBtn data={data} handleOpen={handleOpen}/>
                 </div>
               </div>
+              {openShare &&
+              <div className='absolute z-[100] bottom-0 left-0'>
+                <ShareCard width={window.innerWidth < 640 ? 325 : 517} handleClose={handleCloseShare} data={data}/>
+              </div>
+          }
             </div>
             </DialogContent>
           </Dialog>

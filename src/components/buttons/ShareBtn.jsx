@@ -2,18 +2,27 @@ import { useState } from 'react';
 import share from '../../assets/share.svg'
 import ShareCard from '../cards/shareCard';
 import './button.css'
-export default function ShareBtn({data, hideText}) {
+import { Menu } from '@mui/material';
+export default function ShareBtn({data, hideText, handleOpen}) {
   const [open, setOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
 
+  // const handleClick = event => {
+  //   setAnchorEl(event.currentTarget);
+  // };
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // const handleClose = () => {
+  //   setAnchorEl(null);
+  // };
 
-  const handleClose = () => {
-    setOpen(false);
-    console.log('yes');
-  };
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
+
+  // const handleClose = () => {
+  //   setOpen(false);
+  //   console.log('yes');
+  // };
   const handleShare = async () => {
     try {
       if (navigator.share) {
@@ -38,11 +47,16 @@ export default function ShareBtn({data, hideText}) {
       <img className='iconlight' src={share} alt="share" />
       <span className={`${hideText ? 'sm:flex hidden' : ''} font-[Goemetric-415-Black-BT] sm:text-[16px] text-[14px]`}>Share Now</span>
     </button>
-    <button onClick={handleClickOpen} className='hidden sm:flex text-accent4 items-center gap-[5px] cursor-pointer'>
+    <button onClick={handleOpen} className='hidden sm:flex text-accent4 items-center gap-[5px] cursor-pointer'>
       <img className='iconlight' src={share} alt="share" />
       <span className={`${hideText ? 'sm:flex hidden' : ''} font-[Goemetric-415-Black-BT] sm:text-[16px] text-[14px]`}>Share Now</span>
     </button>
-    <ShareCard open={open} handleClose={handleClose} data={data}/>
+    {/* <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      > 
+      </Menu> */}
     </div>
   )
 }
