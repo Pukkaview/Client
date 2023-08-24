@@ -18,19 +18,21 @@ const PlayVideo = ({comedy, action, drama}) => {
   const divRef = useRef(null); // Step 1: Create a ref
   const [marquee, setMarquee] = useState(false)
 
-  useEffect(() => {  
-    if (divRef.current) {
-      const width = divRef.current.offsetWidth; // Step 3: Access the width
-      const screenWidth = window.innerWidth
-      console.log('Div width:', width);
-      console.log('Screen width:', screenWidth);
-      if(screenWidth-20 > width ){
-        setMarquee(false)
-      }else{
-        setMarquee(true)
+  useEffect(() => { 
+    setTimeout(() =>{
+      if (divRef.current) {
+        const width = divRef.current.offsetWidth; // Step 3: Access the width
+        const screenWidth = window.innerWidth
+        console.log('Div width:', width);
+        console.log('Screen width:', screenWidth);
+        if(screenWidth-20 > width ){
+          setMarquee(false)
+        }else{
+          setMarquee(true)
+        }
+  
       }
-
-    }
+    }, 500) 
   }, [data]);
   useEffect(() => {
     // Function to fetch the video URL
