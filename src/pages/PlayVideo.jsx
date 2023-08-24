@@ -15,19 +15,23 @@ const PlayVideo = ({comedy, action, drama}) => {
   const {id} = useParams()
   const [data, setData] = useState('')
   const {video, dispatch} = useContext(VideoContext)
-  const [isTextLong, setIsTextLong] = useState(false);
-  const marqueeTextRef = useRef(null);
-  useEffect(() => {
-    // Measure the length of the text
-    const textElement = marqueeTextRef.current;
-    if (textElement) {
-      const contentWidth = textElement.getBoundingClientRect().width;
-      const screenWidth = window.innerWidth;
-      console.log(contentWidth, screenWidth);
+  const divRef = useRef(null); // Step 1: Create a ref
+  const [marquee, setMarquee] = useState(false)
 
-      setIsTextLong(contentWidth > screenWidth);
+  useEffect(() => {  
+    if (divRef.current) {
+      const width = divRef.current.offsetWidth; // Step 3: Access the width
+      const screenWidth = window.innerWidth
+      console.log('Div width:', width);
+      console.log('Screen width:', screenWidth);
+      if(screenWidth-20 > width ){
+        setMarquee(false)
+      }else{
+        setMarquee(true)
+      }
+
     }
-  }, [data, window.innerWidth]);
+  }, [data]);
   useEffect(() => {
     // Function to fetch the video URL
     const fetchVideoUrl = async () => {
@@ -50,11 +54,11 @@ const PlayVideo = ({comedy, action, drama}) => {
     fetchVideoUrl();
   }, [id]);
   return (
-      <div className='bg-[#180018]'>
+      <div className={`${marquee ? '' : 'play_page'} bg-[#180018]`}>
         <Navbar/>
         <CustomVideoPlayer data={data}/>
-        {data && <Marquee style={{width: "100%"}}>
-        <div id='marquee-text' ref={marqueeTextRef} className="flex gap-[20px] items-center mt-[30px] ml-[30px]">
+        {data && <Marquee play={marquee} style={{width: "100%"}}>
+        <div id='marquee-text' ref={divRef} className="flex gap-[20px] items-center mt-[30px] ml-[30px]">
           <h2 className='sm:text-[48px] text-[25px] font-[500] leading-normal text-text-color ml-[20px]' >{data.title}</h2>
           <span className="px-[30px] py-[5px] rounded-[5px] bg-accent3 text-black sm:text-[16px] text-[16px]">{data.genre}</span>
           <span className="text-[14px] text-text-color"><b>Year:</b> {data.year}</span>

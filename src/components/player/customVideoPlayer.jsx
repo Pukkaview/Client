@@ -11,6 +11,7 @@ import { useContext } from 'react';
 import Fetcher from '../../utils/fetcher';
 import ShareBtn from '../buttons/ShareBtn';
 import ShareCard from '../cards/shareCard';
+import Rate from '../feedback/Rate';
 
 // eslint-disable-next-line react/prop-types
 const CustomVideoPlayer = ({ data }) => {
@@ -28,7 +29,16 @@ const CustomVideoPlayer = ({ data }) => {
   const [isBuffering, setIsBuffering] = useState(true);
   const controlTimeoutRef = useRef(null);
   const [ids, setIds] = useState([])
+  const [open, setOpen] = useState(false)
+  const [popped, setPopped] = useState(false)
 
+  const handleClose = () => {
+    setOpen(false)
+    localStorage.removeItem('open')
+  }
+  const handleOpen = () => {
+    setOpen(true)
+  }
   useEffect(() => {
     if (screenfull.isEnabled) {
       screenfull.on('change', handleFullscreenChange);
@@ -58,7 +68,7 @@ const CustomVideoPlayer = ({ data }) => {
 //  Event listener for space key press
  useEffect(() => {
   const handleKeyPress = (event) => {
-    if (event.code === 'Space') {
+    if (event.code === 'Space' && !localStorage.getItem('open')) {
       event.preventDefault();
       setIsPlaying((prevIsPlaying) => !prevIsPlaying); // Toggle play/pause on space key press
     }
@@ -91,9 +101,20 @@ const CustomVideoPlayer = ({ data }) => {
     const playedProgress = state.played * 100;
     setProgress(playedProgress);
     setCurrentTime(state.playedSeconds);
+    if (state.played >= 0.5 && !popped && !localStorage.getItem('filled')) {
+        localStorage.setItem('filled', true)
+        localStorage.setItem('open', true)
+        setPopped(true)
+        handleOpen()
+        handleVideoHalfway();
+      // Call your function here
+    }
     // localStorage.setItem('videoProgress', playedProgress);
   };
-
+  const handleVideoHalfway = () => {
+    // Your function to be executed when the video is 50% complete
+    setIsPlaying(false)
+  };
   const handleDuration = (duration) => {
     setDuration(duration);
   };
@@ -308,6 +329,7 @@ const CustomVideoPlayer = ({ data }) => {
         {/* Add the previous and next buttons here */}
 
       </div>}
+      <Rate handleClose={handleClose} open={open}/>
     </div>
   );
 };
