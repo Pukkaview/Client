@@ -29,7 +29,7 @@ export default function IntroCard({data, tag}) {
         <div className='sm:max-w-[615px] max-w-[349px] flex flex-col gap-[18px] z-10'>
           <div className='flex gap-[18px] items-center'>
             <span className='bg-accent3 py-[7px] text-center rounded-[4px] text-[#000] w-[71px] font-bold text-[12px] sm:text-[14px] font-[Goemetric-415-Black-BT]'>{tag}</span>
-            <span className='text-[14px] sm:text-[16px] font-[Goemetric-415-Black-BT]'><b>Time:</b></span>
+            <span className='text-[14px] sm:text-[16px] font-[Goemetric-415-Black-BT]'><b>Time:</b> {data.time}</span>
           </div>
           <h1 className='sm:text-[48px] text-[32px] font-[500] leading-normal'>{data.title}</h1>
           <p className='text-[14px] sm:text-[18px]'>{data.plot}</p>

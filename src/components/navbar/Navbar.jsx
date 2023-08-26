@@ -9,8 +9,10 @@ import MobileNav from "./MobileNav";
 import { ActiveContext } from "../../context/useActive";
 import Fetcher from "../../utils/fetcher";
 import { SearchContext } from "../../context/useSearch";
+import { GenreContext } from "../../context/useGenre";
 
 export default function Navbar() {
+  const {genreList} = useContext(GenreContext)
   const [scrolled, setScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const {active, dispatch} = useContext(ActiveContext)
@@ -75,7 +77,7 @@ export default function Navbar() {
         scrolled ? "bg-[#180018] transition duration-300 ease-in-out" : ""
       }`}
     >
-      <Link to="/" onClick={() => dispatch({type: 'NULL', payload: ''})} className={`${active === '' ? 'active' : ''} md:w-[168px] md:h-[22px] w-[102px] h-[18px]`}>
+      <Link to="/" onClick={() => localStorage.setItem('active', '')} className={`${active === '' ? 'active' : ''} md:w-[168px] md:h-[22px] w-[102px] h-[18px]`}>
         {!scrolled && <img src={logo} className="w-full h-full" alt="logo" />}
         {scrolled && <img src={logoW} className="w-full h-full" alt="logo" />}
       </Link>
@@ -98,11 +100,13 @@ export default function Navbar() {
           </label>
         </form>
         <div className="nav lg:flex hidden gap-[18px] items-center text-[#fff] font-[500] font-[Futura] text-[14px]">
-          <Link to="/" onClick={() => dispatch({type: 'NULL', payload: ''})} className={`${active === '' ? 'active' : ''} hover:text-[#C423C4]`} >Home</Link>
+          <Link to="/" onClick={() => dispatch({type: 'ACTIVE', payload: ''})} className={`${active === '' ? 'active' : ''} hover:text-[#C423C4]`} >Home</Link>
           {/* <Link to='/' className={`${active === 'New' ? 'active' : ''}`} onClick={() => dispatch({type: 'NEW', payload: 'New'})}>New</Link> */}
-          <Link to='/' className={`${active === 'Action' ? 'active' : ''} hover:text-[#C423C4]`} onClick={() => dispatch({type: 'ACTION', payload: 'Action'})}>Action</Link>
-          <Link to='/' className={`${active === 'Comedy' ? 'active' : ''} hover:text-[#C423C4]`} onClick={() => dispatch({type: 'COMEDY', payload: 'Comedy'})}>Comedy</Link>
-          <Link to='/' className={`${active === 'Drama' ? 'active' : ''} hover:text-[#C423C4]`} onClick={() => dispatch({type: 'DRAMA', payload: 'Drama'})}>Drama</Link>
+          {genreList.length > 1 && genreList.map((genre => (
+          <Link to='/' className={`${active === genre ? 'active' : ''} hover:text-[#C423C4]`} onClick={() => dispatch({type: 'ACTIVE', payload: genre})}>{genre}</Link>
+          )))}
+          {/* <Link to='/' className={`${active === 'Comedy' ? 'active' : ''} hover:text-[#C423C4]`} onClick={() => dispatch({type: 'COMEDY', payload: 'Comedy'})}>Comedy</Link>
+          <Link to='/' className={`${active === 'Drama' ? 'active' : ''} hover:text-[#C423C4]`} onClick={() => dispatch({type: 'DRAMA', payload: 'Drama'})}>Drama</Link> */}
           {/* <Link to='/' className={`${active === 'Lifestyle' ? 'active' : ''}`} onClick={() => dispatch({type: 'LIFESTYLE', payload: 'Lifestyle'})}>Lifestyle</Link> */}
         </div>
         <div

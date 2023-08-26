@@ -12,47 +12,11 @@ const initialState = {
 // Define the reducer function
 const activeReducer = (state, action) => {
   switch (action.type) {
-    case 'NEW':
+    case 'ACTIVE':
       localStorage.setItem('active', action.payload);
       return {
         ...state,
         active: action.payload,
-      };
-    case 'ACTION':
-      localStorage.setItem('active', action.payload);
-      return {
-        ...state,
-        active: action.payload,
-      };
-    case 'COMEDY':
-      localStorage.setItem('active', action.payload);
-      return {
-        ...state,
-        active: action.payload,
-      };
-    case 'SERMON':
-      localStorage.setItem('active', action.payload);
-      return {
-        ...state,
-        active: action.payload,
-      };
-    case 'DRAMA':
-      localStorage.setItem('active', action.payload);
-      return {
-        ...state,
-        active: action.payload,
-      };
-    case 'LIFESTYLE':
-      localStorage.setItem('active', action.payload);
-      return {
-        ...state,
-        active: action.payload,
-      };
-    case 'NULL':
-      localStorage.setItem('active', '');
-      return {
-        ...state,
-        active: '',
       };
     default:
       return state;
