@@ -6,54 +6,35 @@ import { movieDataOptions } from "../../src/movieDataOptions";
 import { ActiveContext } from "../context/useActive";
 import MovieCard2 from "../components/cards/MovieCard2";
 import { Skeleton } from "@mui/material";
+import { GenreContext } from "../context/useGenre";
 
 
-const Categories = ({comedy, action, drama}) => {
+const Categories = () => {
   const {active, dispatch} = useContext(ActiveContext)
-  const [selectedOption, setSelectedOption] = useState("Action");
+  const {genreList, videos} = useContext(GenreContext)
+  const [selectedOption, setSelectedOption] = useState(active);
   const [data, setData] = useState([])
-  useEffect(() => {
-    setSelectedOption(active)
-    if(active === 'Drama'){
-      setData(drama)
-    }
-    if(active === 'Comedy'){
-      setData(comedy)
-    }
-    if(active === 'Action'){
-      setData(action)
-    }
-  }, [active, action, drama, comedy])
   console.log(data);
+  console.log(active);
+  useEffect(() => {
+    if(videos.length > 0){
+      const d = videos.filter(v => v.genre === active)
+      setData(d[0].videos)
+      console.log(d[0].videos);
+    }
+  }, [active, videos])
 
   const handleSelectChange = (event) => {
     const genre = event.target.value;
     setSelectedOption(genre);
-    if(genre === 'New'){
-      dispatch({type:'NEW', payload:genre})
-    }
-    if(genre === 'Action'){
-      dispatch({type:'ACTION', payload:genre})
-    }
-    if(genre === 'Comedy'){
-      dispatch({type:'COMEDY', payload:genre})
-    }
-    if(genre === 'Lifestyle'){
-      dispatch({type:'LIFESTYLE', payload:genre})
-    }
-    if(genre === 'Sermon'){
-      dispatch({type:'SERMON', payload:genre})
-    }
-    if(genre === 'Drama'){
-      dispatch({type:'DRAMA', payload:genre})
-    }
+    dispatch({type:'ACTIVE', payload:genre})
   };
 
   return (
     <div className="">
-      {active && 
+      {active  && 
       <>      
-        <IntroCard data={data[0]} tag={selectedOption} />
+        {data && <IntroCard data={data[0]} tag={selectedOption} />}
         <div className="md:px-[40px] px-[20px] pt-[30px] sm:pb-[65px] pb-[10px] text-text-color">
           <div className="bg-[#fff]">
             <MovieDetailCard data={data} />
@@ -69,10 +50,11 @@ const Categories = ({comedy, action, drama}) => {
                   className="bg-[#FFEEFF] text-[#180018] font-bold border-0 outline-none rounded-md px-4"
                   onChange={handleSelectChange}
                   value={selectedOption}
-                >
-                  <option value="Action">Action</option>
-                  <option value="Comedy">Comedy</option>
-                  <option value="Drama">Drama</option>
+                >{genreList.length > 0 && genreList.map(genre => (
+                  <option value={genre}>{genre}</option>
+                ))}
+                  {/* <option value="Comedy">Comedy</option>
+                  <option value="Drama">Drama</option> */}
                   {/* <option value="Lifestyle">Lifestyle</option> */}
                   {/* <option value="New">New</option> */}
                 </select>

@@ -3,28 +3,29 @@ import dummy from "../../assets/categorydummy.png";
 import MovieCardPlay from "../MovieCardPlay/MovieCardPlay";
 import { useEffect } from "react";
 import { Skeleton } from "@mui/material";
+import { GenreContext } from "../../context/useGenre";
+import { useContext } from "react";
 
-export default function PlayCat({comedy, action, drama}) {
-  const [selectedOption, setSelectedOption] = useState("Action");
+export default function PlayCat() {
+  const {genreList, videos} = useContext(GenreContext)
+  const [selectedOption, setSelectedOption] = useState(genreList[0]);
   const [data, setData] = useState([])
-  console.log(action, drama, comedy);
+  console.log(genreList[0]);
   useEffect(() => {
-    setData(action)
-  }, [action])
+    if(videos.length > 0 ){
+      const d = videos.filter(v => v.genre === genreList[0])
+      console.log(d);
+      setData(d[0].videos)
+      console.log(d[0].videos);
+    }
+  }, [videos])
+
   const handleSelectChange = (event) => {
     const genre = event.target.value;
     setSelectedOption(genre);
-    if(genre === 'Drama'){
-      setData(drama)
-    }
-    if(genre === 'Comedy'){
-      setData(comedy)
-    }
-    if(genre === 'Action'){
-      setData(action)
-    }
+    const d = videos.filter(v => v.genre === genre)
+    setData(d[0].videos)
   };
-  console.log(data);
   return (
     <div className="lg:w-[50%] flex flex-col gap-[37px]">
       <div className="flex justify-between items-center">
@@ -38,9 +39,9 @@ export default function PlayCat({comedy, action, drama}) {
                   onChange={handleSelectChange}
                   value={selectedOption}
                 >
-                  <option value="Action">Action</option>
-                  <option value="Comedy">Comedy</option>
-                  <option value="Drama">Drama</option>
+                 {genreList.length > 0 && genreList.map(genre => (
+                  <option value={genre}>{genre}</option>
+                ))}
                 </select>
               </div>
       </div>

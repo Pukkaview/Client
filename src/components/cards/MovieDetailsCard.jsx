@@ -30,8 +30,8 @@ export default function MovieDetailCard({open, handleClose, data}) {
               backgroundImage: `url(${encodeURI(data.thumbnaillink)})`,
               backgroundSize: 'cover',
 
-              }} className='moviecard3 relative sm:h-[392px] sm:w-[517px] w-[325px] h-[350px] mx-auto  rounded-[15px] overflow-hidden'>
-              <div className='details w-full text-text-color sm:px-[18px] px-[8px] py-[33px] flex flex-col gap-[25px]'>
+              }} className='moviecard3 relative sm:h-[392px] sm:w-[517px] w-[325px] h-[350px] mx-auto  rounded-[15px] overflow-hidden items-center flex'>
+              <div className='details w-full text-text-color sm:px-[18px] px-[8px] py-[33px] flex flex-col gap-[25px] '>
                 <div className='flex justify-between w-full z-10'>
                   <div className='flex flex-col gap-[5px] w-[30%]'>
                     <span className='sm:text-[16px] text-[12px]'><b>Year:</b> {data.year}</span>

@@ -15,56 +15,46 @@ import Rate from "../components/feedback/Rate";
 import {Skeleton} from '@mui/material'
 import Search from "../components/Search";
 import { SearchContext } from "../context/useSearch";
+import { GenreContext } from "../context/useGenre";
 // import { action, comedy, drama } from "../utils/cat";
 
 
-const Home = ({comedy, action, drama}) => {
+const Home = () => {
   const {active, dispatch} = useContext(ActiveContext)
+  // const [active, setActive] = useState(localStorage.getItem('active'))
+  const {genreList, videos} = useContext(GenreContext)
   const {search} = useContext(SearchContext)
-
 
   return (
     <div className="bg-background overflow-x-hidden min-h-screen flex flex-col justify-between">
       <Navbar />
+
       {!search &&<div>
         {!active && 
         <>
-        <IntroCard data={action[0]} tag="All" />
+        {videos.length === 0 && <Skeleton variant="rectangular" width={'100%'} height={'100vh'} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white' }} />}
+        { videos.length > 0 &&<IntroCard data={videos[2].videos[3]} tag="All" />}
         <Rate/>
         <div className="md:px-[59px] px-[20px] pt-[30px] sm:pb-[65px] pb-[10px] text-text-color mx-auto">
           <div className="bg-[#fff]">
             <MovieDetailCard />
           </div>
+          {videos.length > 0 && videos.map(v => (
           <div>
             <div className="w-full flex justify-between">
-              <h2 className="text-[24px] font-goemetric font-[400]">Action</h2>
-              <div onClick={() => dispatch({type: 'ACTION', payload: 'Action'})}>
+              <h2 className="text-[24px] font-goemetric font-[400]">{v.genre}</h2>
+              <div onClick={() => dispatch({type:'ACTIVE', payload:v.genre})}>
                 <ViewBtn />
               </div>
             </div>
-            {action.length === 0 && 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-[10px]">
-              <div>
-              <Skeleton variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
-              </div>
-              <div>
-              <Skeleton variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
-              </div>
-              <div className="hidden md:block">
-              <Skeleton variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
-              </div>
-              <div className="hidden lg:block">
-              <Skeleton variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white', borderRadius: '15px' }} />
-              </div>
-            </div>
-            }
-            { action.length > 0 && <Carousel>
-              {action.length > 0 && action.map(a => (
+            { v.videos.length > 0 && <Carousel>
+              {v.videos.length > 0 && v.videos.map(a => (
               <MovieCard key={a.id} data={a} />
               )) }
             </Carousel>}
           </div>
-          <div>
+          ))}
+          {/* <div>
           <div className="w-full flex justify-between">
               <h2 className="text-[24px] font-goemetric font-[400]">Comedy</h2>
               <div onClick={() => dispatch({type: 'COMEDY', payload: 'Comedy'})}>
@@ -117,13 +107,13 @@ const Home = ({comedy, action, drama}) => {
               <MovieCard key={c.id} data={c} />
               ))}
             </Carousel>}
-          </div>
+          </div> */}
         </div>
         </>
         }
-        {active && <Categories comedy={comedy} action={action} drama={drama}/>}
+        {active && <Categories/>}
       </div>}
-      {search && <Search data={drama}/>}
+      {search && <Search/>}
       <Footer />
     </div>
   );

@@ -9,73 +9,73 @@ import { ToastContainer } from "react-toastify";
 import { useEffect, useState } from "react";
 import Fetcher from "./utils/fetcher";
 import Rate from "./components/feedback/Rate";
+import { useContext } from "react";
+import { GenreContext } from "./context/useGenre";
 function App() {
+    const {dispatch, genreList, videos} = useContext(GenreContext)
+    // const [genres, setGenres] = useState([]);
+    // const [videos, setVideos] = useState({});
     const [comedy, setComedy] = useState([])
     const [action, setAction] = useState([])
     const [drama, setDrama] = useState([])
 
     const [open, setOpen] = useState(false);
 
-    // const handleClickOpen = (id) => {
-    //   setOpen(true);
-    // };
-  
     const handleClose = () => {
       setOpen(false);
     };
-    console.log(comedy, action);
+    console.log(genreList, videos);
 
-    useEffect(() => {
-      // Function to fetch the video URL
-      const fetchComedy = async () => {
-        try {
-          const fetchResponse = await Fetcher("https://pukkaview.onrender.com/videoplayer/api/search-videos/?genre=Comedy", {
+  useEffect(() => {
+    const fetchGenres = async () => {
+      try {
+        const response = await fetch("https://pukkaview.onrender.com/api/get-distinct-genres");
+        const data = await response.json();
+        dispatch({type: 'GET_GENRE_LIST', payload: data.genres})
+      } catch (error) {
+        console.error('Error fetching genres:', error);
+      }
+    };
+
+    fetchGenres();
+  }, []);
+
+  useEffect(() => {
+    const fetchVideos = async () => {
+      try {
+        const genreVideosPromises = genreList.map(async genre => {
+          const videoResponse = await fetch(`https://pukkaview.onrender.com/videoplayer/api/search-videos/?genre=${genre}`, {
             method: "POST",
             headers: {
-              "Content-Type": "application/json",
+              "Content-Type": "application/json"
             },
           });
-          // console.log(fetchResponse);
-          if (fetchResponse.failure) throw new Error(fetchResponse.message);
-          setComedy(fetchResponse)
-        } catch (error) {
-          console.error('Error fetching video URL:', error);
-        }
-      };
-      const fetchAction = async () => {
-        try {
-          const fetchResponse = await Fetcher("https://pukkaview.onrender.com/videoplayer/api/search-videos/?genre=Action", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
-          // console.log(fetchResponse);
-          if (fetchResponse.failure) throw new Error(fetchResponse.message);
-          setAction(fetchResponse)
-        } catch (error) {
-          console.error('Error fetching video URL:', error);
-        }
-      };
-      const fetchDrama = async () => {
-        try {
-          const fetchResponse = await Fetcher("https://pukkaview.onrender.com/videoplayer/api/search-videos/?genre=Drama", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
-          // console.log(fetchResponse);
-          if (fetchResponse.failure) throw new Error(fetchResponse.message);
-          setDrama(fetchResponse)
-        } catch (error) {
-          console.error('Error fetching video URL:', error);
-        }
-      };
-      fetchComedy();
-      fetchAction();
-      fetchDrama();
-    }, []);
+          const videoData = await videoResponse.json();
+          return { genre, videos: videoData };
+        });
+
+        // const genreVideos = await Promise.all(genreVideosPromises);
+        // const videosByGenre = {};
+        // genreVideos.forEach(item => {
+        //   videosByGenre[item.genre] = item.videos;
+        // });
+        const allGenreVideos = await Promise.all(genreVideosPromises);
+        dispatch({type: 'GET_VIDEOS', payload: allGenreVideos})
+
+        // setVideos(allGenreVideos);
+
+        // setVideos(videosByGenre);
+      } catch (error) {
+        console.error('Error fetching videos:', error);
+      }
+    };
+
+    if (genreList.length > 0) {
+      fetchVideos();
+    }
+  }, [genreList]);
+
+
   return (
     <div className="overflow-x-hidden min-h-screen">
         <ToastContainer

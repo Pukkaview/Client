@@ -13,6 +13,7 @@ import { faPlay, faPause, faVolumeUp, faVolumeMute, faExpand, faCompress, faStep
 import { CommentProvider } from "./context/useComment.jsx";
 import { VideoProvider } from "./context/useVideo.jsx";
 import { SearchProvider } from "./context/useSearch.jsx";
+import { GenreProvider } from "./context/useGenre.jsx";
 library.add(faPlay, faPause, faVolumeUp, faVolumeMute, faExpand, faCompress, faStepBackward, faStepForward);
 if ('fetch' in window) {
   import('./index.css').then(() => {
@@ -20,13 +21,15 @@ if ('fetch' in window) {
       <React.StrictMode>
         <BrowserRouter>
           <ActiveProvider>
-            <VideoProvider>
-              <CommentProvider>
-                <SearchProvider>
-                  <App />
-                </SearchProvider>
-              </CommentProvider>
-            </VideoProvider>
+            <GenreProvider>
+              <VideoProvider>
+                <CommentProvider>
+                  <SearchProvider>
+                    <App />
+                  </SearchProvider>
+                </CommentProvider>
+              </VideoProvider>
+            </GenreProvider>
           </ActiveProvider>
         </BrowserRouter>
       </React.StrictMode>

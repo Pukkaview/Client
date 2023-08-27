@@ -3,42 +3,19 @@ import PropTypes from 'prop-types';
 import { Link, useNavigate } from "react-router-dom";
 import { ActiveContext } from "../../context/useActive";
 import { useContext, useEffect, useState } from 'react';
+import { GenreContext } from '../../context/useGenre';
 
 export default function MobileNav({isVisible, handleClose}) {
   const {active, dispatch} = useContext(ActiveContext)
-  const [selectedOption, setSelectedOption] = useState("Action");
+  const {genreList} = useContext(GenreContext)
+  const [selectedOption, setSelectedOption] = useState(genreList[0]);
   const navigate = useNavigate()
-  console.log(active);
-  useEffect(() => {
-    setSelectedOption(active)
-  }, [active])
 
   const handleSelectChange = (event) => {
     const genre = event.target.value;
     setSelectedOption(genre);
-    if(genre === 'New'){
-      dispatch({type:'NEW', payload:genre})
-      navigate('/')
-    }
-    if(genre === 'Action'){
-      dispatch({type:'ACTION', payload:genre})
-      navigate('/')
-      handleClose()
-    }
-    if(genre === 'Comedy'){
-      dispatch({type:'COMEDY', payload:genre})
-      navigate('/')
-      handleClose()
-    }
-    if(genre === 'Lifestyle'){
-      dispatch({type:'LIFESTYLE', payload:genre})
-      navigate('/')
-    }
-    if(genre === 'Drama'){
-      dispatch({type:'DRAMA', payload:genre})
-      navigate('/')
-      handleClose()
-    }
+    dispatch({type:'ACTIVE', payload:genre})
+    navigate('/')
   };
   return (
     <div className={`bg-[#180018] px-[33px] pb-[26px] pt-[58px] w-[337px] absolute top-0 right-0 text-[#fff] flex flex-col gap-[23px] ${
@@ -50,9 +27,9 @@ export default function MobileNav({isVisible, handleClose}) {
         onChange={handleSelectChange}
         value={selectedOption}
         >
-          <option value={"Action"}>Action</option>
-          <option value={"Comedy"}>Comedy</option>
-          <option value={"Drama"}>Drama</option>
+          {genreList.length > 0 && genreList.map(genre => (
+                  <option value={genre}>{genre}</option>
+                ))}
         </select>
         <div className="pointer-events-none absolute top-[15px] right-[10px] flex items-center px-2 text-white ">
         <svg className="fill-current h-8 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
