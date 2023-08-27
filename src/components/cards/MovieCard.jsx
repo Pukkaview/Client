@@ -5,7 +5,7 @@ import WatchBtn from '../buttons/WatchBtn'
 import './moviecards.css'
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
-import dummy2 from "../../assets/dummy.png";
+import logo from "../../assets/logoP.svg";
 import ShareCard from './shareCard';
 
 
@@ -71,12 +71,13 @@ export default function MovieCard({data, isLastActive}) {
       }} 
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-        className={`moviecard relative sm:h-[219px] phone-sm:h-[180px] h-[140px] lg:hover:h-[392px] duration-300 ease-in-out hover:lg:z-20 rounded-[15px] flex justify-end overflow-hidden`}>
+        className={`moviecard relative sm:h-[219px] phone-sm:h-[180px] h-[140px] lg:hover:h-[392px] duration-300 ease-in-out hover:lg:z-20 rounded-[15px] flex justify-end items-center overflow-hidden`}>
         <img className='h-full w-full absolute z-[-2]' src={encodeURI(data.thumbnaillink)} alt="" />
+        <img className='absolute z-[0] top-[10px] left-[10px] h-[20px]' src={logo} alt="" />
         <Link to={`/play/${data.id}`} className='play absolute top-[40%] left-[40%] cursor-pointer z-10 '>
           <PlayBtn/>
         </Link>
-        <div className='details absolute w-full text-text-color px-[18px] py-[33px] flex flex-col gap-[25px] left-0'>
+        <div className='details absolute w-full text-text-color px-[18px] py-[33px] flex flex-col gap-[25px] left-0 justify-center'>
           <div className='flex justify-between w-full'>
             <div className='flex flex-col gap-[5px] w-[40%]'>
               <span className='sm:text-[16px] text-[12px]'><b>Year:</b> 2019</span>

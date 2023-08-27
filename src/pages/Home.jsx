@@ -15,8 +15,6 @@ import Rate from "../components/feedback/Rate";
 import {Skeleton} from '@mui/material'
 import Search from "../components/Search";
 import { SearchContext } from "../context/useSearch";
-import { useEffect } from "react";
-import { useState } from "react";
 import { GenreContext } from "../context/useGenre";
 // import { action, comedy, drama } from "../utils/cat";
 
@@ -27,14 +25,15 @@ const Home = () => {
   const {genreList, videos} = useContext(GenreContext)
   const {search} = useContext(SearchContext)
 
-
   return (
     <div className="bg-background overflow-x-hidden min-h-screen flex flex-col justify-between">
       <Navbar />
+
       {!search &&<div>
         {!active && 
         <>
-        { videos.length > 0 &&<IntroCard data={videos[1].videos[0]} tag="All" />}
+        {videos.length === 0 && <Skeleton variant="rectangular" width={'100%'} height={'100vh'} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white' }} />}
+        { videos.length > 0 &&<IntroCard data={videos[2].videos[3]} tag="All" />}
         <Rate/>
         <div className="md:px-[59px] px-[20px] pt-[30px] sm:pb-[65px] pb-[10px] text-text-color mx-auto">
           <div className="bg-[#fff]">
