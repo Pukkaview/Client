@@ -12,6 +12,7 @@ import Fetcher from '../../utils/fetcher';
 import ShareBtn from '../buttons/ShareBtn';
 import ShareCard from '../cards/shareCard';
 import Rate from '../feedback/Rate';
+import SharePop from '../cards/sharePop';
 
 // eslint-disable-next-line react/prop-types
 const CustomVideoPlayer = ({ data }) => {
@@ -31,6 +32,7 @@ const CustomVideoPlayer = ({ data }) => {
   const [ids, setIds] = useState([])
   const [open, setOpen] = useState(false)
   const [popped, setPopped] = useState(false)
+  const [openShare, setOpenShare] = useState(false)
 
   const handleClose = () => {
     setOpen(false)
@@ -38,6 +40,12 @@ const CustomVideoPlayer = ({ data }) => {
   }
   const handleOpen = () => {
     setOpen(true)
+  }
+  const handleCloseShare = () => {
+    setOpenShare(false)
+  }
+  const handleOpenShare = () => {
+    setOpenShare(true)
   }
   useEffect(() => {
     if (screenfull.isEnabled) {
@@ -320,7 +328,7 @@ const CustomVideoPlayer = ({ data }) => {
               )}
             </button>
             <div onClick={() =>setIsPlaying(false)}>
-              <ShareBtn data={data} hideText={true}/>
+              <ShareBtn data={data} hideText={true} handleOpen={handleOpenShare}/>
               {/* <img src={share} alt="" /> */}
             </div>
           </div>
@@ -331,6 +339,7 @@ const CustomVideoPlayer = ({ data }) => {
 
       </div>}
       <Rate handleClose={handleClose} open={open}/>
+      <SharePop data={data} open={openShare} handleClose={handleCloseShare}/>
     </div>
   );
 };
