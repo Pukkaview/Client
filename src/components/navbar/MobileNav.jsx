@@ -16,6 +16,7 @@ export default function MobileNav({isVisible, handleClose}) {
     setSelectedOption(genre);
     dispatch({type:'ACTIVE', payload:genre})
     navigate('/')
+    handleClose()
   };
   return (
     <div className={`bg-[#180018] px-[33px] pb-[26px] pt-[58px] w-[337px] absolute top-0 right-0 text-[#fff] flex flex-col gap-[23px] ${
@@ -37,7 +38,7 @@ export default function MobileNav({isVisible, handleClose}) {
         </svg>
         </div>
       </div>
-      <Link to="/" onClick={() => {dispatch({type: 'NULL', payload: ''}); handleClose()}} className={`${active === '' ? 'active' : ''}`} >Home</Link>
+      <Link to="/" onClick={() => {dispatch({type: 'ACTIVE', payload: ''}); handleClose()}} className={`${active === '' ? 'active' : ''}`} >Home</Link>
     </div>
   )
 }
