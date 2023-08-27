@@ -107,49 +107,49 @@ export default function Rate({open, handleClose }) {
     <div>
       <Dialog open={open}>
         <DialogContent style={{padding:0}}>
-          <div className=" relative flex flex-col gap-[47px] bg-[#180018] p-[36px] max-w-[600px] mx-auto">
+          <div className=" relative flex flex-col gap-[47px] bg-[#180018] sm:p-[36px] px-[15px] py-[30px] max-w-[600px] mx-auto">
             <img className="absolute top-[10px] right-[10px] h-[32px] cursor-pointer" onClick={handleClose} src={cancel} alt="cancel" />
             <div className="flex flex-col justify-center items-center gap-[30px] max-w-[350px] mx-auto">
               <img src={logo} alt="logo" />
-              {!ratingSuccess && <h2 className="text-[18px] text-center text-text-color">We are tying our best to serve you better with awesome updates</h2>}
-              {ratingSuccess && <h2 className="text-[18px] text-center text-text-color">Have More To Pass Across To Us ? <br/> Please Do So Below.</h2>}
+              {!ratingSuccess && <h2 className="sm:text-[18px] text-[16px] text-center text-text-color">We are tying our best to serve you better with awesome updates</h2>}
+              {ratingSuccess && <h2 className="sm:text-[18px] text-[16px] text-center text-text-color">Have More To Pass Across To Us ? <br/> Please Do So Below.</h2>}
             </div>
             {!ratingSuccess &&<div className="flex flex-col gap-[30px]">
             <h2 className="text-[18px] text-text-color">Rate Platform</h2>
-            <div className="flex gap-[25px] text-text-color">
+            <div className="flex sm:gap-[25px] gap-[10px] text-text-color">
               <div className="flex flex-col gap-[10px] cursor-pointer" onClick={() => setRating('awful')}>
-                <img className="h-[45px] w-[45px]" src={angry} alt="awful" />
-                <div className="flex gap-[5px]">
-                  <div className={`h-[23px] w-[23px] rounded-[50%] border border-text-color ${rating === 'awful' ? 'bg-primary': ''}`}></div>
-                  <span className="text-[14px]">Awful</span>
+                <img className="sm:h-[45px] h-[30px] w-[30px] sm:w-[45px]" src={angry} alt="awful" />
+                <div className="flex gap-[5px] items-center">
+                  <div className={`sm:h-[23px] h-[14px] sm:w-[23px] w-[14px] rounded-[50%] border border-text-color ${rating === 'awful' ? 'bg-primary': ''}`}></div>
+                  <span className="sm:text-[14px] text-[12px]">Awful</span>
                 </div>
               </div>
               <div className="flex flex-col gap-[10px] cursor-pointer" onClick={() => setRating('bad')}>
-                <img className="h-[45px] w-[45px]" src={sad} alt="bad"  />
-                <div className="flex gap-[5px]">
-                  <div className={`h-[23px] w-[23px] rounded-[50%] border border-text-color ${rating === 'bad' ? 'bg-primary': ''}`}></div>
-                  <span className="text-[14px]">Bad</span>
+                <img className="sm:h-[45px] h-[30px] w-[30px] sm:w-[45px]" src={sad} alt="bad"  />
+                <div className="flex gap-[5px] items-center">
+                  <div className={`sm:h-[23px] h-[14px] sm:w-[23px] w-[14px] rounded-[50%] border border-text-color ${rating === 'bad' ? 'bg-primary': ''}`}></div>
+                  <span className="sm:text-[14px] text-[12px]">Bad</span>
                 </div>
               </div>
               <div className="flex flex-col gap-[10px] cursor-pointer" onClick={() => setRating('okay')}>
-                <img className="h-[45px] w-[45px]" src={okay} alt="okay" />
-                <div className="flex gap-[5px]">
-                  <div className={`h-[23px] w-[23px] rounded-[50%] border border-text-color ${rating === 'okay' ? 'bg-primary': ''}`}></div>
-                  <span className="text-[14px]">Okay</span>
+                <img className="sm:h-[45px] h-[30px] w-[30px] sm:w-[45px]" src={okay} alt="okay" />
+                <div className="flex gap-[5px] items-center">
+                  <div className={`sm:h-[23px] h-[14px] sm:w-[23px] w-[14px] rounded-[50%] border border-text-color ${rating === 'okay' ? 'bg-primary': ''}`}></div>
+                  <span className="sm:text-[14px] text-[12px]">Okay</span>
                 </div>
               </div>
               <div className="flex flex-col gap-[10px] cursor-pointer" onClick={() => setRating('satisfied')}>
-                <img className="h-[45px] w-[45px]" src={satisfied} alt="satisfied" />
-                <div className="flex gap-[5px]">
-                  <div className={`h-[23px] w-[23px] rounded-[50%] border border-text-color ${rating === 'satisfied' ? 'bg-primary': ''}`}></div>
-                  <span className="text-[14px]">Satisfied</span>
+                <img className="sm:h-[45px] h-[30px] w-[30px] sm:w-[45px]" src={satisfied} alt="satisfied" />
+                <div className="flex gap-[5px] items-center">
+                  <div className={`sm:h-[23px] h-[14px] sm:w-[23px] w-[14px] rounded-[50%] border border-text-color ${rating === 'satisfied' ? 'bg-primary': ''}`}></div>
+                  <span className="sm:text-[14px] text-[12px]">Satisfied</span>
                 </div>
               </div>
               <div className="flex flex-col gap-[10px] cursor-pointer" onClick={() => setRating('extremely_satisfied')}>
-                <img className="h-[45px] w-[45px]" src={okay} alt="ex_satisfied" />
-                <div className="flex gap-[5px]">
-                  <div className={`h-[23px] w-[23px] rounded-[50%] border border-text-color ${rating === 'extremely_satisfied' ? 'bg-primary': ''}`}></div>
-                  <span className="text-[14px]">Extremely Satisfied</span>
+                <img className="sm:h-[45px] h-[30px] w-[30px] sm:w-[45px]" src={okay} alt="ex_satisfied" />
+                <div className="flex gap-[5px] items-center">
+                  <div className={`sm:h-[23px] h-[14px] sm:w-[23px] w-[14px] rounded-[50%] border border-text-color ${rating === 'extremely_satisfied' ? 'bg-primary': ''}`}></div>
+                  <span className="sm:text-[14px] text-[12px]">Extremely Satisfied</span>
                 </div>
               </div>
             </div>

@@ -20,10 +20,10 @@ const MovieCardPlay = ({ title, content, backgroundColor, img, id }) => {
           </Link>
         </div>
         <div className=" flex-col w-[70%]  justify-start items-start gap-2 flex">
-          <div className="text-fuchsia-50 text-[24px] font-normal leading-relaxed">
-            <h3 className="card-title">{title}</h3>
+          <div className="text-fuchsia-50 sm:text-[24px] text-[18px] font-normal leading-normal">
+            <h3 className="">{title}</h3>
           </div>
-          <div className="text-fuchsia-50  mg:text-[14px] text-[12px] pb-3 font-bold">
+          <div className="text-fuchsia-50  md:text-[14px] text-[12px] pb-3 font-bold">
             <p>{content}</p>
           </div>
         </div>
