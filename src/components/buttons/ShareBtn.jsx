@@ -43,11 +43,11 @@ export default function ShareBtn({data, hideText, handleOpen}) {
 
   return (
     <div className='flex items-center'>
-    <button onClick={handleShare} className='flex sm:hidden text-accent4 items-center gap-[5px] cursor-pointer'>
+    <button onClick={handleShare} className='flex lg:hidden text-accent4 items-center gap-[5px] cursor-pointer'>
       <img className='iconlight' src={share} alt="share" />
       <span className={`${hideText ? 'sm:flex hidden' : ''} font-[Goemetric-415-Black-BT] sm:text-[16px] text-[14px]`}>Share Now</span>
     </button>
-    <button onClick={handleOpen} className='hidden sm:flex text-accent4 items-center gap-[5px] cursor-pointer'>
+    <button onClick={handleOpen} className='hidden lg:flex text-accent4 items-center gap-[5px] cursor-pointer'>
       <img className='iconlight' src={share} alt="share" />
       <span className={`${hideText ? 'sm:flex hidden' : ''} font-[Goemetric-415-Black-BT] sm:text-[16px] text-[14px]`}>Share Now</span>
     </button>

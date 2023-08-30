@@ -64,7 +64,7 @@ export default function Carousel({ children }) {
     const test = document.querySelectorAll('.slick-slide div')
 
     return (
-      <Slider {...settings} afterChange={handleAfterChange} beforeChange={handleBeforeChange} className="z-[1] relative hover:z-[10] sm:py-[30px] pt-[10px]  flex flex-col gap-[50px] mx-auto justify-center">
+      <Slider {...settings} afterChange={handleAfterChange} beforeChange={handleBeforeChange} className="z-[1] relative hover:z-[10] sm:py-[30px] pt-[10px] pb-[5px]  flex flex-col gap-[50px] mx-auto justify-center">
       {React.Children.map(children, (child, index) => {
         if(index === lastActiveSlideIndex){
           test.forEach(element => {
