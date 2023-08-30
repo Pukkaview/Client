@@ -25,8 +25,8 @@ export default function MovieDetailCard({open, handleClose, data}) {
               <div className='flex justify-end'>
                 {/* <Button className='text-white bg-white' onClick={handleClose}>Cancel</Button> */}
               </div>
-              <div className='moviecard3 relative sm:h-[392px] sm:w-[517px] w-[300px] h-[250px] mx-auto  rounded-[15px] overflow-hidden items-center flex'>
-              <img className='cursor-pointer absolute z-[1] h-[30px] w-[30px] top-[10px] right-[10px]' src={cancel} onClick={handleClose} alt="cancel" />
+              <div className='moviecard3 relative sm:w-[517px] w-[320px] mx-auto  rounded-[15px] overflow-hidden items-center flex'>
+              <img className='cursor-pointer absolute z-[50] h-[30px] w-[30px] top-[10px] right-[10px]' src={cancel} onClick={handleClose} alt="cancel" />
               <img className='h-full w-full absolute z-[-2]' src={encodeURI(data.thumbnaillink)} alt="" />
               <div className='details w-full text-text-color sm:px-[18px] px-[8px] py-[33px] flex flex-col gap-[25px] '>
                 <div className='flex justify-between w-full z-10'>
