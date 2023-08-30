@@ -40,7 +40,7 @@ export default function ShareCard({ handleClose, data, width}) {
             style={{
               width:width
             }}
-            className="flex flex-col items-center mx-auto bg-[#FEF] px-[24px] pb-[24px] pt-[35px] rounded-[10px] relative">
+            className="flex flex-col items-center mx-auto bg-[#FEF] px-[16px] pb-[16px] pt-[35px] rounded-[10px] relative">
               <div className='flex flex-col items-center w-full px-[46px]'>
                 <div className='flex justify-between w-full'>
                   <h2 className="text-[24px] text-[#000] mb-[22px]">Share</h2>
@@ -60,7 +60,7 @@ export default function ShareCard({ handleClose, data, width}) {
                     <span className='text-[#000] font-[500] text-[12px]'>Twitter</span>
                   </div>
                 </div>
-                <div className='mt-[20px] w-full flex justify-between bg-[#FFF] rounded-[10px] px-[23px] py-[10px]'>
+                <div className='mt-[20px] flex justify-between bg-[#FFF] rounded-[10px] px-[23px] py-[10px]'>
                   <span className='text-[#000]'>{url}</span>
                   <CopyButton text={url}/>
                 </div>

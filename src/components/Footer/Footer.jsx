@@ -1,5 +1,5 @@
 import pukka from "../../assets/pukka.png";
-import logo from "../../assets/logo2.png";
+import logo from "../../assets/pukkaviewlogo.svg";
 import facebook from "../../assets/facebook.svg";
 import instagram from "../../assets/instagram.svg";
 import twitter from "../../assets/twitter.svg";
@@ -8,13 +8,10 @@ const Footer = () => {
   return (
     <div className="">
       <div className="w-full h-fit p-8 bg-[#180018] justify-center items-center flex flex-col gap-4">
-        <div className="pt-6">
-          <img src={pukka} alt="" />
+        <div className="pt-6 flex h-[50px] gap-[5px]">
+          <img className="md:h-[60px] h-[35px]" src={logo} alt="" />
         </div>
-        <div className="mt-4">
-          <img src={logo} alt="" />
-        </div>
-        <div className="justify-center items-center gap-[45px] flex mt-4">
+        <div className="justify-center items-center gap-[45px] flex sm:mt-4 mt-2">
           <div className="">
             <img src={twitter} alt="" />
           </div>

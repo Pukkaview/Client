@@ -33,6 +33,18 @@ const CustomVideoPlayer = ({ data }) => {
   const [open, setOpen] = useState(false)
   const [popped, setPopped] = useState(false)
   const [openShare, setOpenShare] = useState(false)
+  // const [seekDuration, setSeekDuration] = useState(5);
+
+  // const handleSeek = (forward) => {
+  //   const currentTime = videoRef.current.getCurrentTime();
+  //   const newTime = forward ? currentTime + seekDuration : currentTime - seekDuration;
+  //   videoRef.current.seekTo(newTime);
+  // };
+
+  // const handleDoubleTap = (forward) => {
+  //   setSeekDuration(seekDuration + 5);
+  //   handleSeek(forward);
+  // };
 
   const handleClose = () => {
     setOpen(false)
@@ -47,6 +59,9 @@ const CustomVideoPlayer = ({ data }) => {
   const handleOpenShare = () => {
     setOpenShare(true)
   }
+  const handleFullscreenChange = () => {
+    setIsFullScreen(screenfull.isFullscreen);
+  };
   useEffect(() => {
     if (screenfull.isEnabled) {
       screenfull.on('change', handleFullscreenChange);
@@ -58,6 +73,15 @@ const CustomVideoPlayer = ({ data }) => {
       }
     };
   }, []);
+  useEffect(() => {
+    if (isFullScreen) {
+      // Lock the orientation to landscape when entering fullscreen
+      screen.orientation.lock('landscape').catch(console.error);
+    } else {
+      // If not in fullscreen, unlock the orientation
+      screen.orientation.unlock();
+    }
+  }, [isFullScreen]);
   // useEffect(() => {
   //   // Retrieve the stored progress from localStorage when the component mounts
   //   const storedProgress = localStorage.getItem('videoProgress');
@@ -66,9 +90,6 @@ const CustomVideoPlayer = ({ data }) => {
   //   }
   // }, []);
 
-  const handleFullscreenChange = () => {
-    setIsFullScreen(screenfull.isFullscreen);
-  };
 
   const handlePlayPause = () => {
     setIsPlaying((prevIsPlaying) => !prevIsPlaying);
@@ -76,7 +97,7 @@ const CustomVideoPlayer = ({ data }) => {
 //  Event listener for space key press
  useEffect(() => {
   const handleKeyPress = (event) => {
-    if (event.code === 'Space' && !localStorage.getItem('open')) {
+    if (event.code === 'Space' && !localStorage.getItem('open') && isFullScreen) {
       event.preventDefault();
       setIsPlaying((prevIsPlaying) => !prevIsPlaying); // Toggle play/pause on space key press
     }
@@ -87,7 +108,7 @@ const CustomVideoPlayer = ({ data }) => {
   return () => {
     window.removeEventListener('keydown', handleKeyPress);
   };
-}, []);
+}, [isFullScreen]);
 
   const handleMute = () => {
     setIsMuted((prevIsMuted) => !prevIsMuted);
@@ -218,8 +239,14 @@ const CustomVideoPlayer = ({ data }) => {
         console.error('Error fetching video URL:', error);
       }
     }
+    const handleRewind = () => {
+      videoRef.current.seekTo(videoRef.current.getCurrentTime() - 10, 'seconds')
+    }
+   const handleFastForward = () => {
+    videoRef.current.seekTo(videoRef.current.getCurrentTime() + 10, 'seconds')
+    }
   return (
-    <div 
+    <div
     className="video_container relative md:min-h-[400px] min-h-[300px] flex justify-center flex-col" 
     ref={containerRef}
     onMouseEnter={showControlsOnHover}
@@ -232,13 +259,28 @@ const CustomVideoPlayer = ({ data }) => {
           <img src={logo} alt="Zoom In Image" className="zoom-in-out-animation" />
         </div>
       )}
-      {showControls && <div className="play_btn absolute md:top-0 sm:top-[40px] z-10 left-0 w-full h-full flex justify-center items-center">
+      {showControls && <div className="flex justify-between play_btn absolute md:top-0 sm:top-[40px] z-10 left-0 w-full h-full flex justify-center items-center px-[50px]">
           {/* Replace zoomInImage with the URL of your zooming in image */}
           <button
-            className="text-white sm:mr-4 mr-2 bg-white bg-opacity-10 h-[100px] w-[100px] rounded-[50%]"
+            className="text-white rounded-[50%]"
+            onClick={handleRewind}
+          >
+            {/* <FontAwesomeIcon icon="pause" size={`${window.innerWidth>500? '3x' : '2x'}`} /> */}
+            <i class={`fa-solid fa-backward fa-2x lg:fa-3x `}></i>
+
+          </button>
+          <button
+            className="text-white rounded-[50%]"
             onClick={handlePlayPause}
           >
-            {isPlaying ? <FontAwesomeIcon icon="pause" size={`${window.innerWidth>500? '3x' : '2x'}`} /> : <FontAwesomeIcon icon="play" size={`${window.innerWidth>500? '3x' : '2x'}`} />}
+            {isPlaying ? <FontAwesomeIcon icon="pause" size={`${window.innerWidth>1024? '3x' : '2x'}`} /> : <FontAwesomeIcon icon="play" size={`${window.innerWidth>1024? '3x' : '2x'}`} />}
+          </button>
+          <button
+            className="text-white rounded-[50%] flex"
+            onClick={handleFastForward}
+          >
+            <i class={`fa-solid fa-forward fa-2x lg:fa-3x`}></i>
+            {/* <FontAwesomeIcon icon="forward" size={`${window.innerWidth>500? '3x' : '2x'}`} /> */}
           </button>
         </div>}
       {showControls && <div className="absolute inset-0 bg-black opacity-50"></div>}
@@ -333,7 +375,6 @@ const CustomVideoPlayer = ({ data }) => {
             </div>
           </div>
         </div>
-
 
         {/* Add the previous and next buttons here */}
 
