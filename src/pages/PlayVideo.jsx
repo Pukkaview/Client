@@ -20,6 +20,7 @@ const PlayVideo = () => {
   const {video, dispatch} = useContext(VideoContext)
   const divRef = useRef(null); // Step 1: Create a ref
   const [marquee, setMarquee] = useState(false)
+  console.log(data);
 
 
   useEffect(() => { 
@@ -85,7 +86,7 @@ const PlayVideo = () => {
           </div>} */}
           <div className='max-w-[1400px] mx-auto mt-[30px] md:px-[59px] px-[20px] flex lg:flex-row flex-col justify-between gap-[50px]'>
             <Comment videoId={id}/>
-            <PlayCat/>
+            <PlayCat current={data.genre}/>
           </div>
         </>}
         {search && <Search/>}

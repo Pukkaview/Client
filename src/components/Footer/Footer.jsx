@@ -8,13 +8,11 @@ const Footer = () => {
   return (
     <div className="">
       <div className="w-full h-fit p-8 bg-[#180018] justify-center items-center flex flex-col gap-4">
-        <div className="pt-6">
-          <img src={pukka} alt="" />
-        </div>
-        <div className="mt-4">
+        <div className="pt-6 flex h-[50px] gap-[5px]">
+          <img src={pukka} className="w-[20px]" alt="" />
           <img src={logo} alt="" />
         </div>
-        <div className="justify-center items-center gap-[45px] flex mt-4">
+        <div className="justify-center items-center gap-[45px] flex sm:mt-4 mt-2">
           <div className="">
             <img src={twitter} alt="" />
           </div>
