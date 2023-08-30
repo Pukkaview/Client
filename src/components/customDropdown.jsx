@@ -27,9 +27,9 @@ const CustomDropdown = ({ options, selectedOption, onSelect }) => {
         </svg>
       </div>
       {isOpen && (
-        <ul className="w-[150px] absolute top-full left-0 mt-2 bg-white border rounded z-10 bg-[#FFEEFF] text-[#180018] font-bold border-0 outline-none rounded-md px-4">
+        <ul className="w-[150px] flex flex-col gap-[10px] py-[10px] absolute top-full left-0 mt-2 border rounded z-50 bg-[#FFEEFF] text-[#180018] font-bold border-0 outline-none rounded-md px-4">
           {options.map((option) => (
-            <li key={option} onClick={() => handleOptionSelect(option)}>
+            <li className='cursor-pointer' key={option} onClick={() => handleOptionSelect(option)}>
               {option}
             </li>
           ))}

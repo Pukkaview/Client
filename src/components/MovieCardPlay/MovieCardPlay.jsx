@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import Play from "../../assets/play.png";
 import PropTypes from "prop-types";
-const MovieCardPlay = ({ title, content, backgroundColor, img, id }) => {
+const MovieCardPlay = ({ title, content, backgroundColor, img, id, playIcon }) => {
   const cardStyle = {
     backgroundColor: backgroundColor || "",
   };
   return (
-    <div>
+    <Link to={`/play/${id}`} >
       <div
         style={cardStyle}
         className="cursor-pointer justify-start border-0 rounded-xl gap-[21px] flex hover:bg-accent3 transition duration-300"
@@ -15,9 +15,9 @@ const MovieCardPlay = ({ title, content, backgroundColor, img, id }) => {
         backgroundImage: `url(${encodeURI(img)})`,
         
       }}  className="w-[30%] justify-center items-center flex bg-movieCardBg rounded-l-xl bg-cover bg-no-repeat ">
-          <Link to={`/play/${id}`} className="">
+          {playIcon && <div className="">
             <img src={Play} alt="" />
-          </Link>
+          </div>}
         </div>
         <div className=" flex-col w-[70%]  justify-start items-start gap-2 flex">
           <div className="text-fuchsia-50 sm:text-[24px] text-[18px] font-normal leading-normal">
@@ -28,7 +28,7 @@ const MovieCardPlay = ({ title, content, backgroundColor, img, id }) => {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 MovieCardPlay.propTypes = {

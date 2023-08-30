@@ -32,7 +32,21 @@ const Home = () => {
       {!search &&<div>
         {!active && 
         <>
-        {videos.length === 0 && <Skeleton variant="rectangular" width={'100%'} height={'60vh'} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)', color: 'white' }} />}
+        {videos.length === 0 && <Skeleton animation="wave" variant="rectangular" className="" width={'100%'} height={'100vh'} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', color: 'white' }} />}
+        {videos.length === 0 && <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-[50px] md:px-[59px] px-[20px] text-text-color mx-auto">
+            <div>
+              <Skeleton animation="wave" variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', color: 'white', borderRadius: '15px' }} />
+              </div>
+              <div>
+              <Skeleton animation="wave" variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', color: 'white', borderRadius: '15px' }} />
+              </div>
+              <div className="hidden md:block">
+              <Skeleton animation="wave" variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', color: 'white', borderRadius: '15px' }} />
+              </div>
+              <div className="hidden lg:block">
+              <Skeleton animation="wave" variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', color: 'white', borderRadius: '15px' }} />
+              </div>
+            </div>}
         { videos.length > 0 &&<IntroCard data={videos[0].videos[0]} tag="All" />}
         <Rate/>
         <div className="md:px-[59px] px-[20px] pt-[30px] sm:pb-[65px] pb-[10px] text-text-color mx-auto">

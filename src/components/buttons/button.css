@@ -24,3 +24,13 @@
 .infoBtn:hover > span{
   color: #FEF;
 }
+@media(max-width:680px){
+  .infoBtn > .icon,
+  .viewBtn > .icon{
+    display: none;
+  }
+  .infoBtn:hover > .iconlight,
+  .viewBtn:hover > .iconlight{
+    display: none;
+  }
+}

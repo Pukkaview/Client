@@ -47,8 +47,8 @@ export default function PlayCat({current}) {
         
       </div>}
       {data.length > 0 && <div className="flex flex-col gap-[20px]">
-        {data.map(c=> (
-        <MovieCardPlay id={c.id} title={c.title} content={c.plot} img={c.thumbnaillink} />
+        {data.map((c, i)=> (
+        <MovieCardPlay id={c.id} title={c.title} content={c.plot} img={c.thumbnaillink} playIcon={i <2 ? true : false} />
         ))}
       </div>}
     </div>

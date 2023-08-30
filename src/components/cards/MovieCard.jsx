@@ -65,14 +65,14 @@ export default function MovieCard({data, playIcon}) {
   }
   return (
     <>
-    <Link to={`/play/${data.id}`} className={`lg:hidden sm:h-[199px] phone-sm:h-[180px] h-[140px] flex items-center ${window.innerWidth < 1001 ? 'w-full' : ''}`}>
+    <Link to={`/play/${data.id}`} className={`lg:hidden sm:h-[199px] phone-sm:h-[180px] h-[180px] flex items-center ${window.innerWidth < 1001 ? 'w-full' : ''}`}>
       <div style={{
-        width: hovered ? divWidth + 50 : divWidth - 40,
+        width: hovered ? divWidth + 50 : divWidth - 30,
         transition: 'all 0.3s ease',
       }} 
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-        className={`moviecard relative sm:h-[219px] phone-sm:h-[180px] h-[140px] lg:hover:h-[322px] duration-300 ease-in-out hover:lg:z-20 sm:rounded-[15px] rounded-[5px] flex justify-end items-center overflow-hidden`}>
+        className={`moviecard relative sm:h-[219px] phone-sm:h-[180px] h-[180px] lg:hover:h-[322px] duration-300 ease-in-out hover:lg:z-20 sm:rounded-[15px] rounded-[5px] flex justify-end items-center overflow-hidden`}>
         <img className='h-full w-full absolute z-[-2]' src={encodeURI(data.thumbnaillink)} alt="" />
         <img className='absolute z-[0] top-[10px] left-[10px] h-[20px]' src={logo} alt="" />
         {playIcon && <Link to={`/play/${data.id}`} className='play absolute top-[40%] left-[40%] cursor-pointer z-10 '>

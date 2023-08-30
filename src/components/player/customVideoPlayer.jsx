@@ -239,6 +239,12 @@ const CustomVideoPlayer = ({ data }) => {
         console.error('Error fetching video URL:', error);
       }
     }
+    const handleRewind = () => {
+      videoRef.current.seekTo(videoRef.current.getCurrentTime() - 10, 'seconds')
+    }
+   const handleFastForward = () => {
+    videoRef.current.seekTo(videoRef.current.getCurrentTime() + 10, 'seconds')
+    }
   return (
     <div
     className="video_container relative md:min-h-[400px] min-h-[300px] flex justify-center flex-col" 
@@ -253,13 +259,28 @@ const CustomVideoPlayer = ({ data }) => {
           <img src={logo} alt="Zoom In Image" className="zoom-in-out-animation" />
         </div>
       )}
-      {showControls && <div className="play_btn absolute md:top-0 sm:top-[40px] z-10 left-0 w-full h-full flex justify-center items-center">
+      {showControls && <div className="flex justify-between play_btn absolute md:top-0 sm:top-[40px] z-10 left-0 w-full h-full flex justify-center items-center px-[50px]">
           {/* Replace zoomInImage with the URL of your zooming in image */}
           <button
-            className="text-white sm:mr-4 mr-2 h-[100px] w-[100px] rounded-[50%]"
+            className="text-white rounded-[50%]"
+            onClick={handleRewind}
+          >
+            {/* <FontAwesomeIcon icon="pause" size={`${window.innerWidth>500? '3x' : '2x'}`} /> */}
+            <i class={`fa-solid fa-backward fa-2x lg:fa-3x `}></i>
+
+          </button>
+          <button
+            className="text-white rounded-[50%]"
             onClick={handlePlayPause}
           >
-            {isPlaying ? <FontAwesomeIcon icon="pause" size={`${window.innerWidth>500? '3x' : '2x'}`} /> : <FontAwesomeIcon icon="play" size={`${window.innerWidth>500? '3x' : '2x'}`} />}
+            {isPlaying ? <FontAwesomeIcon icon="pause" size={`${window.innerWidth>1024? '3x' : '2x'}`} /> : <FontAwesomeIcon icon="play" size={`${window.innerWidth>1024? '3x' : '2x'}`} />}
+          </button>
+          <button
+            className="text-white rounded-[50%] flex"
+            onClick={handleFastForward}
+          >
+            <i class={`fa-solid fa-forward fa-2x lg:fa-3x`}></i>
+            {/* <FontAwesomeIcon icon="forward" size={`${window.innerWidth>500? '3x' : '2x'}`} /> */}
           </button>
         </div>}
       {showControls && <div className="absolute inset-0 bg-black opacity-50"></div>}

@@ -23,14 +23,11 @@ export default function MovieDetailCard({open, handleClose, data}) {
           <Dialog open={open} onClose={handleClose}>
             <DialogContent style={{padding:0}}>
               <div className='flex justify-end'>
-                <img className='sm:w-[80px] sm:h-[80px] w-[60px] h-[60px] cursor-pointer' src={cancel} onClick={handleClose} alt="cancel" />
                 {/* <Button className='text-white bg-white' onClick={handleClose}>Cancel</Button> */}
               </div>
-              <div style={{
-              backgroundImage: `url(${encodeURI(data.thumbnaillink)})`,
-              backgroundSize: 'cover',
-
-              }} className='moviecard3 relative sm:h-[392px] sm:w-[517px] w-[325px] h-[350px] mx-auto  rounded-[15px] overflow-hidden items-center flex'>
+              <div className='moviecard3 relative sm:h-[392px] sm:w-[517px] w-[300px] h-[250px] mx-auto  rounded-[15px] overflow-hidden items-center flex'>
+              <img className='cursor-pointer absolute z-[1] h-[30px] w-[30px] top-[10px] right-[10px]' src={cancel} onClick={handleClose} alt="cancel" />
+              <img className='h-full w-full absolute z-[-2]' src={encodeURI(data.thumbnaillink)} alt="" />
               <div className='details w-full text-text-color sm:px-[18px] px-[8px] py-[33px] flex flex-col gap-[25px] '>
                 <div className='flex justify-between w-full z-10'>
                   <div className='flex flex-col gap-[5px] w-[30%]'>
@@ -57,7 +54,7 @@ export default function MovieDetailCard({open, handleClose, data}) {
               </div>
               {openShare &&
               <div className='absolute z-[100] bottom-0 left-0'>
-                <ShareCard width={window.innerWidth < 640 ? 325 : 517} handleClose={handleCloseShare} data={data}/>
+                <ShareCard width={window.innerWidth < 640 ? 300 : 517} handleClose={handleCloseShare} data={data}/>
               </div>
           }
             </div>

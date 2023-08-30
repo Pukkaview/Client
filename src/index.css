@@ -20,6 +20,10 @@
   src: url('./fonts/goemetric/geometric_415_black_bt.ttf') format('truetype');
   font-weight: 400;
 }
+:root{
+  --toastify-color-success:#FF8CFF;
+  --toastify-color-light: #800080;
+}
 h1,h2, h3, h4, h5,h6, textarea{
   font-family: 'Goemetric-415-Black-BT', sans-serif;
 }
@@ -141,5 +145,3 @@ input[type="range"]::-ms-thumb {
 .video_container:hover .play_btn{
   display: flex;
 } */
-
-
