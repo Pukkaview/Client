@@ -68,7 +68,7 @@ export default function Comment({videoId}) {
           <label className="w-full">
             <textarea required className="w-full bg-[#FEF] p-[10px] rounded-[10px] text-black" placeholder="Your coment here" onChange={(e) => setComment(e.target.value)} value={comment} />
           </label>
-          <button disabled={loading} className=' px-[18px] sm:px-[20px] sm:py-[16px] py-[14px] bg-primary hover:bg-accent2 transition duration-300 ease-in-out cursor-pointer flex sm:gap-[19px] gap-[10px] justify-center rounded-[10px] mt-[5px]'>
+          <button disabled={loading} className=' w-[100px] px-[18px] sm:px-[20px] sm:py-[16px] py-[14px] bg-primary hover:bg-accent2 transition duration-300 ease-in-out cursor-pointer flex sm:gap-[19px] gap-[10px] justify-center rounded-[10px] mt-[5px]'>
            <span className='text-text-color sm:text-[16px] text-[14px] font-[Goemetric-415-Black-BT]'>{loading ?<i className="fa-solid fa-circle-notch fa-spin fa-lg " style={{ animationDuration: "1s" }}></i> :'Comment'}</span>
           </button>
         </form>

@@ -114,7 +114,7 @@ export default function MovieCard({data, playIcon}) {
     </Link>
     <div className={`sm:h-[199px] phone-sm:h-[180px] h-[140px] lg:flex hidden items-center ${window.innerWidth < 1001 ? 'w-full' : ''}`}>
       <div style={{
-        width: hovered ? divWidth + 50 : divWidth - 40,
+        width: hovered ? divWidth + 80 : divWidth - 40,
         transition: 'all 0.3s ease',
       }} 
       onMouseEnter={handleMouseEnter}
@@ -132,10 +132,10 @@ export default function MovieCard({data, playIcon}) {
               <span className='sm:text-[16px] text-[12px]'><b>Genre:</b> {data.genre}</span>
             </div>
             <div className='flex gap-[5px] w-[50%]'>
-              <span className='sm:text-[16px] text-[12px]'> <b>Casts:</b>  </span>
+              <span className='sm:text-[16px] text-[12px]'>  </span>
               <div className='flex flex-wrap'>
                 
-                <span className='sm:text-[16px] text-[12px]'>{data.cast}</span>
+                <span className='sm:text-[16px] text-[12px]'><b>Casts:</b> {data.cast}</span>
                 {/* {data && data.casts.map(cast => (
                 ))} */}
               </div>
@@ -154,7 +154,7 @@ export default function MovieCard({data, playIcon}) {
         </div>
         {open &&
           <div className='absolute z-[100] bottom-0 left-0'>
-            <ShareCard width={divWidth+50} handleClose={handleClose} data={data}/>
+            <ShareCard width={divWidth+80} handleClose={handleClose} data={data}/>
           </div>
           }
       </div>
