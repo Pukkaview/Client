@@ -142,6 +142,7 @@ export default function MovieCard({data, playIcon}) {
             </div>
           </div>
           <div>
+            
             <h2 className='uppercase sm:text-[18px] text-[16px] font-[700]'>{data.title}</h2>
             <p className='sm:text-[14px] text-[12px]'>{data.plot}</p>
           </div>
