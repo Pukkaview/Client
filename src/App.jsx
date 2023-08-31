@@ -24,7 +24,6 @@ function App() {
     const handleClose = () => {
       setOpen(false);
     };
-    console.log(genreList, videos);
 
   useEffect(() => {
     const fetchGenres = async () => {
@@ -51,7 +50,8 @@ function App() {
             },
           });
           const videoData = await videoResponse.json();
-          return { genre, videos: videoData };
+          const filteredVideos = videoData.filter(video => video.is_published);
+          return { genre, videos: filteredVideos };
         });
 
         // const genreVideos = await Promise.all(genreVideosPromises);
