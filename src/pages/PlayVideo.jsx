@@ -13,6 +13,7 @@ import { Skeleton } from '@mui/material';
 import { useRef } from 'react';
 import Search from '../components/Search';
 import { SearchContext } from '../context/useSearch';
+import MovieDescription from '../components/playCat/movieDescription';
 const PlayVideo = () => {
   const {search} = useContext(SearchContext)
   const {id} = useParams()
@@ -65,23 +66,7 @@ const PlayVideo = () => {
         <Navbar/>
         {!search && <>
           <CustomVideoPlayer data={data}/>
-          <div className="flex flex-col gap-[10px] items-start max-w-[1400px] mx-auto sm:mt-[30px] mt-[10px] md:px-[59px] px-[20px]">
-            <span className="px-[30px] py-[5px] rounded-[5px] bg-accent3 text-black sm:text-[16px] text-[16px]">{data.genre}</span>
-            <h2 className='sm:text-[48px] text-[25px] font-[500] leading-none text-text-color' >{data.title}</h2>
-            <span className="text-[14px] text-text-color"><b>Year:</b> {data.year}</span>
-            <span className="text-[14px] text-text-color"><b>Cast/Crew:</b> {data.cast}</span>
-            <span className="text-[14px] text-text-color"><b>Plot:</b> {data.plot}</span>
-
-          </div>
-        {/* {data && !isTextLong &&
-          <div id='marquee-text' ref={marqueeTextRef} className="flex gap-[20px] items-center justify-center w-full mt-[70px]">
-            <h2 className='sm:text-[48px] text-[32px] font-[500] leading-normal text-text-color ml-[20px]' >{data.title}</h2>
-            <span className="px-[30px] py-[5px] rounded-[5px] bg-accent3 text-black">{data.genre}</span>
-            <span className="text-[14px] text-text-color"><b>Year:</b> {data.year}</span>
-            <span className="text-[14px] text-text-color"><b>Cast/Crew:</b> {data.cast}</span>
-            <span className="text-[14px] text-text-color"><b>Plot:</b> {data.plot}</span>
-
-          </div>} */}
+          <MovieDescription data={data}/>
           <div className='max-w-[1400px] mx-auto mt-[10px] sm:mt-[30px] md:px-[59px] px-[20px] flex lg:flex-row flex-col justify-between gap-[50px]'>
             <Comment videoId={id}/>
             <PlayCat current={data.genre}/>
