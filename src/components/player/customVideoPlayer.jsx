@@ -351,12 +351,6 @@ const CustomVideoPlayer = ({ data }) => {
           <div className="text-white mx-4">
             {formatTime(currentTime)} / {formatTime(duration)}
           </div>
-          <div className='flex gap-[2px] items-center'>
-            <button onClick={() => handleLike(video.id)}>
-              <img src={like}  alt="" className="cursor-pointer h-[16px]"/>
-            </button>
-            <span className='text-white'>{video.likes}</span>
-          </div>
           </div>
           <div className='flex gap-[10px]'>
             <button
@@ -369,15 +363,8 @@ const CustomVideoPlayer = ({ data }) => {
                 <FontAwesomeIcon icon="expand" />
               )}
             </button>
-            <div onClick={() =>setIsPlaying(false)}>
-              <ShareBtn data={data} hideText={true} handleOpen={handleOpenShare}/>
-              {/* <img src={share} alt="" /> */}
-            </div>
           </div>
         </div>
-
-        {/* Add the previous and next buttons here */}
-
       </div>}
       <Rate handleClose={handleClose} open={open}/>
       <SharePop data={data} open={openShare} handleClose={handleCloseShare}/>
