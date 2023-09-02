@@ -24,6 +24,9 @@ const Categories = () => {
       console.log(d[0].videos);
     }
   }, [active, videos])
+  useEffect(() => {
+    setSelectedOption(active)
+  }, [active])
 
   const handleSelectChange = (genre) => {
     // const genre = event.target.value;

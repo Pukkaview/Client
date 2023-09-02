@@ -15,6 +15,11 @@ export default function MobileNav({isVisible, handleClose}) {
   useEffect(() => {
     setSelectedOption(genreList[0])
   }, [genreList])
+  useEffect(() => {
+    if(active){
+      setSelectedOption(active)
+    }
+  }, [active])
   const handleSelectChange = (genre) => {
     // const genre = event.target.value;
     setSelectedOption(genre);

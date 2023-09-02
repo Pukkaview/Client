@@ -144,3 +144,6 @@ input[type="range"]::-ms-thumb {
 .video_container:hover .play_btn{
   display: flex;
 } */
+.Toastify__toast-body > div:last-child{
+  color:#fff;
+}
