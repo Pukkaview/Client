@@ -32,7 +32,7 @@ const Home = () => {
       {!search &&<div>
         {!active && 
         <>
-        {videos.length === 0 && <Skeleton animation="wave" variant="rectangular" className="" width={'100%'} height={'100vh'} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', color: 'white' }} />}
+        {videos.length === 0 && <Skeleton animation="wave" variant="rectangular" className="mx-auto mt-[100px] rounded-[15px]" width={'90%'} height={'70vh'} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', color: 'white', marginLeft: '' }} />}
         {videos.length === 0 && <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-[50px] md:px-[59px] px-[20px] text-text-color mx-auto">
             <div>
               <Skeleton animation="wave" variant="rectangular"  height={199} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', color: 'white', borderRadius: '15px' }} />
