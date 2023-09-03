@@ -17,9 +17,9 @@ const Footer = () => {
           <a href="https://www.tiktok.com/@pukkaview" className="" target="_blank">
             <img src={tiktok} alt=""/>
           </a>
-          <div className="">
+          <a href="https://www.facebook.com/profile.php?id=61550654324608" target="_blank">
             <img src={facebook} alt="" />
-          </div>
+          </a>
           <a href="https://twitter.com/pukkaview" className="">
             <img src={twitter} alt="" />
           </a>
