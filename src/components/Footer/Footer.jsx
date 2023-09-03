@@ -2,7 +2,7 @@ import pukka from "../../assets/pukka.png";
 import logo from "../../assets/pukkaviewlogo.svg";
 import facebook from "../../assets/facebook.svg";
 import instagram from "../../assets/instagram.svg";
-import twitter from "../../assets/x.svg";
+import twitter from "../../assets/X.svg";
 import tiktok from "../../assets/tiktok.svg";
 
 import { Link } from "react-router-dom";
