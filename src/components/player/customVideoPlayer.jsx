@@ -73,15 +73,15 @@ const CustomVideoPlayer = ({ data }) => {
       }
     };
   }, []);
-  useEffect(() => {
-    if (isFullScreen) {
-      // Lock the orientation to landscape when entering fullscreen
-      screen.orientation.lock('landscape').catch(console.error);
-    } else {
-      // If not in fullscreen, unlock the orientation
-      screen.orientation.unlock();
-    }
-  }, [isFullScreen]);
+  // useEffect(() => {
+  //   if (isFullScreen) {
+  //     // Lock the orientation to landscape when entering fullscreen
+  //     screen.orientation.lock('landscape').catch(console.error);
+  //   } else {
+  //     // If not in fullscreen, unlock the orientation
+  //     screen.orientation.unlock();
+  //   }
+  // }, [isFullScreen]);
   // useEffect(() => {
   //   // Retrieve the stored progress from localStorage when the component mounts
   //   const storedProgress = localStorage.getItem('videoProgress');
