@@ -179,7 +179,8 @@ const CustomVideoPlayer = ({ data }) => {
     setShowControls(true);
     controlTimeoutRef.current = setTimeout(() => {
       setShowControls(false);
-    }, 3000); // Set the desired time (in milliseconds) for controls to disappear after inactivity
+      console.log('timeout');
+    }, 5000); // Set the desired time (in milliseconds) for controls to disappear after inactivity
   };
     // Clear the timeout when the component unmounts
     useEffect(() => {
@@ -293,7 +294,7 @@ const CustomVideoPlayer = ({ data }) => {
           volume={volume}
           controls={false} // Hide the default controls
           width="100%"
-          height={`${window.innerWidth < 1000 ? 'auto': '100vh'}`}
+          height={`${window.innerWidth < 1000 ? 'auto': '80vh'}`}
           preload="auto"
           onProgress={handleProgress}
           onDuration={handleDuration}

@@ -8,7 +8,7 @@ import twitter from '../../assets/twitter.png'
 import CopyButton from '../buttons/copyBtn';
 
 export default function ShareCard({ handleClose, data, width}) {
-    const url = `https://pukkaview.vercel.app/play/${data.id}`
+    const url = `https://pukkaview.vercel.app/play/${data.id}-${data.title}`
     const handleShare = (platform, url, title, imageUrl) => {
   let shareText = '';
 
@@ -38,9 +38,11 @@ export default function ShareCard({ handleClose, data, width}) {
       <div>
             <div 
             style={{
-              width:width
+              width:width,
+              maxWidth: '400px',
+              margin: "0 auto"
             }}
-            className="flex flex-col items-center mx-auto bg-[#FEF] px-[16px] pb-[16px] pt-[35px] rounded-[10px] relative">
+            className="flex flex-col items-center mx-auto bg-[#FEF] px-[16px] pb-[16px] pt-[35px] rounded-[10px] relative mx-auto">
               <div className='flex flex-col items-center w-full px-[46px]'>
                 <div className='flex justify-between w-full'>
                   <h2 className="text-[24px] text-[#000] mb-[22px]">Share</h2>
@@ -61,7 +63,7 @@ export default function ShareCard({ handleClose, data, width}) {
                   </div>
                 </div>
                 <div className='mt-[20px] flex justify-between bg-[#FFF] rounded-[10px] px-[23px] py-[10px]'>
-                  <span className='text-[#000]'>{url}</span>
+                  <span className='text-[#000] sm:text-[14px] text-[12px]'>{url}</span>
                   <CopyButton text={url}/>
                 </div>
               </div>

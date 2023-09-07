@@ -46,14 +46,14 @@ export default function MovieDetailCard({open, handleClose, data}) {
                   <p className='sm:text-[16px] text-[12px]'>{data.plot}</p>
                 </div>
                 <div className='flex gap-[50px] z-10'>
-                <Link to={`/play/${data.id}`}>
+                <Link to={`/play/${data.id}-${data.title}`}>
                   <WatchBtn/>
                 </Link>
                   <ShareBtn data={data} handleOpen={handleOpen}/>
                 </div>
               </div>
               {openShare &&
-              <div className='absolute z-[100] bottom-0 left-0'>
+              <div className='absolute z-[100] bottom-0 left-0 mx-auto w-full'>
                 <ShareCard width={window.innerWidth < 640 ? 300 : 517} handleClose={handleCloseShare} data={data}/>
               </div>
           }
