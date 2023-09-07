@@ -71,22 +71,22 @@ const CustomVideoPlayer = ({ data }) => {
   // }
   // lockScreenOrientation()
   // },[isFullScreen])
-    if (screen.orientation) {
-      // The screen.orientation API is supported
-      useEffect(() => {
-        if (isFullScreen) {
-          // Lock the orientation to landscape when entering fullscreen
-          screen.orientation.lock('landscape-primary').catch(console.error);
-        } else {
-          // If not in fullscreen, unlock the orientation
-          screen.orientation.unlock();
-        }
-      }, [isFullScreen]);
-    } else {
-      // Fallback behavior for browsers that do not support screen.orientation
-      // You can implement an alternative behavior or simply ignore orientation changes
-      console.warn('Screen orientation API is not supported.');
-    }
+    // if (screen.orientation) {
+    //   // The screen.orientation API is supported
+    //   useEffect(() => {
+    //     if (isFullScreen) {
+    //       // Lock the orientation to landscape when entering fullscreen
+    //       screen.orientation.lock('landscape-primary').catch(console.error);
+    //     } else {
+    //       // If not in fullscreen, unlock the orientation
+    //       screen.orientation.unlock();
+    //     }
+    //   }, [isFullScreen]);
+    // } else {
+    //   // Fallback behavior for browsers that do not support screen.orientation
+    //   // You can implement an alternative behavior or simply ignore orientation changes
+    //   console.warn('Screen orientation API is not supported.');
+    // }
     
   // useEffect(() => {
   //   // Retrieve the stored progress from localStorage when the component mounts
@@ -157,6 +157,13 @@ const CustomVideoPlayer = ({ data }) => {
   const handleFullscreen = () => {
     if (screenfull.isEnabled) {
       screenfull.toggle(containerRef.current);
+    }
+    // Lock the orientation to landscape when entering fullscreen
+    if (screenfull.isFullscreen) {
+      screen.orientation.lock('landscape-primary').catch(console.error);
+    } else {
+      // If not in fullscreen, unlock the orientation
+      screen.orientation.unlock();
     }
   };
 
