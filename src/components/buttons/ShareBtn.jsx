@@ -8,11 +8,11 @@ export default function ShareBtn({data, hideText, handleOpen}) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [supported, setSupported] = useState(true) 
 
-  useEffect(() => {
-    if(!navigator.canShare){
-      setSupported(false)
-    }
-  }, [])
+  // useEffect(() => {
+  //   if(!navigator.canShare){
+  //     setSupported(false)
+  //   }
+  // }, [])
   const handleShare = async () => {
     try {
       if (navigator.share) {

@@ -122,7 +122,7 @@ export default function MovieCard2({data, playIcon}) {
      
           <img className='h-full w-full absolute z-[0]' src={encodeURI(data.thumbnaillink)} alt="" />
           <img className='absolute z-[0] top-[10px] left-[10px] h-[20px]' src={logo} alt="" />
-          {playIcon && <Link to={`/play/${data.id}`} className='play absolute top-[40%] left-[40%] cursor-pointer z-20 '>
+          {playIcon && <Link to={`/play/${data.id}-${data.title}`} className='play absolute top-[40%] left-[40%] cursor-pointer z-20 '>
             <PlayBtn/>
           </Link>}
           <div className='details z-[10] absolute w-full text-text-color px-[18px] py-[33px] flex flex-col gap-[25px] left-0'>
