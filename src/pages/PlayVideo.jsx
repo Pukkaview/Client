@@ -16,14 +16,14 @@ import { SearchContext } from '../context/useSearch';
 import MovieDescription from '../components/playCat/movieDescription';
 const PlayVideo = () => {
   const {search} = useContext(SearchContext)
-  const {id: slug} = useParams()
+  const {id} = useParams()
   const [data, setData] = useState('')
   const {video, dispatch} = useContext(VideoContext)
   const divRef = useRef(null); // Step 1: Create a ref
   const [marquee, setMarquee] = useState(false)
-  const parts = slug.split("-");
-  const id = parts[0];
-  console.log(id);
+  // const parts = slug.split("-");
+  // const id = parts[0];
+  // console.log(id);
 
 
 

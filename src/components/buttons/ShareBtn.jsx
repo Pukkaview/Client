@@ -20,7 +20,7 @@ export default function ShareBtn({data, hideText, handleOpen}) {
         await navigator.share({
           title: data.title,
           text: data.plot,
-          url: `https://pukkaview.vercel.app/play/${data.id}-${data.title}`,
+          url: `https://pukkaview.vercel.app/play/${data.id}`,
         });
       } else {
         // Fallback for browsers that don't support Web Share API
