@@ -103,7 +103,7 @@ export default function Navbar() {
           <Link to="/" onClick={() => dispatch({type: 'ACTIVE', payload: ''})} className={`${active === '' ? 'active' : ''} hover:text-[#C423C4]`} >Home</Link>
           {/* <Link to='/' className={`${active === 'New' ? 'active' : ''}`} onClick={() => dispatch({type: 'NEW', payload: 'New'})}>New</Link> */}
           {genreList.length > 1 && genreList.map((genre => (
-          <Link to='/' className={`${active === genre ? 'active' : ''} hover:text-[#C423C4]`} onClick={() => dispatch({type: 'ACTIVE', payload: genre})}>{genre}</Link>
+          <Link key={genre} to='/' className={`${active === genre ? 'active' : ''} hover:text-[#C423C4]`} onClick={() => dispatch({type: 'ACTIVE', payload: genre})}>{genre}</Link>
           )))}
           {/* <Link to='/' className={`${active === 'Comedy' ? 'active' : ''} hover:text-[#C423C4]`} onClick={() => dispatch({type: 'COMEDY', payload: 'Comedy'})}>Comedy</Link>
           <Link to='/' className={`${active === 'Drama' ? 'active' : ''} hover:text-[#C423C4]`} onClick={() => dispatch({type: 'DRAMA', payload: 'Drama'})}>Drama</Link> */}
