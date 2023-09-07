@@ -267,7 +267,7 @@ const CustomVideoPlayer = ({ data }) => {
             onClick={handleRewind}
           >
             {/* <FontAwesomeIcon icon="pause" size={`${window.innerWidth>500? '3x' : '2x'}`} /> */}
-            <i class={`fa-solid fa-backward fa-2x lg:fa-3x `}></i>
+            <i className={`fa-solid fa-backward fa-2x lg:fa-3x `}></i>
 
           </button>
           <button
@@ -280,7 +280,7 @@ const CustomVideoPlayer = ({ data }) => {
             className="text-white rounded-[50%] flex"
             onClick={handleFastForward}
           >
-            <i class={`fa-solid fa-forward fa-2x lg:fa-3x`}></i>
+            <i className={`fa-solid fa-forward fa-2x lg:fa-3x`}></i>
             {/* <FontAwesomeIcon icon="forward" size={`${window.innerWidth>500? '3x' : '2x'}`} /> */}
           </button>
         </div>}
