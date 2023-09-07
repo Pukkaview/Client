@@ -30,7 +30,6 @@ export default function MovieDescription({data}) {
         },
       });
       if (fetchResponse.failure) throw new Error(fetchResponse.message);
-      console.log(fetchResponse);
     } catch (error) {
       console.error('Error fetching video URL:', error);
     }
