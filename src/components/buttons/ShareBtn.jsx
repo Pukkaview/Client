@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import share from '../../assets/share.svg'
 import ShareCard from '../cards/shareCard';
 import './button.css'
@@ -6,35 +6,25 @@ import { Menu } from '@mui/material';
 export default function ShareBtn({data, hideText, handleOpen}) {
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [supported, setSupported] = useState(true) 
 
-  // const handleClick = event => {
-  //   setAnchorEl(event.currentTarget);
-  // };
-
-  // const handleClose = () => {
-  //   setAnchorEl(null);
-  // };
-
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
-
-  // const handleClose = () => {
-  //   setOpen(false);
-  //   console.log('yes');
-  // };
+  useEffect(() => {
+    if(!navigator.canShare){
+      setSupported(false)
+    }
+  }, [])
   const handleShare = async () => {
     try {
       if (navigator.share) {
+        setSupported(true)
         await navigator.share({
           title: data.title,
           text: data.plot,
-          url: `https://pukkaview.vercel.app/play/${data.id}`,
+          url: `https://pukkaview.vercel.app/play/${data.id}-${data.title}`,
         });
       } else {
         // Fallback for browsers that don't support Web Share API
-        console.log("Web Share API not supported");
-        alert("Web Share API not supported")
+        setSupported(false)
       }
     } catch (error) {
       console.error('Error sharing:', error);
@@ -43,11 +33,11 @@ export default function ShareBtn({data, hideText, handleOpen}) {
 
   return (
     <div className='flex items-center'>
-    <button onClick={handleShare} className='flex lg:hidden text-accent4 items-center gap-[5px] cursor-pointer'>
+    <button onClick={handleShare} className={`${supported ? 'flex lg:hidden' : 'hidden'} text-accent4 items-center gap-[5px] cursor-pointer`}>
       <img className='iconlight' src={share} alt="share" />
       <span className={`${hideText ? 'sm:flex hidden' : ''} font-[Goemetric-415-Black-BT] sm:text-[16px] text-[14px]`}>Share Now</span>
     </button>
-    <button onClick={handleOpen} className='hidden lg:flex text-accent4 items-center gap-[5px] cursor-pointer'>
+    <button onClick={handleOpen} className={`${supported ? 'hidden lg:flex' : 'flex'} text-accent4 items-center gap-[5px] cursor-pointer`}>
       <img className='iconlight' src={share} alt="share" />
       <span className={`${hideText ? 'sm:flex hidden' : ''} font-[Goemetric-415-Black-BT] sm:text-[16px] text-[14px]`}>Share Now</span>
     </button>
