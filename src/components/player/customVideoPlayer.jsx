@@ -57,22 +57,36 @@ const CustomVideoPlayer = ({ data }) => {
       }
     };
   }, []);
-    // if ('orientation' in screen) {
-    //   // The screen.orientation API is supported
-    //   useEffect(() => {
-    //     if (isFullScreen) {
-    //       // Lock the orientation to landscape when entering fullscreen
-    //       screen.orientation.lock('landscape').catch(console.error);
-    //     } else {
-    //       // If not in fullscreen, unlock the orientation
-    //       screen.orientation.unlock();
-    //     }
-    //   }, [isFullScreen]);
-    // } else {
-    //   // Fallback behavior for browsers that do not support screen.orientation
-    //   // You can implement an alternative behavior or simply ignore orientation changes
-    //   console.warn('Screen orientation API is not supported.');
-    // }
+  // useEffect(()=> {
+  // function lockScreenOrientation () {
+  //     screen.lockOrientationUniversal = screen.lockOrientation || screen.mozLockOrientation || screen.msLockOrientation;
+
+  // if (screen.lockOrientationUniversal("landscape-primary")) {
+  //   // Orientation was locked
+  //   console.log('yes');
+  // } else {
+  //   // Orientation lock failed
+  //   console.log('no');
+  //   }
+  // }
+  // lockScreenOrientation()
+  // },[isFullScreen])
+    if (screen.orientation) {
+      // The screen.orientation API is supported
+      useEffect(() => {
+        if (isFullScreen) {
+          // Lock the orientation to landscape when entering fullscreen
+          screen.orientation.lock('landscape-primary').catch(console.error);
+        } else {
+          // If not in fullscreen, unlock the orientation
+          screen.orientation.unlock();
+        }
+      }, [isFullScreen]);
+    } else {
+      // Fallback behavior for browsers that do not support screen.orientation
+      // You can implement an alternative behavior or simply ignore orientation changes
+      console.warn('Screen orientation API is not supported.');
+    }
     
   // useEffect(() => {
   //   // Retrieve the stored progress from localStorage when the component mounts
