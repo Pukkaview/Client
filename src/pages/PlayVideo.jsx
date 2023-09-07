@@ -23,8 +23,6 @@ const PlayVideo = () => {
   const [marquee, setMarquee] = useState(false)
   const parts = slug.split("-");
   const id = parts[0];
-  console.log(id);
-
 
 
   useEffect(() => { 
@@ -32,8 +30,6 @@ const PlayVideo = () => {
       if (divRef.current) {
         const width = divRef.current.offsetWidth; // Step 3: Access the width
         const screenWidth = window.innerWidth
-        console.log('Div width:', width);
-        console.log('Screen width:', screenWidth);
         if(screenWidth-20 > width ){
           setMarquee(false)
         }else{

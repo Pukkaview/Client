@@ -14,9 +14,7 @@ export default function PlayCat({current}) {
   useEffect(() => {
     if(videos.length > 0 && current ){
       const d = videos.filter(v => v.genre === current)
-      console.log(d);
       setData(d[0].videos)
-      console.log(d[0].videos);
     }
   }, [videos, current])
   useEffect(() => {

@@ -179,7 +179,6 @@ const CustomVideoPlayer = ({ data }) => {
     setShowControls(true);
     controlTimeoutRef.current = setTimeout(() => {
       setShowControls(false);
-      console.log('timeout');
     }, 5000); // Set the desired time (in milliseconds) for controls to disappear after inactivity
   };
     // Clear the timeout when the component unmounts
@@ -235,7 +234,6 @@ const CustomVideoPlayer = ({ data }) => {
           },
         });
         if (fetchResponse.failure) throw new Error(fetchResponse.message);
-        console.log(fetchResponse);
       } catch (error) {
         console.error('Error fetching video URL:', error);
       }

@@ -51,7 +51,6 @@ const Form = () => {
         },
       });
       if (fetchResponse.failure) throw new Error(fetchResponse.message);
-      console.log(fetchResponse);
       setLoading(false)
       handleSuccess(fetchResponse.message)
       setName('')

@@ -43,13 +43,11 @@ const searchReducer = (state, action) => {
         search: false
     };
     case 'LOADING':
-      console.log('loading', action.payload);
     return {
         ...state,
         loading: action.payload
     };
     case 'ERROR':
-      console.log('error', action.payload);
     return {
         ...state,
         error: action.payload

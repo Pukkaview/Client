@@ -62,7 +62,6 @@ export default function Rate({open, handleClose }) {
         },
       });
       if (fetchResponse.failure) throw new Error(fetchResponse.message);
-      console.log(fetchResponse);
       setLoading(false)
       handleSuccess(fetchResponse.message)
       setEmail('')
@@ -91,7 +90,7 @@ export default function Rate({open, handleClose }) {
             "Content-Type": "application/json",
           },
         });
-        console.log(fetchResponse);
+    
         setLoading(false)
         setRating('')
         // handleClose()

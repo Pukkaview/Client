@@ -56,14 +56,12 @@ export default function Navbar() {
           "Content-Type": "application/json",
         },
       });
-      // console.log(fetchResponse);
       if (fetchResponse.failure) throw new Error('No match found');
       if(!fetchResponse.message){
         dispatch2({type: 'UPDATE_BY_NAME', payload:fetchResponse})
         dispatch2({type: 'LOADING', payload:false})
       }
     } catch (error) {
-      console.log(error.message);
       dispatch2({type: 'UPDATE_BY_NAME', payload:[]})
       dispatch2({type: 'LOADING', payload:false})
       dispatch2({type: 'ERROR', payload:true})

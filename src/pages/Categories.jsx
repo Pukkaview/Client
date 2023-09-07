@@ -15,13 +15,10 @@ const Categories = () => {
   const {genreList, videos} = useContext(GenreContext)
   const [selectedOption, setSelectedOption] = useState(active);
   const [data, setData] = useState([])
-  console.log(data);
-  console.log(active);
   useEffect(() => {
     if(videos.length > 0){
       const d = videos.filter(v => v.genre === active)
       setData(d[0].videos)
-      console.log(d[0].videos);
     }
   }, [active, videos])
   useEffect(() => {
