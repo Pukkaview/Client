@@ -3,11 +3,11 @@ import share from '../../assets/mdi_share.svg'
 import './button.css'
 export default function ShareBtnV2({data, hideText, handleOpen}) {
   const [supported, setSupported] = useState(true) 
-  useEffect(() => {
-    if(!navigator.canShare){
-      setSupported(false)
-    }
-  }, [])
+  // useEffect(() => {
+  //   if(!navigator.canShare){
+  //     setSupported(false)
+  //   }
+  // }, [])
   const handleShare = async () => {
     try {
       if (navigator.share) {
