@@ -57,7 +57,6 @@ const CustomVideoPlayer = ({ data }) => {
       }
     };
   }, []);
-  useEffect(() => {
     if ('orientation' in screen) {
       // The screen.orientation API is supported
       useEffect(() => {
@@ -75,7 +74,6 @@ const CustomVideoPlayer = ({ data }) => {
       console.warn('Screen orientation API is not supported.');
     }
     
-  }, [isFullScreen]);
   // useEffect(() => {
   //   // Retrieve the stored progress from localStorage when the component mounts
   //   const storedProgress = localStorage.getItem('videoProgress');
@@ -173,7 +171,7 @@ const CustomVideoPlayer = ({ data }) => {
     setShowControls(true);
     controlTimeoutRef.current = setTimeout(() => {
       setShowControls(false);
-    }, 3000); // Set the desired time (in milliseconds) for controls to disappear after inactivity
+    }, 5000); // Set the desired time (in milliseconds) for controls to disappear after inactivity
   };
     // Clear the timeout when the component unmounts
     useEffect(() => {
