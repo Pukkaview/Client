@@ -268,7 +268,7 @@ const CustomVideoPlayer = ({ data }) => {
           </button>
         </div>}
       {showControls && <div className="absolute inset-0 bg-black opacity-50"></div>}
-      {/* <div className='flex items-center'>
+      <div className='flex items-center'>
         <ReactPlayer
           ref={videoRef}
           url={data.videolink}
@@ -285,7 +285,7 @@ const CustomVideoPlayer = ({ data }) => {
           onReady={handleOnReady}
           onBuffer={handleOnBuffer}
         />
-      </div> */}
+      </div>
 
       {showControls && <div className="sm:w-[90%] mx-auto absolute sm:bottom-10 bottom-6 left-4 right-4 z-20 flex flex-col">
         <div>
