@@ -46,7 +46,7 @@ export default function MovieDetailCard({open, handleClose, data}) {
                   <p className='sm:text-[16px] text-[12px]'>{data.plot}</p>
                 </div>
                 <div className='flex gap-[50px] z-10'>
-                <Link to={`/play/${data.id}-${data.title}`}>
+                <Link to={`/play/${data.id}`}>
                   <WatchBtn/>
                 </Link>
                   <ShareBtn data={data} handleOpen={handleOpen}/>

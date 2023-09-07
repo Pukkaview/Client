@@ -8,7 +8,7 @@ import twitter from '../../assets/twitter.png'
 import CopyButton from '../buttons/copyBtn';
 
 export default function ShareCard({ handleClose, data, width}) {
-    const url = `https://pukkaview.vercel.app/play/${data.id}-${data.title}`
+    const url = `https://pukkaview.vercel.app/play/${data.id}`
     const handleShare = (platform, url, title, imageUrl) => {
   let shareText = '';
 
