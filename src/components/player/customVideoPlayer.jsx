@@ -58,13 +58,23 @@ const CustomVideoPlayer = ({ data }) => {
     };
   }, []);
   useEffect(() => {
-    if (isFullScreen) {
-      // Lock the orientation to landscape when entering fullscreen
-      screen.orientation.lock('landscape').catch(console.error);
+    if ('orientation' in screen) {
+      // The screen.orientation API is supported
+      useEffect(() => {
+        if (isFullScreen) {
+          // Lock the orientation to landscape when entering fullscreen
+          screen.orientation.lock('landscape').catch(console.error);
+        } else {
+          // If not in fullscreen, unlock the orientation
+          screen.orientation.unlock();
+        }
+      }, [isFullScreen]);
     } else {
-      // If not in fullscreen, unlock the orientation
-      screen.orientation.unlock();
+      // Fallback behavior for browsers that do not support screen.orientation
+      // You can implement an alternative behavior or simply ignore orientation changes
+      console.warn('Screen orientation API is not supported.');
     }
+    
   }, [isFullScreen]);
   // useEffect(() => {
   //   // Retrieve the stored progress from localStorage when the component mounts
