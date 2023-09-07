@@ -2,15 +2,11 @@ import { useRef, useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import screenfull from 'screenfull';
-import like from '../../assets/like.svg'
 import logo from '../../assets/logo.svg'
-import share from '../../assets/share.svg'
 
 import { VideoContext } from '../../context/useVideo';
 import { useContext } from 'react';
 import Fetcher from '../../utils/fetcher';
-import ShareBtn from '../buttons/ShareBtn';
-import ShareCard from '../cards/shareCard';
 import Rate from '../feedback/Rate';
 import SharePop from '../cards/sharePop';
 
