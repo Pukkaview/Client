@@ -29,18 +29,6 @@ const CustomVideoPlayer = ({ data }) => {
   const [open, setOpen] = useState(false)
   const [popped, setPopped] = useState(false)
   const [openShare, setOpenShare] = useState(false)
-  // const [seekDuration, setSeekDuration] = useState(5);
-
-  // const handleSeek = (forward) => {
-  //   const currentTime = videoRef.current.getCurrentTime();
-  //   const newTime = forward ? currentTime + seekDuration : currentTime - seekDuration;
-  //   videoRef.current.seekTo(newTime);
-  // };
-
-  // const handleDoubleTap = (forward) => {
-  //   setSeekDuration(seekDuration + 5);
-  //   handleSeek(forward);
-  // };
 
   const handleClose = () => {
     setOpen(false)
@@ -281,7 +269,7 @@ const CustomVideoPlayer = ({ data }) => {
           </button>
         </div>}
       {showControls && <div className="absolute inset-0 bg-black opacity-50"></div>}
-      <div className='flex items-center'>
+      {/* <div className='flex items-center'>
         <ReactPlayer
           ref={videoRef}
           url={data.videolink}
@@ -298,7 +286,7 @@ const CustomVideoPlayer = ({ data }) => {
           onReady={handleOnReady}
           onBuffer={handleOnBuffer}
         />
-      </div>
+      </div> */}
 
       {showControls && <div className="sm:w-[90%] mx-auto absolute sm:bottom-10 bottom-6 left-4 right-4 z-20 flex flex-col">
         <div>
