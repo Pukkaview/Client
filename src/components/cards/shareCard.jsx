@@ -62,6 +62,7 @@ export default function ShareCard({ handleClose, data, width}) {
                     <span className='text-[#000] font-[500] text-[12px]'>Twitter</span>
                   </div>
                 </div>
+                
                 <div className='mt-[20px] flex justify-between bg-[#FFF] rounded-[10px] px-[23px] py-[10px]'>
                   <span className='text-[#000] sm:text-[14px] text-[12px]'>{url}</span>
                   <CopyButton text={url}/>
