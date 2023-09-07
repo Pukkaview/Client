@@ -63,7 +63,7 @@ export default function MovieCard2({data, playIcon}) {
   }
   return (
     <>
-    <Link to={`/play/${data.id}-${data.title}`} className={`lg:hidden sm:h-[199px] phone-sm:h-[180px] h-[180px] flex items-center ${window.innerWidth < 1001 ? 'w-full' : ''}`}>
+    <Link to={`/play/${data.id}`} className={`lg:hidden sm:h-[199px] phone-sm:h-[180px] h-[180px] flex items-center ${window.innerWidth < 1001 ? 'w-full' : ''}`}>
       <div style={{
         width: hovered ? divWidth + 50 : divWidth - 30,
         transition: 'all 0.3s ease',
@@ -145,7 +145,7 @@ export default function MovieCard2({data, playIcon}) {
               <p className='sm:text-[14px] text-[12px]'>{data.plot}</p>
             </div>
             <div className='flex gap-[50px]'>
-              <Link to={`/play/${data.id}-${data.title}`}>
+              <Link to={`/play/${data.id}`}>
                 <WatchBtn/>
               </Link>
               <ShareBtn data={data} handleOpen={handleOpen}/>
