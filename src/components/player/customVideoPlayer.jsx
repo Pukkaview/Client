@@ -152,6 +152,13 @@ const CustomVideoPlayer = ({ data }) => {
     if (screenfull.isEnabled) {
       screenfull.toggle(containerRef.current);
     }
+    // Lock the orientation to landscape when entering fullscreen
+    if (!screenfull.isFullscreen) {
+      screen.orientation.lock('landscape-primary').catch(console.error);
+    } else {
+      // If not in fullscreen, unlock the orientation
+      screen.orientation.unlock();
+    }
   };
 
   const formatTime = (timeInSeconds) => {
