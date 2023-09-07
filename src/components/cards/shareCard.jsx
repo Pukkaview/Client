@@ -43,7 +43,7 @@ export default function ShareCard({ handleClose, data, width}) {
               margin: "0 auto"
             }}
             className="flex flex-col items-center mx-auto bg-[#FEF] px-[16px] pb-[16px] pt-[35px] rounded-[10px] relative mx-auto">
-              <div className='flex flex-col items-center w-full px-[46px]'>
+              <div className='flex flex-col items-center w-full px-[10px]'>
                 <div className='flex justify-between w-full'>
                   <h2 className="text-[24px] text-[#000] mb-[22px]">Share</h2>
                   <img src={cancel} onClick={handleClose} alt="" className="h-[25px] cursor-pointer"  />
