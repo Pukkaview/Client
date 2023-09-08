@@ -257,8 +257,9 @@ const CustomVideoPlayer = ({ data }) => {
     videoRef.current.seekTo(videoRef.current.getCurrentTime() + 10, 'seconds')
     }
   return (
+    <div>
     <div
-    className={`video_container w-full fixed top-0 z-[30] md:min-h-[400px] min-h-[300px] flex justify-center flex-col bg-[#000]`} 
+    className={`video_container w-full fixed top-[70px] z-[30] min-h-[300px] md:min-[400px] flex justify-center flex-col bg-[#000]`} 
     ref={containerRef}
     onMouseEnter={showControlsOnHover}
     onMouseMove={showControlsOnHover}
@@ -380,6 +381,23 @@ const CustomVideoPlayer = ({ data }) => {
       </div>}
       <Rate handleClose={handleClose} open={open}/>
       <SharePop data={data} open={openShare} handleClose={handleCloseShare}/>
+    </div>
+    <div
+      className={`min-h-[300px] md:min-[400px] video_container w-full opacity-0 flex justify-center flex-col bg-[#000]`} 
+      >
+      <div className='flex items-center'>
+        <ReactPlayer
+          url={data.videolink}
+          playing={false}
+          muted={true}
+          playsinline={true}
+          volume={0}
+          controls={false} // Hide the default controls
+          width="100%"
+          height={`${window.innerWidth < 1024 ? 'auto': '80vh'}`}
+        />
+      </div>
+    </div>
     </div>
   );
 };

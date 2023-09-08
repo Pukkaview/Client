@@ -37,7 +37,7 @@ export default function MovieDescription({data}) {
   }
   return (
     <div>
-    <div className='flex justify-between lg:mt-[85vh] md:mt-[40vh] md:px-[59px] px-[20px] mx-auto'>
+    <div className='flex justify-between mt-[80px] md:px-[59px] px-[20px] mx-auto'>
       <div className="flex flex-col gap-[10px] items-start w-full">
         <div className='flex justify-between w-full'>
           <span className="sm:px-[30px] px-[10px] py-[5px] rounded-[5px] bg-accent3 text-black sm:text-[16px] text-[16px]">{data.genre}</span>
