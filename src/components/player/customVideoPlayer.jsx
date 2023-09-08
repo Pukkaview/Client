@@ -29,7 +29,6 @@ const CustomVideoPlayer = ({ data }) => {
   const [open, setOpen] = useState(false)
   const [popped, setPopped] = useState(false)
   const [openShare, setOpenShare] = useState(false)
-
   const handleClose = () => {
     setOpen(false)
     localStorage.removeItem('open')
@@ -247,7 +246,6 @@ const CustomVideoPlayer = ({ data }) => {
           },
         });
         if (fetchResponse.failure) throw new Error(fetchResponse.message);
-        console.log(fetchResponse);
       } catch (error) {
         console.error('Error fetching video URL:', error);
       }
@@ -260,7 +258,7 @@ const CustomVideoPlayer = ({ data }) => {
     }
   return (
     <div
-    className="video_container relative md:min-h-[400px] min-h-[300px] flex justify-center flex-col" 
+    className={`video_container w-full fixed top-0 z-[30] md:min-h-[400px] min-h-[300px] flex justify-center flex-col bg-[#000]`} 
     ref={containerRef}
     onMouseEnter={showControlsOnHover}
     onMouseMove={showControlsOnHover}
@@ -303,10 +301,11 @@ const CustomVideoPlayer = ({ data }) => {
           url={data.videolink}
           playing={isPlaying}
           muted={isMuted}
+          playsinline={true}
           volume={volume}
           controls={false} // Hide the default controls
           width="100%"
-          height={`${window.innerWidth < 1000 ? 'auto': '80vh'}`}
+          height={`${window.innerWidth < 1024 ? 'auto': '80vh'}`}
           preload="auto"
           onProgress={handleProgress}
           onDuration={handleDuration}

@@ -56,14 +56,12 @@ export default function Navbar() {
           "Content-Type": "application/json",
         },
       });
-      // console.log(fetchResponse);
       if (fetchResponse.failure) throw new Error('No match found');
       if(!fetchResponse.message){
         dispatch2({type: 'UPDATE_BY_NAME', payload:fetchResponse})
         dispatch2({type: 'LOADING', payload:false})
       }
     } catch (error) {
-      console.log(error.message);
       dispatch2({type: 'UPDATE_BY_NAME', payload:[]})
       dispatch2({type: 'LOADING', payload:false})
       dispatch2({type: 'ERROR', payload:true})
@@ -73,7 +71,7 @@ export default function Navbar() {
 
   return (
     <div
-      className={`z-50 flex justify-between items-center py-[18px] md:px-[59px] px-[10px] fixed w-full ${
+      className={`z-50 flex justify-between top-0 items-center py-[18px] md:px-[59px] px-[10px] fixed w-full ${
         scrolled ? "bg-[#180018] transition duration-300 ease-in-out" : ""
       }`}
     >

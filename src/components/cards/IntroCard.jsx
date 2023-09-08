@@ -31,7 +31,7 @@ export default function IntroCard({data, tag}) {
           <h1 className='sm:text-[32px] text-[24px] font-[500] leading-none'>{data.title}</h1>
           <p className='text-[14px] sm:text-[18px]'>{data.plot}</p>
           <div className='flex gap-[10px] sm:mt-[22px]'>
-            <Link to={`/play/${data.id}`}>
+            <Link to={`/play/${data.id}-${data.title}`}>
               <WatchBtn/>
             </Link>
               <div onClick={handleClickOpen}>

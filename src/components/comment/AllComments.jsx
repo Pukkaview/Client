@@ -27,12 +27,10 @@ export default function AllComments({videoId}) {
 
   useEffect(() => {
     if(comments){
-      console.log(comments);
       const sorted = comments.sort((a, b) => b.id - a.id)
       setSortedComments(sorted)
     }
   }, [comments])
-  console.log(show);
 
   const handleToggle=()=> {
     show ? setShow(false):setShow(true)
@@ -48,7 +46,6 @@ export default function AllComments({videoId}) {
           },
         });
         if (fetchResponse.failure) throw new Error(fetchResponse.message);
-        console.log(fetchResponse);
         dispatch({type:"GET_COMMENTS", payload: fetchResponse})
       } catch (error) {
         console.error('Error fetching video URL:', error);
@@ -70,13 +67,11 @@ export default function AllComments({videoId}) {
         },
       });
       if (fetchResponse.failure) throw new Error(fetchResponse.message);
-      console.log(fetchResponse);
     } catch (error) {
       console.error('Error fetching video URL:', error);
     }
   }
   const likeReply = async(commentId, replyId) => {
-    console.log(commentId, replyId);
     if(ids.includes(replyId)) return
     setIds((pre) => [...pre, replyId])
     dispatch({type:"LIKE_REPLY", payload: {commentId, replyId}})
@@ -88,7 +83,6 @@ export default function AllComments({videoId}) {
         },
       });
       if (fetchResponse.failure) throw new Error(fetchResponse.message);
-      console.log(fetchResponse);
     } catch (error) {
       console.error('Error fetching video URL:', error);
     }

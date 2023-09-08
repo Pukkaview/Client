@@ -9,7 +9,6 @@ const fetchComedy = async () => {
           "Content-Type": "application/json",
         },
       });
-      // console.log(fetchResponse);
       if (fetchResponse.failure) throw new Error(fetchResponse.message);
       return fetchResponse
     } catch (error) {
@@ -24,7 +23,6 @@ const fetchComedy = async () => {
           "Content-Type": "application/json",
         },
       });
-      // console.log(fetchResponse);
       if (fetchResponse.failure) throw new Error(fetchResponse.message);
       return fetchResponse
     } catch (error) {
@@ -39,7 +37,6 @@ const fetchComedy = async () => {
           "Content-Type": "application/json",
         },
       });
-      // console.log(fetchResponse);
       if (fetchResponse.failure) throw new Error(fetchResponse.message);
       return fetchResponse
     } catch (error) {

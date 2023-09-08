@@ -16,15 +16,13 @@ import { SearchContext } from '../context/useSearch';
 import MovieDescription from '../components/playCat/movieDescription';
 const PlayVideo = () => {
   const {search} = useContext(SearchContext)
-  const {id} = useParams()
+  const {id: slug} = useParams()
   const [data, setData] = useState('')
   const {video, dispatch} = useContext(VideoContext)
   const divRef = useRef(null); // Step 1: Create a ref
   const [marquee, setMarquee] = useState(false)
-  // const parts = slug.split("-");
-  // const id = parts[0];
-  // console.log(id);
-
+  const parts = slug.split("-");
+  const id = parts[0];
 
 
   useEffect(() => { 
@@ -32,8 +30,6 @@ const PlayVideo = () => {
       if (divRef.current) {
         const width = divRef.current.offsetWidth; // Step 3: Access the width
         const screenWidth = window.innerWidth
-        console.log('Div width:', width);
-        console.log('Screen width:', screenWidth);
         if(screenWidth-20 > width ){
           setMarquee(false)
         }else{
@@ -64,11 +60,30 @@ const PlayVideo = () => {
 
     fetchVideoUrl();
   }, [id]);
+  const [divHeight, setDivHeight] = useState(0);
+
+  const updateDivHeight = () => {
+    if (divRef.current) {
+      const height = divRef.current.offsetHeight;
+      setDivHeight(height);
+    }
+  };
+
+  useEffect(() => {
+    updateDivHeight();
+    window.addEventListener('resize', updateDivHeight);
+
+    return () => {
+      window.removeEventListener('resize', updateDivHeight);
+    };
+  }, []);
   return (
       <div className={`${marquee ? '' : 'play_page'} bg-[#180018]`}>
         <Navbar/>
         {!search && <>
-          <CustomVideoPlayer data={data}/>
+          <div ref={divRef} style={{marginTop: divHeight+20}}>
+            <CustomVideoPlayer data={data}/>
+          </div>
           <MovieDescription data={data}/>
           <div className='mx-auto mt-[10px] sm:mt-[30px] md:px-[59px] px-[20px] flex lg:flex-row flex-col justify-between gap-[50px]'>
             <Comment videoId={id}/>

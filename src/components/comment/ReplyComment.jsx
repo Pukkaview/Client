@@ -40,7 +40,6 @@ export default function ReplyComment({id, open, handleClose, videoId}) {
   };
   const handleReply = async(e) => {
     e.preventDefault()
-    console.log(id);
     setLoading(true)
     try {
       const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/${videoId}/comment/${id}/reply/`, {
@@ -53,7 +52,6 @@ export default function ReplyComment({id, open, handleClose, videoId}) {
         },
       });
       if (fetchResponse.failure) throw new Error(fetchResponse.message);
-      console.log(fetchResponse);
       dispatch({type:"POST_REPLY", payload: {res:fetchResponse, id}})
       setLoading(false)
       setComment('')
