@@ -95,8 +95,8 @@ export default function MovieCard({data, playIcon}) {
             </div>
           </div>
           <div>
-            <h2 className='uppercase sm:text-[18px] text-[16px] font-[700]'>{data.title}</h2>
-            <p className='sm:text-[14px] text-[12px]'>{data.plot}</p>
+            <h2 className='uppercase sm:text-[18px] text-[16px] font-[700]'>{data.title.length > 60 ? `${data.title.slice(0, 60)}...` : data.title}</h2>
+            <p className='sm:text-[14px] text-[12px]'>{data.plot.length > 200 ? `${data.plot.slice(0, 200)}...` : data.plot}</p>
           </div>
           <div className='flex gap-[50px]'>
             <Link to={`/play/${data.id}`}>
@@ -143,8 +143,8 @@ export default function MovieCard({data, playIcon}) {
           </div>
           <div>
             
-            <h2 className='uppercase sm:text-[18px] text-[16px] font-[700]'>{data.title}</h2>
-            <p className='sm:text-[14px] text-[12px]'>{data.plot}</p>
+            <h2 className='uppercase sm:text-[18px] text-[16px] font-[700]'>{data.title.length > 60 ? `${data.title.slice(0, 60)}...` : data.title}</h2>
+            <p className='sm:text-[14px] text-[12px]'>{data.plot.length > 200 ? `${data.plot.slice(0, 200)}...` : data.plot}</p>
           </div>
           <div className='flex gap-[50px]'>
             <Link to={`/play/${data.id}-${data.title}`}>

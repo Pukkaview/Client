@@ -77,7 +77,7 @@ function App() {
 
 
   return (
-    <div className="overflow-x-hidden min-h-screen">
+    <div className="overflow-x-hidden min-h-screen bg-[#180018]">
         <ToastContainer
           position="top-center"
           autoClose={5000}

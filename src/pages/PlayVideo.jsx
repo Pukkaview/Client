@@ -60,11 +60,30 @@ const PlayVideo = () => {
 
     fetchVideoUrl();
   }, [id]);
+  const [divHeight, setDivHeight] = useState(0);
+
+  const updateDivHeight = () => {
+    if (divRef.current) {
+      const height = divRef.current.offsetHeight;
+      setDivHeight(height);
+    }
+  };
+
+  useEffect(() => {
+    updateDivHeight();
+    window.addEventListener('resize', updateDivHeight);
+
+    return () => {
+      window.removeEventListener('resize', updateDivHeight);
+    };
+  }, []);
   return (
       <div className={`${marquee ? '' : 'play_page'} bg-[#180018]`}>
         <Navbar/>
         {!search && <>
-          <CustomVideoPlayer data={data}/>
+          <div ref={divRef} style={{marginTop: divHeight+20}}>
+            <CustomVideoPlayer data={data}/>
+          </div>
           <MovieDescription data={data}/>
           <div className='mx-auto mt-[10px] sm:mt-[30px] md:px-[59px] px-[20px] flex lg:flex-row flex-col justify-between gap-[50px]'>
             <Comment videoId={id}/>

@@ -9,7 +9,7 @@ const MovieCardPlay = ({ title, content, backgroundColor, img, id, playIcon }) =
     <Link to={`/play/${id}`} >
       <div
         style={cardStyle}
-        className="cursor-pointer justify-start border-0 rounded-xl gap-[21px] flex hover:bg-accent3 transition duration-300"
+        className="cursor-pointer justify-start border-0 rounded-xl gap-[21px] flex hover:bg-accent3 transition duration-300 h-[150px]"
       >
         <div style={{
         backgroundImage: `url(${encodeURI(img)})`,
@@ -21,10 +21,10 @@ const MovieCardPlay = ({ title, content, backgroundColor, img, id, playIcon }) =
         </div>
         <div className=" flex-col w-[70%]  justify-start items-start gap-2 flex">
           <div className="text-fuchsia-50 sm:text-[24px] text-[18px] font-normal leading-normal">
-            <h3 className="">{title}</h3>
+            <h3 className="">{title.length > 60 ? `${title.slice(0, 60)}...` : title}</h3>
           </div>
           <div className="text-fuchsia-50  md:text-[14px] text-[12px] pb-3 font-bold">
-            <p>{content}</p>
+            <p>{content.length > 200 ? `${content.slice(0, 200)}...` : content}</p>
           </div>
         </div>
       </div>
