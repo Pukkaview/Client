@@ -2,15 +2,11 @@ import { useRef, useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import screenfull from 'screenfull';
-import like from '../../assets/like.svg'
 import logo from '../../assets/logo.svg'
-import share from '../../assets/share.svg'
 
 import { VideoContext } from '../../context/useVideo';
 import { useContext } from 'react';
 import Fetcher from '../../utils/fetcher';
-import ShareBtn from '../buttons/ShareBtn';
-import ShareCard from '../cards/shareCard';
 import Rate from '../feedback/Rate';
 import SharePop from '../cards/sharePop';
 
@@ -33,19 +29,7 @@ const CustomVideoPlayer = ({ data }) => {
   const [open, setOpen] = useState(false)
   const [popped, setPopped] = useState(false)
   const [openShare, setOpenShare] = useState(false)
-  // const [seekDuration, setSeekDuration] = useState(5);
-
-  // const handleSeek = (forward) => {
-  //   const currentTime = videoRef.current.getCurrentTime();
-  //   const newTime = forward ? currentTime + seekDuration : currentTime - seekDuration;
-  //   videoRef.current.seekTo(newTime);
-  // };
-
-  // const handleDoubleTap = (forward) => {
-  //   setSeekDuration(seekDuration + 5);
-  //   handleSeek(forward);
-  // };
-
+  const [controls, setControls] = useState(true)
   const handleClose = () => {
     setOpen(false)
     localStorage.removeItem('open')
@@ -64,6 +48,7 @@ const CustomVideoPlayer = ({ data }) => {
   };
   useEffect(() => {
     if (screenfull.isEnabled) {
+      setControls(false)
       screenfull.on('change', handleFullscreenChange);
     }
 
@@ -73,15 +58,37 @@ const CustomVideoPlayer = ({ data }) => {
       }
     };
   }, []);
-  // useEffect(() => {
-  //   if (isFullScreen) {
-  //     // Lock the orientation to landscape when entering fullscreen
-  //     screen.orientation.lock('landscape').catch(console.error);
-  //   } else {
-  //     // If not in fullscreen, unlock the orientation
-  //     screen.orientation.unlock();
+  // useEffect(()=> {
+  // function lockScreenOrientation () {
+  //     screen.lockOrientationUniversal = screen.lockOrientation || screen.mozLockOrientation || screen.msLockOrientation;
+
+  // if (screen.lockOrientationUniversal("landscape-primary")) {
+  //   // Orientation was locked
+  //   console.log('yes');
+  // } else {
+  //   // Orientation lock failed
+  //   console.log('no');
   //   }
-  // }, [isFullScreen]);
+  // }
+  // lockScreenOrientation()
+  // },[isFullScreen])
+    // if (screen.orientation) {
+    //   // The screen.orientation API is supported
+    //   useEffect(() => {
+    //     if (isFullScreen) {
+    //       // Lock the orientation to landscape when entering fullscreen
+    //       screen.orientation.lock('landscape-primary').catch(console.error);
+    //     } else {
+    //       // If not in fullscreen, unlock the orientation
+    //       screen.orientation.unlock();
+    //     }
+    //   }, [isFullScreen]);
+    // } else {
+    //   // Fallback behavior for browsers that do not support screen.orientation
+    //   // You can implement an alternative behavior or simply ignore orientation changes
+    //   console.warn('Screen orientation API is not supported.');
+    // }
+    
   // useEffect(() => {
   //   // Retrieve the stored progress from localStorage when the component mounts
   //   const storedProgress = localStorage.getItem('videoProgress');
@@ -252,8 +259,9 @@ const CustomVideoPlayer = ({ data }) => {
     videoRef.current.seekTo(videoRef.current.getCurrentTime() + 10, 'seconds')
     }
   return (
+    <div>
     <div
-    className="video_container relative md:min-h-[400px] min-h-[300px] flex justify-center flex-col" 
+    className={`video_container w-full fixed sm:relative top-[70px] z-[30] min-h-[300px] md:min-[400px] flex justify-center flex-col bg-[#000]`} 
     ref={containerRef}
     onMouseEnter={showControlsOnHover}
     onMouseMove={showControlsOnHover}
@@ -265,14 +273,12 @@ const CustomVideoPlayer = ({ data }) => {
           <img src={logo} alt="Zoom In Image" className="zoom-in-out-animation" />
         </div>
       )}
-      {showControls && <div className="flex justify-between play_btn absolute md:top-0 sm:top-[40px] z-10 left-0 w-full h-full flex justify-center items-center px-[50px]">
-          {/* Replace zoomInImage with the URL of your zooming in image */}
+      {showControls && !controls && <div className="flex justify-between play_btn absolute md:top-0 sm:top-[40px] z-10 left-0 w-full h-full flex justify-center items-center px-[50px]">
           <button
             className="text-white rounded-[50%]"
             onClick={handleRewind}
           >
-            {/* <FontAwesomeIcon icon="pause" size={`${window.innerWidth>500? '3x' : '2x'}`} /> */}
-            <i className={`fa-solid fa-backward fa-2x lg:fa-3x `}></i>
+            <i className={`fa-solid fa-rotate-left fa-2x lg:fa-3x `}></i>
 
           </button>
           <button
@@ -285,21 +291,21 @@ const CustomVideoPlayer = ({ data }) => {
             className="text-white rounded-[50%] flex"
             onClick={handleFastForward}
           >
-            <i className={`fa-solid fa-forward fa-2x lg:fa-3x`}></i>
-            {/* <FontAwesomeIcon icon="forward" size={`${window.innerWidth>500? '3x' : '2x'}`} /> */}
+            <i className={`fa-solid fa-rotate-right fa-2x lg:fa-3x`}></i>
           </button>
         </div>}
-      {showControls && <div className="absolute inset-0 bg-black opacity-50"></div>}
+      {showControls && !controls && <div className="absolute inset-0 bg-black opacity-50"></div>}
       <div className='flex items-center'>
         <ReactPlayer
           ref={videoRef}
           url={data.videolink}
           playing={isPlaying}
           muted={isMuted}
+          playsinline={true}
           volume={volume}
-          controls={false} // Hide the default controls
+          controls={controls} // Hide the default controls
           width="100%"
-          height={`${window.innerWidth < 1000 ? 'auto': '80vh'}`}
+          height={`${window.innerWidth < 1024 ? 'auto': '80vh'}`}
           preload="auto"
           onProgress={handleProgress}
           onDuration={handleDuration}
@@ -309,7 +315,7 @@ const CustomVideoPlayer = ({ data }) => {
         />
       </div>
 
-      {showControls && <div className="sm:w-[90%] mx-auto absolute sm:bottom-10 bottom-6 left-4 right-4 z-20 flex flex-col">
+      {showControls && !controls && <div className="sm:w-[90%] mx-auto absolute sm:bottom-10 bottom-6 left-4 right-4 z-20 flex flex-col">
         <div>
         <input
             type="range"
@@ -374,6 +380,23 @@ const CustomVideoPlayer = ({ data }) => {
       </div>}
       <Rate handleClose={handleClose} open={open}/>
       <SharePop data={data} open={openShare} handleClose={handleCloseShare}/>
+    </div>
+    <div
+      className={`min-h-[300px] md:min-[400px] video_container w-full opacity-0 flex justify-center flex-col sm:hidden bg-[#000]`} 
+      >
+      <div className='flex items-center'>
+        <ReactPlayer
+          url={data.videolink}
+          playing={false}
+          muted={true}
+          playsinline={true}
+          volume={0}
+          controls={false} // Hide the default controls
+          width="100%"
+          height={`${window.innerWidth < 1024 ? 'auto': '80vh'}`}
+        />
+      </div>
+    </div>
     </div>
   );
 };

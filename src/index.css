@@ -23,6 +23,10 @@
   --toastify-color-success:#FF8CFF;
   --toastify-color-light: #800080;
 }
+*{
+  margin: 0;
+  padding: 0;
+}
 h1,h2, h3, h4, h5,h6, textarea{
   font-family: 'Goemetric-415-Black-BT', sans-serif;
 }

@@ -50,6 +50,7 @@ function App() {
             },
           });
           const videoData = await videoResponse.json();
+          console.log(videoData);
           const filteredVideos = videoData.filter(video => video.is_published);
           return { genre, videos: filteredVideos };
         });
@@ -77,7 +78,7 @@ function App() {
 
 
   return (
-    <div className="overflow-x-hidden min-h-screen">
+    <div className="overflow-x-hidden min-h-screen bg-[#180018]">
         <ToastContainer
           position="top-center"
           autoClose={5000}

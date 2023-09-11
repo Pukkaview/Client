@@ -60,6 +60,23 @@ const PlayVideo = () => {
 
     fetchVideoUrl();
   }, [id]);
+  const [divHeight, setDivHeight] = useState(0);
+
+  const updateDivHeight = () => {
+    if (divRef.current) {
+      const height = divRef.current.offsetHeight;
+      setDivHeight(height);
+    }
+  };
+
+  useEffect(() => {
+    updateDivHeight();
+    window.addEventListener('resize', updateDivHeight);
+
+    return () => {
+      window.removeEventListener('resize', updateDivHeight);
+    };
+  }, [data]);
   return (
       <div className={`${marquee ? '' : 'play_page'} bg-[#180018]`}>
         <Navbar/>

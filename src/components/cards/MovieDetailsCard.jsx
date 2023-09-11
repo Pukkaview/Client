@@ -42,8 +42,8 @@ export default function MovieDetailCard({open, handleClose, data}) {
                   </div>
                 </div>
                 <div className='z-10'>
-                  <h2 className='uppercase sm:text-[24px] text-[16px] font-[700]'>{data.title}</h2>
-                  <p className='sm:text-[16px] text-[12px]'>{data.plot}</p>
+                  {data.title &&<h2 className='uppercase sm:text-[24px] text-[16px] font-[700]'>{data.title.length > 60 ? `${data.title.slice(0, 10)}...` : data.title}</h2>}
+                  {data.plot && <p className='sm:text-[16px] text-[12px]'>{data.plot.length > 200 ? `${data.plot.slice(0, 200)}...` : data.plot}</p>}
                 </div>
                 <div className='flex gap-[50px] z-10'>
                 <Link to={`/play/${data.id}-${data.title}`}>
