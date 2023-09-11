@@ -100,7 +100,9 @@ const CustomVideoPlayer = ({ data }) => {
     setIsPlaying((prevIsPlaying) => !prevIsPlaying);
   };
 //  Event listener for space key press
+  const [playInLine, setPlayInLine] = useState(true)
  useEffect(() => {
+  setPlayInLine(!playInLine)
   const handleKeyPress = (event) => {
     if (event.code === 'Space' && !localStorage.getItem('open') && isFullScreen) {
       event.preventDefault();
@@ -302,7 +304,7 @@ const CustomVideoPlayer = ({ data }) => {
           url={data.videolink}
           playing={isPlaying}
           muted={isMuted}
-          playsinline={true}
+          playsinline={playInLine}
           volume={volume}
           controls={false} // Hide the default controls
           width="100%"

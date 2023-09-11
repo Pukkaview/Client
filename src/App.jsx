@@ -50,6 +50,7 @@ function App() {
             },
           });
           const videoData = await videoResponse.json();
+          console.log(videoData);
           const filteredVideos = videoData.filter(video => video.is_published);
           return { genre, videos: filteredVideos };
         });
