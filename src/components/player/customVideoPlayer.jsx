@@ -304,7 +304,7 @@ const CustomVideoPlayer = ({ data }) => {
           muted={isMuted}
           playsinline={true}
           volume={volume}
-          controls={false} // Hide the default controls
+          controls={true} // Hide the default controls
           width="100%"
           height={`${window.innerWidth < 1024 ? 'auto': '80vh'}`}
           preload="auto"
@@ -316,7 +316,7 @@ const CustomVideoPlayer = ({ data }) => {
         />
       </div>
 
-      {showControls && <div className="sm:w-[90%] mx-auto absolute sm:bottom-10 bottom-6 left-4 right-4 z-20 flex flex-col">
+      {/* {showControls && <div className="sm:w-[90%] mx-auto absolute sm:bottom-10 bottom-6 left-4 right-4 z-20 flex flex-col">
         <div>
         <input
             type="range"
@@ -378,7 +378,7 @@ const CustomVideoPlayer = ({ data }) => {
             </button>
           </div>
         </div>
-      </div>}
+      </div>} */}
       <Rate handleClose={handleClose} open={open}/>
       <SharePop data={data} open={openShare} handleClose={handleCloseShare}/>
     </div>
