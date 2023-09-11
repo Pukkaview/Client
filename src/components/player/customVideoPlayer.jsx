@@ -29,6 +29,7 @@ const CustomVideoPlayer = ({ data }) => {
   const [open, setOpen] = useState(false)
   const [popped, setPopped] = useState(false)
   const [openShare, setOpenShare] = useState(false)
+  const [controls, setControls] = useState(true)
   const handleClose = () => {
     setOpen(false)
     localStorage.removeItem('open')
@@ -47,6 +48,7 @@ const CustomVideoPlayer = ({ data }) => {
   };
   useEffect(() => {
     if (screenfull.isEnabled) {
+      setControls(false)
       screenfull.on('change', handleFullscreenChange);
     }
 
@@ -271,7 +273,7 @@ const CustomVideoPlayer = ({ data }) => {
           <img src={logo} alt="Zoom In Image" className="zoom-in-out-animation" />
         </div>
       )}
-      {/* {showControls && <div className="flex justify-between play_btn absolute md:top-0 sm:top-[40px] z-10 left-0 w-full h-full flex justify-center items-center px-[50px]">
+      {showControls && !controls && <div className="flex justify-between play_btn absolute md:top-0 sm:top-[40px] z-10 left-0 w-full h-full flex justify-center items-center px-[50px]">
           <button
             className="text-white rounded-[50%]"
             onClick={handleRewind}
@@ -291,8 +293,8 @@ const CustomVideoPlayer = ({ data }) => {
           >
             <i className={`fa-solid fa-forward fa-2x lg:fa-3x`}></i>
           </button>
-        </div>} */}
-      {/* {showControls && <div className="absolute inset-0 bg-black opacity-50"></div>} */}
+        </div>}
+      {showControls && !controls && <div className="absolute inset-0 bg-black opacity-50"></div>}
       <div className='flex items-center'>
         <ReactPlayer
           ref={videoRef}
@@ -301,7 +303,7 @@ const CustomVideoPlayer = ({ data }) => {
           muted={isMuted}
           playsinline={true}
           volume={volume}
-          controls={true} // Hide the default controls
+          controls={controls} // Hide the default controls
           width="100%"
           height={`${window.innerWidth < 1024 ? 'auto': '80vh'}`}
           preload="auto"
@@ -313,7 +315,7 @@ const CustomVideoPlayer = ({ data }) => {
         />
       </div>
 
-      {/* {showControls && <div className="sm:w-[90%] mx-auto absolute sm:bottom-10 bottom-6 left-4 right-4 z-20 flex flex-col">
+      {showControls && !controls && <div className="sm:w-[90%] mx-auto absolute sm:bottom-10 bottom-6 left-4 right-4 z-20 flex flex-col">
         <div>
         <input
             type="range"
@@ -375,7 +377,7 @@ const CustomVideoPlayer = ({ data }) => {
             </button>
           </div>
         </div>
-      </div>} */}
+      </div>}
       <Rate handleClose={handleClose} open={open}/>
       <SharePop data={data} open={openShare} handleClose={handleCloseShare}/>
     </div>
