@@ -156,6 +156,7 @@ const CustomVideoPlayer = ({ data }) => {
   };
 
   const handleFullscreen = () => {
+    setPlayInLine(!playInLine)
     if (screenfull.isEnabled) {
       screenfull.toggle(containerRef.current);
     }
