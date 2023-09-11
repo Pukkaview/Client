@@ -37,21 +37,21 @@ export default function MovieDescription({data}) {
   }
   return (
     <div>
-    <div className='flex justify-between lg:mt-[85vh] md:mt-[40vh] md:px-[59px] px-[20px] mx-auto'>
+    <div className='flex justify-between mt-[90px] md:px-[59px] px-[20px] mx-auto'>
       <div className="flex flex-col gap-[10px] items-start w-full">
         <div className='flex justify-between w-full'>
-          <span className="sm:px-[30px] px-[10px] py-[5px] rounded-[5px] bg-accent3 text-black sm:text-[16px] text-[16px]">{data.genre}</span>
-          <div className='flex gap-[20px] items-start'>
+          <span className="sm:px-[30px] px-[10px] py-[5px] rounded-[5px] bg-accent3 text-black sm:text-[16px] text-[14px]">{data.genre}</span>
+          <div className='flex sm:gap-[20px] gap-[5px] items-start'>
           <button className="flex items-center justify-between gap-[10px] p-2 rounded cursor-pointer bg-[#FFEEFF] text-[#180018] font-bold border-0 outline-none rounded-md px-4" onClick={() => handleLike(video.id)}>
-            <img src={like}  alt="" className="cursor-pointer h-[24px]"/>
-            <span className='text-[#000]'>{video.likes} {video.likes > 1 ? 'likes' : 'like'}</span>
+            <img src={like}  alt="" className="cursor-pointer sm:h-[24px] h-[16px]"/>
+            <span className='text-[#000] sm:text-[16px] text-[12px]'>{video.likes} {video.likes > 1 ? 'likes' : 'like'}</span>
           </button>
       <div>
         <ShareBtnV2 data={data} hideText={true} handleOpen={handleOpenShare}/>
       </div>
       </div>
       </div>
-      <div className='flex flex-col gap-[10px] items-start max-w-[800px]'>
+      <div className='flex flex-col sm:gap-[10px] gap-[5px] items-start max-w-[800px]'>
         <h2 className='sm:text-[32px] text-[24px] font-[500] leading-none text-text-color' >{data.title}</h2>
         <span className="text-[14px] text-text-color"><b>Year:</b> {data.year}</span>
         <div className='flex justify-between w-full'>
