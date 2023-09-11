@@ -271,13 +271,11 @@ const CustomVideoPlayer = ({ data }) => {
           <img src={logo} alt="Zoom In Image" className="zoom-in-out-animation" />
         </div>
       )}
-      {showControls && <div className="flex justify-between play_btn absolute md:top-0 sm:top-[40px] z-10 left-0 w-full h-full flex justify-center items-center px-[50px]">
-          {/* Replace zoomInImage with the URL of your zooming in image */}
+      {/* {showControls && <div className="flex justify-between play_btn absolute md:top-0 sm:top-[40px] z-10 left-0 w-full h-full flex justify-center items-center px-[50px]">
           <button
             className="text-white rounded-[50%]"
             onClick={handleRewind}
           >
-            {/* <FontAwesomeIcon icon="pause" size={`${window.innerWidth>500? '3x' : '2x'}`} /> */}
             <i className={`fa-solid fa-backward fa-2x lg:fa-3x `}></i>
 
           </button>
@@ -292,10 +290,9 @@ const CustomVideoPlayer = ({ data }) => {
             onClick={handleFastForward}
           >
             <i className={`fa-solid fa-forward fa-2x lg:fa-3x`}></i>
-            {/* <FontAwesomeIcon icon="forward" size={`${window.innerWidth>500? '3x' : '2x'}`} /> */}
           </button>
-        </div>}
-      {showControls && <div className="absolute inset-0 bg-black opacity-50"></div>}
+        </div>} */}
+      {/* {showControls && <div className="absolute inset-0 bg-black opacity-50"></div>} */}
       <div className='flex items-center'>
         <ReactPlayer
           ref={videoRef}
