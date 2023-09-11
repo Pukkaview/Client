@@ -261,7 +261,7 @@ const CustomVideoPlayer = ({ data }) => {
   return (
     <div>
     <div
-    className={`video_container w-full fixed top-[70px] z-[30] min-h-[300px] md:min-[400px] flex justify-center flex-col bg-[#000]`} 
+    className={`video_container w-full fixed sm:relative top-[70px] z-[30] min-h-[300px] md:min-[400px] flex justify-center flex-col bg-[#000]`} 
     ref={containerRef}
     onMouseEnter={showControlsOnHover}
     onMouseMove={showControlsOnHover}
@@ -278,7 +278,7 @@ const CustomVideoPlayer = ({ data }) => {
             className="text-white rounded-[50%]"
             onClick={handleRewind}
           >
-            <i className={`fa-solid fa-backward fa-2x lg:fa-3x `}></i>
+            <i className={`fa-solid fa-rotate-left fa-2x lg:fa-3x `}></i>
 
           </button>
           <button
@@ -291,7 +291,7 @@ const CustomVideoPlayer = ({ data }) => {
             className="text-white rounded-[50%] flex"
             onClick={handleFastForward}
           >
-            <i className={`fa-solid fa-forward fa-2x lg:fa-3x`}></i>
+            <i className={`fa-solid fa-rotate-right fa-2x lg:fa-3x`}></i>
           </button>
         </div>}
       {showControls && !controls && <div className="absolute inset-0 bg-black opacity-50"></div>}
@@ -382,7 +382,7 @@ const CustomVideoPlayer = ({ data }) => {
       <SharePop data={data} open={openShare} handleClose={handleCloseShare}/>
     </div>
     <div
-      className={`min-h-[300px] md:min-[400px] video_container w-full opacity-0 flex justify-center flex-col bg-[#000]`} 
+      className={`min-h-[300px] md:min-[400px] video_container w-full opacity-0 flex justify-center flex-col sm:hidden bg-[#000]`} 
       >
       <div className='flex items-center'>
         <ReactPlayer

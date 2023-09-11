@@ -9,22 +9,27 @@ const MovieCardPlay = ({ title, content, backgroundColor, img, id, playIcon }) =
     <Link to={`/play/${id}`} >
       <div
         style={cardStyle}
-        className="cursor-pointer justify-start border-0 rounded-xl gap-[21px] flex hover:bg-accent3 transition duration-300 h-[150px]"
+        className="cursor-pointer justify-start border-0 rounded-xl gap-[21px] flex hover:bg-accent3 transition duration-300 sm:h-[150px] h-[100px]"
       >
-        <div style={{
-        backgroundImage: `url(${encodeURI(img)})`,
+        <div className=" relative z-10 sm:w-[30%] w-[40%] justify-center items-center flex rounded-l-xl bg-cover bg-no-repeat ">
+        <img className='h-full w-full absolute z-[-2]' src={encodeURI(img)} alt="" />
         
-      }}  className="w-[30%] justify-center items-center flex bg-movieCardBg rounded-l-xl bg-cover bg-no-repeat ">
           {playIcon && <div className="">
             <img src={Play} alt="" />
           </div>}
         </div>
-        <div className=" flex-col w-[70%]  justify-start items-start gap-2 flex">
-          <div className="text-fuchsia-50 sm:text-[24px] text-[18px] font-normal leading-normal">
-            <h3 className="">{title.length > 60 ? `${title.slice(0, 60)}...` : title}</h3>
+        <div className=" flex-col sm:w-[70%] w-[60%]  justify-start items-start gap-2 flex py-[10px]">
+          <div className="hidden sm:flex text-fuchsia-50 sm:text-[24px] text-[18px] font-normal leading-normal">
+            <h3 className="leading-none">{title.length > 60 ? `${title.slice(0, 60)}...` : title}</h3>
           </div>
-          <div className="text-fuchsia-50  md:text-[14px] text-[12px] pb-3 font-bold">
+          <div className="sm:hidden flex text-fuchsia-50 sm:text-[24px] text-[18px] font-normal leading-normal">
+            <h3 className="leading-none">{title.length > 40 ? `${title.slice(0, 40)}...` : title}</h3>
+          </div>
+          <div className="hidden sm:flex text-fuchsia-50  md:text-[14px] text-[12px] pb-3 font-bold">
             <p>{content.length > 200 ? `${content.slice(0, 200)}...` : content}</p>
+          </div>
+          <div className="sm:hidden flex text-fuchsia-50  md:text-[14px] text-[12px] pb-3 font-bold">
+            <p>{content.length > 50 ? `${content.slice(0, 50)}...` : content}</p>
           </div>
         </div>
       </div>
