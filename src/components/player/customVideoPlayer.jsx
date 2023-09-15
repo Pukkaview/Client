@@ -30,6 +30,10 @@ const CustomVideoPlayer = ({ data }) => {
   const [popped, setPopped] = useState(false)
   const [openShare, setOpenShare] = useState(false)
   const [controls, setControls] = useState(true)
+  useEffect(()=> {
+    localStorage.setItem('viewed', ids)
+    setIds(localStorage.getItem('viewed'))
+  }, [ids])
   const handleClose = () => {
     setOpen(false)
     localStorage.removeItem('open')
@@ -145,6 +149,9 @@ const CustomVideoPlayer = ({ data }) => {
         handleVideoHalfway();
       // Call your function here
     }
+    if(state.played >= 0.2 && state.played <= 0.3){
+      handleView(data.id)
+    }
     // localStorage.setItem('videoProgress', playedProgress);
   };
   const handleVideoHalfway = () => {
@@ -236,12 +243,13 @@ const CustomVideoPlayer = ({ data }) => {
       setIsPlaying(false);
     };
 
-    const handleLike = async(id) => {
+    const handleView = async(id) => {
+      console.log('counting');
       if(ids.includes(id)) return
       setIds((prev) => [...prev, id])
-      dispatch({type:"LIKE_VIDEO", payload: id})
+      console.log('counted');
       try {
-        const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/${id}/like/`, {
+        const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/${id}/views/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

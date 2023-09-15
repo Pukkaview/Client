@@ -3,6 +3,7 @@ import share from '../../assets/share.svg'
 import ShareCard from '../cards/shareCard';
 import './button.css'
 import { Menu } from '@mui/material';
+import Fetcher from '../../utils/fetcher';
 export default function ShareBtn({data, hideText, handleOpen}) {
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -14,6 +15,7 @@ export default function ShareBtn({data, hideText, handleOpen}) {
   //   }
   // }, [])
   const handleShare = async () => {
+    handleShareCount(data.id)
     try {
       if (navigator.share) {
         setSupported(true)
@@ -30,7 +32,19 @@ export default function ShareBtn({data, hideText, handleOpen}) {
       console.error('Error sharing:', error);
     }
   };
-
+  const handleShareCount = async(id) => {
+    try {
+      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/${id}/shares/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (fetchResponse.failure) throw new Error(fetchResponse.message);
+    } catch (error) {
+      console.error('Error sharing:', error);
+    }
+  }
   return (
     <div className='flex items-center'>
     <button onClick={handleShare} className={`${supported ? 'flex lg:hidden' : 'hidden'} text-accent4 items-center gap-[5px] cursor-pointer`}>
