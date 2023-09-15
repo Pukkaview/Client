@@ -6,11 +6,26 @@ import whatsApp from '../../assets/whatsApp.png'
 import facebook from '../../assets/facebook.png'
 import twitter from '../../assets/twitter.png'
 import CopyButton from '../buttons/copyBtn';
+import Fetcher from '../../utils/fetcher';
 
 export default function ShareCard({ handleClose, data, width}) {
     const url = `https://pukkaview.vercel.app/play/${data.id}-${data.title}`
+    const handleShareCount = async(id) => {
+      try {
+        const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/${id}/shares/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (fetchResponse.failure) throw new Error(fetchResponse.message);
+      } catch (error) {
+        console.error('Error sharing:', error);
+      }
+    }
     const handleShare = (platform, url, title, imageUrl) => {
-  let shareText = '';
+      handleShareCount(data.id)
+    let shareText = '';
 
   switch (platform) {
     case 'twitter':
