@@ -6,7 +6,7 @@ const MovieCardPlay = ({ title, content, backgroundColor, img, id, playIcon }) =
     backgroundColor: backgroundColor || "",
   };
   return (
-    <Link to={`/play/${id}`} >
+    <Link to={`/play/${id}-${title}`} >
       <div
         style={cardStyle}
         className="cursor-pointer justify-start border-0 rounded-xl gap-[21px] flex hover:bg-accent3 transition duration-300 sm:h-[150px] h-[100px]"
