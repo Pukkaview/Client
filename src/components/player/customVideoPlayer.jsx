@@ -249,7 +249,7 @@ const CustomVideoPlayer = ({ data }) => {
       setIds((prev) => [...prev, id])
       console.log('counted');
       try {
-        const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/${id}/views/`, {
+        const fetchResponse = await Fetcher(`https://api.pukkaview.com/videoplayer/api/videos/${id}/views/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -50,7 +50,7 @@ export default function Navbar() {
       dispatch2({type: 'UPDATE_BY_NAME', payload:[]})
       dispatch2({type: 'LOADING', payload:true})
       dispatch2({type: 'ERROR', payload:false})
-      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/search-videos/?video_name=${e.target.value}`, {
+      const fetchResponse = await Fetcher(`https://api.pukkaview.com/videoplayer/api/search-videos/?video_name=${e.target.value}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

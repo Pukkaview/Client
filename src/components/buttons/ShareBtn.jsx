@@ -34,7 +34,7 @@ export default function ShareBtn({data, hideText, handleOpen}) {
   };
   const handleShareCount = async(id) => {
     try {
-      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/${id}/shares/`, {
+      const fetchResponse = await Fetcher(`https://api.pukkaview.com/videoplayer/api/videos/${id}/shares/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

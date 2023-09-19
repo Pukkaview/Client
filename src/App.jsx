@@ -28,7 +28,7 @@ function App() {
   useEffect(() => {
     const fetchGenres = async () => {
       try {
-        const response = await fetch("https://pukkaview.onrender.com/api/get-distinct-genres");
+        const response = await fetch("https://api.pukkaview.com/api/get-distinct-genres");
         const data = await response.json();
         dispatch({type: 'GET_GENRE_LIST', payload: data.genres})
       } catch (error) {
@@ -43,7 +43,7 @@ function App() {
     const fetchVideos = async () => {
       try {
         const genreVideosPromises = genreList.map(async genre => {
-          const videoResponse = await fetch(`https://pukkaview.onrender.com/videoplayer/api/search-videos/?genre=${genre}`, {
+          const videoResponse = await fetch(`https://api.pukkaview.com/videoplayer/api/search-videos/?genre=${genre}`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
