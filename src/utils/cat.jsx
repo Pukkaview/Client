@@ -3,7 +3,7 @@ import Fetcher from "./fetcher";
 
 const fetchComedy = async () => {
     try {
-      const fetchResponse = await Fetcher("https://pukkaview.onrender.com/videoplayer/api/search-videos/?genre=Comedy", {
+      const fetchResponse = await Fetcher("https://api.pukkaview.com/videoplayer/api/search-videos/?genre=Comedy", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -17,7 +17,7 @@ const fetchComedy = async () => {
   };
   const fetchAction = async () => {
     try {
-      const fetchResponse = await Fetcher("https://pukkaview.onrender.com/videoplayer/api/search-videos/?genre=Action", {
+      const fetchResponse = await Fetcher("https://api.pukkaview.com/videoplayer/api/search-videos/?genre=Action", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -31,7 +31,7 @@ const fetchComedy = async () => {
   };
   const fetchDrama = async () => {
     try {
-      const fetchResponse = await Fetcher("https://pukkaview.onrender.com/videoplayer/api/search-videos/?genre=Drama", {
+      const fetchResponse = await Fetcher("https://api.pukkaview.com/videoplayer/api/search-videos/?genre=Drama", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

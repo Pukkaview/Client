@@ -39,7 +39,7 @@ export default function Comment({videoId}) {
     e.preventDefault()
     setLoading(true)
     try {
-      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/${videoId}/addcomments/`, {
+      const fetchResponse = await Fetcher(`https://api.pukkaview.com/videoplayer/api/videos/${videoId}/addcomments/`, {
         method: "POST",
         body: JSON.stringify({
           comment

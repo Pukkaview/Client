@@ -42,7 +42,7 @@ export default function ReplyComment({id, open, handleClose, videoId}) {
     e.preventDefault()
     setLoading(true)
     try {
-      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/${videoId}/comment/${id}/reply/`, {
+      const fetchResponse = await Fetcher(`https://api.pukkaview.com/videoplayer/api/videos/${videoId}/comment/${id}/reply/`, {
         method: "POST",
         body: JSON.stringify({
           reply:comment

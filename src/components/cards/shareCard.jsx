@@ -12,7 +12,7 @@ export default function ShareCard({ handleClose, data, width}) {
     const url = `https://pukkaview.vercel.app/play/${data.id}-${data.title}`
     const handleShareCount = async(id) => {
       try {
-        const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/${id}/shares/`, {
+        const fetchResponse = await Fetcher(`https://api.pukkaview.com/videoplayer/api/videos/${id}/shares/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

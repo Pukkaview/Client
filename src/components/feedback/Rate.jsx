@@ -53,7 +53,7 @@ export default function Rate({open, handleClose }) {
     }
     setLoading(true)
     try {
-      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/forms/review-form/`, {
+      const fetchResponse = await Fetcher(`https://api.pukkaview.com/forms/review-form/`, {
         method: "POST",
         body: JSON.stringify({
           email,

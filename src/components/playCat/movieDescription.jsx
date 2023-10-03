@@ -24,7 +24,7 @@ export default function MovieDescription({data}) {
     setIds((prev) => [...prev, id])
     dispatch({type:"LIKE_VIDEO", payload: id})
     try {
-      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/${id}/like/`, {
+      const fetchResponse = await Fetcher(`https://api.pukkaview.com/videoplayer/api/videos/${id}/like/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
