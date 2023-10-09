@@ -31,9 +31,7 @@ function App() {
   useEffect(() => {
     const fetchGenres = async () => {
       try {
-        const response = await fetch(
-          "https://pukkaview.onrender.com/api/get-distinct-genres"
-        );
+        const response = await fetch("https://api.pukkaview.com/api/get-distinct-genres");
         const data = await response.json();
         dispatch({ type: "GET_GENRE_LIST", payload: data.genres });
       } catch (error) {
@@ -47,20 +45,16 @@ function App() {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const genreVideosPromises = genreList.map(async (genre) => {
-          const videoResponse = await fetch(
-            `https://pukkaview.onrender.com/videoplayer/api/search-videos/?genre=${genre}`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
+        const genreVideosPromises = genreList.map(async genre => {
+          const videoResponse = await fetch(`https://api.pukkaview.com/videoplayer/api/search-videos/?genre=${genre}`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+          });
           const videoData = await videoResponse.json();
-          const filteredVideos = videoData.filter(
-            (video) => video.is_published
-          );
+          console.log(videoData);
+          const filteredVideos = videoData.filter(video => video.is_published);
           return { genre, videos: filteredVideos };
         });
 
@@ -86,19 +80,20 @@ function App() {
   }, [genreList]);
 
   return (
-    <div className="overflow-x-hidden min-h-screen">
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />{" "}
-      <Rate open={open} handleClose={handleClose} />
+    <div className="overflow-x-hidden min-h-screen bg-[#180018]">
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          />
+      {" "}
+      <Rate open={open} handleClose={handleClose}/>
       {/* the min-h-[1000px] was used just to show how the navbar react on scroll. When there are contents available on each pages, it will be removed */}
       <ScrollToTop />
       <Routes>

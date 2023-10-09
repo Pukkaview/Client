@@ -27,12 +27,10 @@ export default function AllComments({videoId}) {
 
   useEffect(() => {
     if(comments){
-      console.log(comments);
       const sorted = comments.sort((a, b) => b.id - a.id)
       setSortedComments(sorted)
     }
   }, [comments])
-  console.log(show);
 
   const handleToggle=()=> {
     show ? setShow(false):setShow(true)
@@ -41,14 +39,13 @@ export default function AllComments({videoId}) {
     // Function to fetch the video URL
     const getComment = async () => {
       try {
-        const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/${videoId}/getcomments/`, {
+        const fetchResponse = await Fetcher(`https://api.pukkaview.com/videoplayer/api/videos/${videoId}/getcomments/`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
         });
         if (fetchResponse.failure) throw new Error(fetchResponse.message);
-        console.log(fetchResponse);
         dispatch({type:"GET_COMMENTS", payload: fetchResponse})
       } catch (error) {
         console.error('Error fetching video URL:', error);
@@ -63,32 +60,29 @@ export default function AllComments({videoId}) {
     setIds((prev) => [...prev, id])
     dispatch({type:"LIKE_COMMENT", payload: id})
     try {
-      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/${videoId}/comments/${id}/like/`, {
+      const fetchResponse = await Fetcher(`https://api.pukkaview.com/videoplayer/api/videos/${videoId}/comments/${id}/like/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
       });
       if (fetchResponse.failure) throw new Error(fetchResponse.message);
-      console.log(fetchResponse);
     } catch (error) {
       console.error('Error fetching video URL:', error);
     }
   }
   const likeReply = async(commentId, replyId) => {
-    console.log(commentId, replyId);
     if(ids.includes(replyId)) return
     setIds((pre) => [...pre, replyId])
     dispatch({type:"LIKE_REPLY", payload: {commentId, replyId}})
     try {
-      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/${videoId}/comments/${replyId}/like/`, {
+      const fetchResponse = await Fetcher(`https://api.pukkaview.com/videoplayer/api/videos/${videoId}/comments/${replyId}/like/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
       });
       if (fetchResponse.failure) throw new Error(fetchResponse.message);
-      console.log(fetchResponse);
     } catch (error) {
       console.error('Error fetching video URL:', error);
     }

@@ -39,7 +39,7 @@ const Form = () => {
     e.preventDefault()
     setLoading(true)
     try {
-      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/forms/contact/`, {
+      const fetchResponse = await Fetcher(`https://api.pukkaview.com/forms/contact/`, {
         method: "POST",
         body: JSON.stringify({
           name,
@@ -51,7 +51,6 @@ const Form = () => {
         },
       });
       if (fetchResponse.failure) throw new Error(fetchResponse.message);
-      console.log(fetchResponse);
       setLoading(false)
       handleSuccess(fetchResponse.message)
       setName('')

@@ -8,7 +8,7 @@ import twitter from '../../assets/twitter.png'
 import CopyButton from '../buttons/copyBtn';
 
 export default function SharePop({open, handleClose, data}) {
-    const url = `https://pukkaview.vercel.app/play/${data.id}`
+    const url = `https://pukkaview.vercel.app/play/${data.id}-${data.title}`
     const handleShare = (platform, url, title, imageUrl) => {
   let shareText = '';
 
@@ -38,8 +38,8 @@ export default function SharePop({open, handleClose, data}) {
     <div>
         <Dialog open={open} onClose={handleClose}>
             <DialogContent style={{padding:0}}>
-            <div className="flex flex-col sm:w-[464px] w-[310px] mx-auto bg-[#FEF] px-[24px] pb-[24px] pt-[35px] rounded-[10px] relative">
-            <div className='flex flex-col items-center w-full px-[46px]'>
+            <div className="flex flex-col sm:w-[464px] w-[350px] mx-auto bg-[#FEF] px-[20px] pb-[24px] pt-[35px] rounded-[10px] relative">
+            <div className='flex flex-col items-center w-full'>
                 <div className='flex justify-between w-full'>
                   <h2 className="text-[24px] text-[#000] mb-[22px]">Share</h2>
                   <img src={cancel} onClick={handleClose} alt="" className="h-[25px] cursor-pointer"  />
@@ -58,9 +58,14 @@ export default function SharePop({open, handleClose, data}) {
                     <span className='text-[#000] font-[500] text-[12px]'>Twitter</span>
                   </div>
                 </div>
-                <div className='mt-[20px] w-full flex justify-between bg-[#FFF] rounded-[10px] px-[23px] py-[10px]'>
-                  <span className='text-[#000]'>{url}</span>
+                <div className='mt-[20px] w-full flex bg-[#FFF] gap-[20px] rounded-[10px] px-[23px] py-[10px]'>
+                  <div className='w-[80%]'>
+
+                  <p className='text-[#000] overflow-auto whitespace-nowrap'>{url}</p>
+                  </div>
+                  <div className='w-[10%]'>
                   <CopyButton text={url}/>
+                  </div>
                 </div>
               </div>
             </div>

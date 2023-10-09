@@ -9,7 +9,6 @@ export default function Comment({videoId}) {
   const { dispatch }  = useContext(CommentContext)
   const [comment, setComment] = useState('')
   const [loading, setLoading] = useState(false)
-  // console.log(comment);
   const handleError = () => {
     setLoading(false);
     toast.dismiss();
@@ -40,7 +39,7 @@ export default function Comment({videoId}) {
     e.preventDefault()
     setLoading(true)
     try {
-      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/videoplayer/api/videos/${videoId}/addcomments/`, {
+      const fetchResponse = await Fetcher(`https://api.pukkaview.com/videoplayer/api/videos/${videoId}/addcomments/`, {
         method: "POST",
         body: JSON.stringify({
           comment
@@ -50,7 +49,6 @@ export default function Comment({videoId}) {
         },
       });
       if (fetchResponse.failure) throw new Error(fetchResponse.message);
-      console.log(fetchResponse);
       dispatch({type:"POST_COMMENT", payload: {...fetchResponse, replies:[], likes:0}})
       setLoading(false)
       handleSuccess()

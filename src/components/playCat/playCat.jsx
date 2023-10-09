@@ -13,10 +13,10 @@ export default function PlayCat({current}) {
   const [data, setData] = useState([])
   useEffect(() => {
     if(videos.length > 0 && current ){
-      const d = videos.filter(v => v.genre === current)
+      console.log(videos, current);
+      const d = videos.filter(v => current.includes(v.genre))
       console.log(d);
       setData(d[0].videos)
-      console.log(d[0].videos);
     }
   }, [videos, current])
   useEffect(() => {
@@ -48,7 +48,7 @@ export default function PlayCat({current}) {
       </div>}
       {data.length > 0 && <div className="flex flex-col gap-[20px]">
         {data.map((c, i)=> (
-        <MovieCardPlay key={c.id} id={c.id} title={c.title} content={c.plot} img={c.thumbnaillink} playIcon={i <2 ? true : false} />
+        <MovieCardPlay id={c.id} title={c.title} content={c.plot} img={c.thumbnaillink} playIcon={i <2 ? true : false} />
         ))}
       </div>}
     </div>

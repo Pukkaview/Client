@@ -6,11 +6,26 @@ import whatsApp from '../../assets/whatsApp.png'
 import facebook from '../../assets/facebook.png'
 import twitter from '../../assets/twitter.png'
 import CopyButton from '../buttons/copyBtn';
+import Fetcher from '../../utils/fetcher';
 
 export default function ShareCard({ handleClose, data, width}) {
-    const url = `https://pukkaview.vercel.app/play/${data.id}`
+    const url = `https://pukkaview.vercel.app/play/${data.id}-${data.title}`
+    const handleShareCount = async(id) => {
+      try {
+        const fetchResponse = await Fetcher(`https://api.pukkaview.com/videoplayer/api/videos/${id}/shares/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (fetchResponse.failure) throw new Error(fetchResponse.message);
+      } catch (error) {
+        console.error('Error sharing:', error);
+      }
+    }
     const handleShare = (platform, url, title, imageUrl) => {
-  let shareText = '';
+      handleShareCount(data.id)
+    let shareText = '';
 
   switch (platform) {
     case 'twitter':
@@ -59,6 +74,7 @@ export default function ShareCard({ handleClose, data, width}) {
                     <span className='text-[#000] font-[500] text-[12px]'>Twitter</span>
                   </div>
                 </div>
+
                 <div className='mt-[20px] flex justify-between bg-[#FFF] rounded-[10px] px-[23px] py-[10px]'>
                   <span className='text-[#000] sm:text-[14px] text-[12px]'>{url}</span>
                   <CopyButton text={url}/>

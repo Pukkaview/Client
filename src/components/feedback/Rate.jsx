@@ -34,7 +34,7 @@ export default function Rate({open, handleClose }) {
   };
   const handleSuccess = (message) => {
     setLoading(false);
-    setRatingSuccess(true)
+    
     toast.dismiss();
     toast.success(message, {
       position: "top-center",
@@ -48,23 +48,25 @@ export default function Rate({open, handleClose }) {
   };
 
   const handleReview = async(e) => {
-    e.preventDefault()
+    if(e){
+      e.preventDefault()
+    }
     setLoading(true)
     try {
-      const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/forms/api/review-form/`, {
+      const fetchResponse = await Fetcher(`https://api.pukkaview.com/forms/review-form/`, {
         method: "POST",
         body: JSON.stringify({
           email,
-          review
+          review_message:review,
+          rating
         }),
         headers: {
           "Content-Type": "application/json",
         },
       });
       if (fetchResponse.failure) throw new Error(fetchResponse.message);
-      console.log(fetchResponse);
       setLoading(false)
-      handleSuccess(fetchResponse.message)
+      handleSuccess('Review Submitted!')
       setEmail('')
       setReview('')
       handleClose()
@@ -76,39 +78,25 @@ export default function Rate({open, handleClose }) {
   };
 
   const handleRating = async() => {
-    setLoading(true)
     if(!rating){
       handleError('Please select a rating')
     }
     if(rating){
-      try {
-        const fetchResponse = await Fetcher(`https://pukkaview.onrender.com/forms/api/rate-form/`, {
-          method: "POST",
-          body: JSON.stringify({
-            rating
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        console.log(fetchResponse);
-        setLoading(false)
-        setRating('')
-        // handleClose()
-        handleSuccess(fetchResponse.message)
-      } catch (error) {
-        console.error('Error adding comment:', error);
-        setLoading(false)
-        handleError('Error!, Try again')
-      }
+      setRatingSuccess(true)
     }
   };
+  const handleSubmitOnClose = async () => {
+    if(rating){
+      handleReview()
+      console.log('yes');
+    }
+  }
   return (
     <div>
       <Dialog open={open}>
         <DialogContent style={{padding:0}}>
           <div className=" relative flex flex-col gap-[47px] bg-[#180018] sm:p-[36px] px-[15px] py-[30px] max-w-[600px] mx-auto">
-            <img className="absolute top-[10px] right-[10px] h-[32px] cursor-pointer" onClick={handleClose} src={cancel} alt="cancel" />
+            <img className="absolute top-[10px] right-[10px] h-[32px] cursor-pointer" onClick={() => {handleClose(); handleSubmitOnClose()}} src={cancel} alt="cancel" />
             <div className="flex flex-col justify-center items-center gap-[30px] max-w-[350px] mx-auto">
               <img src={logo} alt="logo" />
               {!ratingSuccess && <h2 className="sm:text-[18px] text-[16px] text-center text-text-color">We are tying our best to serve you better with awesome updates</h2>}
@@ -117,45 +105,45 @@ export default function Rate({open, handleClose }) {
             {!ratingSuccess &&<div className="flex flex-col gap-[30px]">
             <h2 className="text-[18px] text-text-color">Rate Platform</h2>
             <div className="flex sm:gap-[25px] gap-[10px] text-text-color">
-              <div className="flex flex-col gap-[10px] cursor-pointer" onClick={() => setRating('awful')}>
+              <div className="flex flex-col gap-[10px] cursor-pointer" onClick={() => setRating('Awful')}>
                 <img className="sm:h-[45px] h-[30px] w-[30px] sm:w-[45px]" src={angry} alt="awful" />
                 <div className="flex gap-[5px] items-center">
-                  <div className={`sm:h-[23px] h-[14px] sm:w-[23px] w-[14px] rounded-[50%] border border-text-color ${rating === 'awful' ? 'bg-primary': ''}`}></div>
+                  <div className={`sm:h-[23px] h-[14px] sm:w-[23px] w-[14px] rounded-[50%] border border-text-color ${rating === 'Awful' ? 'bg-primary': ''}`}></div>
                   <span className="sm:text-[14px] text-[12px]">Awful</span>
                 </div>
               </div>
-              <div className="flex flex-col gap-[10px] cursor-pointer" onClick={() => setRating('bad')}>
+              <div className="flex flex-col gap-[10px] cursor-pointer" onClick={() => setRating('Bad')}>
                 <img className="sm:h-[45px] h-[30px] w-[30px] sm:w-[45px]" src={sad} alt="bad"  />
                 <div className="flex gap-[5px] items-center">
-                  <div className={`sm:h-[23px] h-[14px] sm:w-[23px] w-[14px] rounded-[50%] border border-text-color ${rating === 'bad' ? 'bg-primary': ''}`}></div>
+                  <div className={`sm:h-[23px] h-[14px] sm:w-[23px] w-[14px] rounded-[50%] border border-text-color ${rating === 'Bad' ? 'bg-primary': ''}`}></div>
                   <span className="sm:text-[14px] text-[12px]">Bad</span>
                 </div>
               </div>
-              <div className="flex flex-col gap-[10px] cursor-pointer" onClick={() => setRating('okay')}>
+              <div className="flex flex-col gap-[10px] cursor-pointer" onClick={() => setRating('Okay')}>
                 <img className="sm:h-[45px] h-[30px] w-[30px] sm:w-[45px]" src={okay} alt="okay" />
                 <div className="flex gap-[5px] items-center">
-                  <div className={`sm:h-[23px] h-[14px] sm:w-[23px] w-[14px] rounded-[50%] border border-text-color ${rating === 'okay' ? 'bg-primary': ''}`}></div>
+                  <div className={`sm:h-[23px] h-[14px] sm:w-[23px] w-[14px] rounded-[50%] border border-text-color ${rating === 'Okay' ? 'bg-primary': ''}`}></div>
                   <span className="sm:text-[14px] text-[12px]">Okay</span>
                 </div>
               </div>
-              <div className="flex flex-col gap-[10px] cursor-pointer" onClick={() => setRating('satisfied')}>
+              <div className="flex flex-col gap-[10px] cursor-pointer" onClick={() => setRating('Satisfied')}>
                 <img className="sm:h-[45px] h-[30px] w-[30px] sm:w-[45px]" src={satisfied} alt="satisfied" />
                 <div className="flex gap-[5px] items-center">
-                  <div className={`sm:h-[23px] h-[14px] sm:w-[23px] w-[14px] rounded-[50%] border border-text-color ${rating === 'satisfied' ? 'bg-primary': ''}`}></div>
+                  <div className={`sm:h-[23px] h-[14px] sm:w-[23px] w-[14px] rounded-[50%] border border-text-color ${rating === 'Satisfied' ? 'bg-primary': ''}`}></div>
                   <span className="sm:text-[14px] text-[12px]">Satisfied</span>
                 </div>
               </div>
-              <div className="flex flex-col gap-[10px] cursor-pointer" onClick={() => setRating('extremely_satisfied')}>
+              <div className="flex flex-col gap-[10px] cursor-pointer" onClick={() => setRating('Extremely Satisfied')}>
                 <img className="sm:h-[45px] h-[30px] w-[30px] sm:w-[45px]" src={okay} alt="ex_satisfied" />
                 <div className="flex gap-[5px] items-center">
-                  <div className={`sm:h-[23px] h-[14px] sm:w-[23px] w-[14px] rounded-[50%] border border-text-color ${rating === 'extremely_satisfied' ? 'bg-primary': ''}`}></div>
+                  <div className={`sm:h-[23px] h-[14px] sm:w-[23px] w-[14px] rounded-[50%] border border-text-color ${rating === 'Extremely Satisfied' ? 'bg-primary': ''}`}></div>
                   <span className="sm:text-[14px] text-[12px]">Extremely Satisfied</span>
                 </div>
               </div>
             </div>
             </div>}
             {!ratingSuccess && <div>
-            <button disabled={loading} onClick={handleRating} className='w-[150px] px-[18px] sm:px-[29px] py-[18px] bg-primary hover:bg-accent2 transition duration-300 ease-in-out cursor-pointer flex sm:gap-[19px] gap-[10px] justify-center rounded-[10px] mt-[20px]'>
+            <button onClick={handleRating} className='w-[150px] px-[18px] sm:px-[29px] py-[18px] bg-primary hover:bg-accent2 transition duration-300 ease-in-out cursor-pointer flex sm:gap-[19px] gap-[10px] justify-center rounded-[10px] mt-[20px]'>
               <span className='text-text-color sm:text-[16px] text-[14px] font-[Goemetric-415-Black-BT]'>{loading ?<i className="fa-solid fa-circle-notch fa-spin fa-lg " style={{ animationDuration: "1s" }}></i> :'Drop Review'}</span>
               </button>
             </div>}
