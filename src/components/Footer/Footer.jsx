@@ -14,10 +14,15 @@ const Footer = () => {
           <img className="md:h-[60px] h-[35px]" src={logo} alt="" />
         </div>
         <div className="justify-center items-center gap-[45px] flex sm:mt-4 mt-2">
-          <a href="https://www.tiktok.com/@pukkaview" className="" target="_blank">
-            <img src={tiktok} alt=""/>
+          <a
+            href="https://www.tiktok.com/@pukkaview"
+            className=""
+            target="_blank">
+            <img src={tiktok} alt="" />
           </a>
-          <a href="https://www.facebook.com/profile.php?id=61550654324608" target="_blank">
+          <a
+            href="https://www.facebook.com/profile.php?id=61550654324608"
+            target="_blank">
             <img src={facebook} alt="" />
           </a>
           <a href="https://twitter.com/pukkaview" className="">
@@ -29,10 +34,10 @@ const Footer = () => {
         </div>
         <div className="flex items-center mt-4 gap-4  md:gap-[196px] justify-center">
           <div className=" h-4 text-center text-fuchsia-50 text-[10px] md:text-[14px] font-medium leading-none">
-            <Link to="/contact">Cookie Preferences</Link>
+            <Link to="/privacy">Privacy policy</Link>
           </div>
           <div className=" h-4 text-center text-fuchsia-50 text-[10px] md:text-[14px] md:mr-16 font-medium leading-none">
-            <Link to="/contact">Terms of Use</Link>
+            <Link to="/terms">Terms of Use</Link>
           </div>
           <div className="cursor-pointer  h-4  text-center text-fuchsia-50 text-[10px] md:text-[14px] font-medium leading-none">
             <Link to="/contact">Contact Us</Link>
