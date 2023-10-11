@@ -151,3 +151,8 @@ input[type="range"]::-ms-thumb {
 .Toastify__toast-body > div:last-child{
   color:#fff;
 }
+
+.hide-disclaimer {
+  display: none;
+}
+
