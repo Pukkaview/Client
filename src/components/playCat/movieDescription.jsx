@@ -6,6 +6,7 @@ import { useState } from 'react'
 import like from '../../assets/like-dark.svg'
 import ShareBtnV2 from '../buttons/shareBtnV2'
 import SharePop from '../cards/sharePop'
+import Disclaimer from '../Disclaimer/Disclaimer'
 
 
 export default function MovieDescription({data}) {
@@ -37,7 +38,9 @@ export default function MovieDescription({data}) {
   }
   return (
     <div>
-    <div className='flex justify-between mt-[90px] md:px-[59px] px-[20px] mx-auto'>
+      
+    <div className='flex justify-between flex-col mt-[90px] md:px-[59px] px-[20px] mx-auto'>
+      <Disclaimer/>
       <div className="flex flex-col gap-[10px] items-start w-full">
         <div className='flex justify-between w-full'>
           <span className="sm:px-[30px] px-[10px] py-[5px] rounded-[5px] bg-accent3 text-black sm:text-[16px] text-[14px]">{data.genre}</span>
