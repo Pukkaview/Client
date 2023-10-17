@@ -1,7 +1,6 @@
 const Disclaimer = () => {
-  console.log("Disclaimer component rendered");
   return (
-    <div className="bg-[#490049] text-white p-2 mb-6 px-9">
+    <div className="bg-[#490049] text-white md:px-[59px] py-[15px] px-[20px]">
       <h1 className=" text-white">Disclaimer:</h1>
       <p className="text-sm md:text-md">
         Pukkaview do not own the rights to this video; all credit and ownership
