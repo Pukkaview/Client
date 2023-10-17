@@ -83,7 +83,7 @@ const PlayVideo = () => {
         <Navbar/>
         {!search && <>
           <CustomVideoPlayer data={data}/>
-          <div className='mt-[100px]'>
+          <div className='mt-[75px]'>
           <Disclaimer/>
           </div>
           <MovieDescription data={data}/>
