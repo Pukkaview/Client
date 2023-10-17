@@ -1,6 +1,6 @@
 const Disclaimer = () => {
   return (
-    <div className="bg-[#490049] text-white md:px-[59px] py-[15px] px-[20px]">
+    <div className="bg-[#490049] text-white md:px-[59px] md:mb-0 mb-[15px] py-[15px] px-[20px]">
       <h1 className=" text-white">Disclaimer:</h1>
       <p className="text-sm md:text-md">
         Pukkaview do not own the rights to this video; all credit and ownership
