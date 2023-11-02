@@ -1,5 +1,6 @@
 {
   "name": "pukkaview",
+  "homepage": "https://pukkaview.com",
   "private": true,
   "version": "0.0.0",
   "type": "module",
