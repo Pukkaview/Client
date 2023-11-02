@@ -6,6 +6,7 @@ import './moviecards.css'
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import logo from "../../assets/logoP.svg";
+import placeholder from "../../assets/placeholder.png";
 import ShareCard from './shareCard';
 
 
@@ -74,6 +75,7 @@ export default function MovieCard({data, playIcon}) {
       onMouseLeave={handleMouseLeave}
         className={`moviecard relative sm:h-[219px] phone-sm:h-[180px] h-[180px] lg:hover:h-[322px] duration-300 ease-in-out hover:lg:z-20 sm:rounded-[15px] rounded-[5px] flex justify-end items-center overflow-hidden`}>
         <img className='h-full w-full absolute z-[-2]' src={encodeURI(data.thumbnaillink)} alt="" />
+        <img className='h-full w-full absolute z-[-3]' src={placeholder} alt="" />
         <img className='absolute z-[0] top-[10px] left-[10px] h-[20px]' src={logo} alt="" />
         {playIcon && <Link to={`/play/${data.id}`} className='play absolute top-[40%] left-[40%] cursor-pointer z-10 '>
           <PlayBtn/>
@@ -121,6 +123,7 @@ export default function MovieCard({data, playIcon}) {
       onMouseLeave={handleMouseLeave}
         className={`moviecard relative sm:h-[219px] phone-sm:h-[180px] h-[140px] lg:hover:h-[322px] duration-300 ease-in-out hover:lg:z-20 sm:rounded-[15px] rounded-[5px] flex justify-end items-center overflow-hidden`}>
         <img className='h-full w-full absolute z-[-2]' src={encodeURI(data.thumbnaillink)} alt="" />
+        <img className='h-full w-full absolute z-[-3]' src={placeholder} alt="" />
         <img className='absolute z-[0] top-[10px] left-[10px] h-[20px]' src={logo} alt="" />
         {playIcon && <Link to={`/play/${data.id}-${data.title}`} className='play absolute top-[40%] left-[40%] cursor-pointer z-10 '>
           <PlayBtn/>
