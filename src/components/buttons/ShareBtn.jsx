@@ -4,7 +4,7 @@ import ShareCard from '../cards/shareCard';
 import './button.css'
 import { Menu } from '@mui/material';
 import Fetcher from '../../utils/fetcher';
-export default function ShareBtn({data, hideText, handleOpen}) {
+export default function ShareBtn({data, hideText, handleOpen, textSize}) {
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [supported, setSupported] = useState(true) 
@@ -48,12 +48,12 @@ export default function ShareBtn({data, hideText, handleOpen}) {
   return (
     <div className='flex items-center'>
     <button onClick={handleShare} className={`${supported ? 'flex lg:hidden' : 'hidden'} text-accent4 items-center gap-[5px] cursor-pointer`}>
-      <img className='iconlight' src={share} alt="share" />
-      <span className={`${hideText ? 'sm:flex hidden' : ''} font-[Goemetric-415-Black-BT] sm:text-[16px] text-[14px]`}>Share Now</span>
+      <img className={`iconlight ${textSize ? 'h-[12px]' : 'h-[14px]'}`} src={share} alt="share" />
+      <span className={`${hideText ? 'sm:flex hidden' : ''} ${textSize ? textSize : 'sm:text-[16px] text-[14px]'} font-[GeneralSans-Medium] `}>Share Now</span>
     </button>
     <button onClick={handleOpen} className={`${supported ? 'hidden lg:flex' : 'flex'} text-accent4 items-center gap-[5px] cursor-pointer`}>
-      <img className='iconlight' src={share} alt="share" />
-      <span className={`${hideText ? 'sm:flex hidden' : ''} font-[Goemetric-415-Black-BT] sm:text-[16px] text-[14px]`}>Share Now</span>
+      <img className={`iconlight ${textSize ? 'h-[12px]' : 'h-[14px]'}`} src={share} alt="share" />
+      <span className={`${hideText ? 'sm:flex hidden' : ''} ${textSize ? textSize : 'sm:text-[16px] text-[14px]'} font-[GeneralSans-Medium]`}>Share Now</span>
     </button>
     {/* <Menu
         anchorEl={anchorEl}

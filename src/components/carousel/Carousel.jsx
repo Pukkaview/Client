@@ -26,7 +26,7 @@ export default function Carousel({ children }) {
     // centerMode: true,
     centerPadding: '50px',
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 6,
     slidesToScroll: 1,
     prevArrow: infinite ? (
       <img className="h-[32px] w-[32px] cursor-pointer" src={prev} alt="prev" />
