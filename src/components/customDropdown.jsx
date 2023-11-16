@@ -14,7 +14,7 @@ const CustomDropdown = ({ options, selectedOption, onSelect }) => {
 
   return (
     <div className="relative inline-block text-[#000]">
-      <div className="flex items-center w-[150px] justify-between p-2 rounded cursor-pointer bg-[#FFEEFF] text-[#180018] font-bold border-0 outline-none rounded-md px-4" onClick={toggleDropdown}>
+      <div className="flex items-center w-[150px] justify-between p-2 rounded cursor-pointer bg-[#FFEEFF] text-[#180018] text-[14px] md:text-[16px] font-bold border-0 outline-none rounded-md px-4" onClick={toggleDropdown}>
         {selectedOption}
         <svg
           className="w-6 h-6 fill-current text-gray-500"
@@ -29,7 +29,7 @@ const CustomDropdown = ({ options, selectedOption, onSelect }) => {
       {isOpen && (
         <ul className="w-[150px] flex flex-col gap-[10px] py-[10px] absolute top-full left-0 mt-2 border rounded z-50 bg-[#FFEEFF] text-[#180018] font-bold border-0 outline-none rounded-md px-4">
           {options.map((option) => (
-            <li className='cursor-pointer' key={option} onClick={() => handleOptionSelect(option)}>
+            <li className='cursor-pointer text-[14px] md:text-[16px]' key={option} onClick={() => handleOptionSelect(option)}>
               {option}
             </li>
           ))}

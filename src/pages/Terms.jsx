@@ -15,7 +15,7 @@ const Terms = () => {
           <div className="text-center text-white text-[48px] py-32">
             Term Of Use And Disclaimer
           </div>
-          <div className="text-white  bg-[#180018] p-10 md:p-32">
+          <div className="text-white  bg-background p-10 md:p-32">
             <div className="md:w-[62rem] md:ml-12 mb-12">
               <h1 className=" text-2xl md:text-3xl mb-6">Term Of Use:</h1>
               <p className="md:text-xl">

@@ -77,7 +77,21 @@ export default function MovieCard({data, playIcon}) {
   }
   return (
     <>
-    <div className={`flex items-center ${window.innerWidth < 1001 ? 'w-full' : ''}`}>
+    <Link to={`/play/${data.id}-${data.title}`} className={`lg:hidden flex items-center ${window.innerWidth < 1001 ? 'w-full' : ''}`}>
+    <div style={{
+        width: divWidth -25,
+        height: divWidth - 20,
+        transition: 'all 0.3s ease',
+      }} 
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+        className={`moviecard relative duration-300 ease-in-out hover:lg:z-20 rounded-[5px] flex  items-center overflow-hidden`}>
+        <img className='h-full w-full absolute z-[-2]' src={encodeURI(data.thumbnaillink)} alt="" />
+        <img className='h-full w-full absolute z-[-3]' src={placeholder} alt="" />
+        <img className='absolute z-[0] top-[10px] left-[10px] h-[20px]' src={logo} alt="" />
+      </div>
+    </Link>
+    <div className={`lg:flex hidden items-center ${window.innerWidth < 1001 ? 'w-full' : ''}`}>
       <div style={{
         width: divWidth -25,
         height: divWidth - 20,
