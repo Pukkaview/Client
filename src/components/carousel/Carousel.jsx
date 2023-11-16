@@ -38,19 +38,19 @@ export default function Carousel({ children }) {
       {
         breakpoint: 1280,
         settings: {
-          slidesToShow: 3, // Number of components to show for screen width <= 1024px
+          slidesToShow: 5, // Number of components to show for screen width <= 1024px
         },
       },
       {
         breakpoint: 1000,
         settings: {
-          slidesToShow: 2, // Number of components to show for screen width <= 1024px
+          slidesToShow: 4, // Number of components to show for screen width <= 1024px
         },
       },
       {
-        breakpoint: 40,
+        breakpoint: 760,
         settings: {
-          slidesToShow: 1, // Number of components to show for screen width <= 768px
+          slidesToShow: 3, // Number of components to show for screen width <= 768px
         },
       },
     ],

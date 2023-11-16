@@ -4,9 +4,8 @@ import ShareCard from '../cards/shareCard';
 import './button.css'
 import { Menu } from '@mui/material';
 import Fetcher from '../../utils/fetcher';
-export default function ShareBtn({data, hideText, handleOpen, textSize}) {
-  const [open, setOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
+import ShareCardModal from '../cards/shareCardModal';
+export default function ShareBtn({data, hideText, handleOpen, textSize, open, width, handleClose}) {
   const [supported, setSupported] = useState(true) 
 
   // useEffect(() => {
@@ -61,6 +60,8 @@ export default function ShareBtn({data, hideText, handleOpen, textSize}) {
         onClose={handleClose}
       > 
       </Menu> */}
+      <ShareCardModal open={open} width={width}  handleClose={handleClose} data={data}/>
+
     </div>
   )
 }
