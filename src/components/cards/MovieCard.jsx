@@ -6,6 +6,7 @@ import './moviecards.css'
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import logo from "../../assets/logoP.svg";
+import placeholder from "../../assets/placeholder.png";
 import ShareCard from './shareCard';
 import MoreInfoBtn from '../buttons/moreInfo';
 import MovieDetailCard from './MovieDetailsCard';
@@ -86,6 +87,7 @@ export default function MovieCard({data, playIcon}) {
       onMouseLeave={handleMouseLeave}
         className={`moviecard relative duration-300 ease-in-out hover:lg:z-20 rounded-[5px] flex  items-center overflow-hidden`}>
         <img className='h-full w-full absolute z-[-2]' src={encodeURI(data.thumbnaillink)} alt="" />
+        <img className='h-full w-full absolute z-[-3]' src={placeholder} alt="" />
         <img className='absolute z-[0] top-[10px] left-[10px] h-[20px]' src={logo} alt="" />
         {hovered && 
         <div className='w-full flex flex-col justify-center items-center gap-[10px]'>
