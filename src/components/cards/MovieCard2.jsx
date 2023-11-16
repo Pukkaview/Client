@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import logo from "../../assets/logoP.svg";
 import ShareCard from './shareCard';
 import MoreInfoBtn from '../buttons/moreInfo';
+import placeholder from "../../assets/placeholder.png";
 
 
 export default function MovieCard2({data, playIcon}) {
@@ -77,6 +78,7 @@ export default function MovieCard2({data, playIcon}) {
         className={`moviecard2 relative duration-300 ease-in-out hover:lg:z-[100] rounded-[5px] flex justify-end items-center overflow-hidden`}>
      
           <img className='h-full w-full absolute z-[0]' src={encodeURI(data.thumbnaillink)} alt="" />
+          <img className='h-full w-full absolute z-[-3]' src={placeholder} alt="" />
           <img className='absolute z-[2] top-[10px] left-[10px] h-[20px]' src={logo} alt="" />
           {hovered && 
         <div className='w-full flex flex-col justify-center items-center gap-[10px] z-[10]'>

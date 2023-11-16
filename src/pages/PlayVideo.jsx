@@ -79,7 +79,7 @@ const PlayVideo = () => {
     };
   }, [data]);
   return (
-      <div className={`${marquee ? '' : 'play_page'} bg-[#180018]`}>
+      <div className={`${marquee ? '' : 'play_page'} bg-background`}>
         <Navbar/>
         {!search && <>
           <CustomVideoPlayer data={data}/>
