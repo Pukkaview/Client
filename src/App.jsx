@@ -80,7 +80,7 @@ function App() {
   }, [genreList]);
 
   return (
-    <div className="overflow-x-hidden min-h-screen bg-[#180018]">
+    <div className="overflow-x-hidden min-h-screen bg-[#0A0A0A]">
         <ToastContainer
           position="top-center"
           autoClose={5000}

@@ -72,7 +72,7 @@ export default function Navbar() {
   return (
     <div
       className={`z-50 flex justify-between top-0 items-center py-[18px] md:px-[59px] px-[10px] fixed w-full ${
-        scrolled ? "bg-[#180018] transition duration-300 ease-in-out" : ""
+        scrolled ? "bg-[#0A0A0A] transition duration-300 ease-in-out" : ""
       }`}
     >
       <Link to="/" onClick={() => localStorage.setItem('active', '')} className={`${active === '' ? 'active' : ''} md:w-[168px] md:h-[22px] w-[102px] h-[18px]`}>
@@ -97,7 +97,7 @@ export default function Navbar() {
             />
           </label>
         </form>
-        <div className="nav lg:flex hidden gap-[18px] items-center text-[#fff] font-[500] font-[Futura] text-[14px]">
+        <div className="nav lg:flex hidden gap-[18px] items-center text-[#fff] font-[500] font-[GeneralSans-Medium] text-[14px]">
           <Link to="/" onClick={() => dispatch({type: 'ACTIVE', payload: ''})} className={`${active === '' ? 'active' : ''} hover:text-[#C423C4]`} >Home</Link>
           {/* <Link to='/' className={`${active === 'New' ? 'active' : ''}`} onClick={() => dispatch({type: 'NEW', payload: 'New'})}>New</Link> */}
           {genreList.length > 1 && genreList.map((genre => (

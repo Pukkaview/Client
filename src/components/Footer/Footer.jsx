@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div className="">
-      <div className="w-full h-fit p-8 bg-[#180018] justify-center items-center flex flex-col gap-[16px]">
+      <div className="w-full h-fit p-8 bg-[#0A0A0A] justify-center items-center flex flex-col gap-[16px]">
         <div className="flex h-[50px] gap-[5px]">
           <img className="md:h-[60px] h-[35px]" src={logo} alt="" />
         </div>
