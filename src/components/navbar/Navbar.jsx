@@ -71,11 +71,11 @@ export default function Navbar() {
 
   return (
     <div
-      className={`z-50 flex justify-between top-0 items-center py-[18px] md:px-[59px] px-[10px] fixed w-full ${
+      className={`z-50 flex justify-between top-0 items-center py-[18px] md:px-[30px] px-[10px] fixed w-full ${
         scrolled ? "bg-[#0A0A0A] transition duration-300 ease-in-out" : ""
       }`}
     >
-      <Link to="/" onClick={() => localStorage.setItem('active', '')} className={`${active === '' ? 'active' : ''} md:w-[168px] md:h-[22px] w-[102px] h-[18px]`}>
+      <Link to="/" onClick={() => {dispatch({type: 'ACTIVE', payload: ''})}} className={`${active === '' ? 'active' : ''} md:w-[168px] md:h-[22px] w-[102px] h-[18px]`}>
         {!scrolled && <img src={logo} className="w-full h-full" alt="logo" />}
         {scrolled && <img src={logoW} className="w-full h-full" alt="logo" />}
       </Link>

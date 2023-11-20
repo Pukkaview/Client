@@ -69,8 +69,8 @@ export default function MovieCard2({data, playIcon}) {
     <>
     <div className={` flex items-center ${window.innerWidth < 1001 ? 'w-full' : ''}`}>
       <div style={{
-        width: divWidth - 25,
-        height: divWidth - 20,
+        width: divWidth -20,
+        height: divWidth - 100,
         transition: 'all 0.3s ease',
       }} 
       onMouseEnter={handleMouseEnter}

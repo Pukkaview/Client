@@ -13,10 +13,6 @@ const MovieCardPlay = ({ title, content, backgroundColor, img, id, playIcon }) =
       >
         <div className=" relative z-10 sm:w-[30%] w-[40%] justify-center items-center flex rounded-l-xl bg-cover bg-no-repeat ">
         <img className='h-full w-full absolute z-[-2]' src={encodeURI(img)} alt="" />
-        
-          {playIcon && <div className="">
-            <img src={Play} alt="" />
-          </div>}
         </div>
         <div className=" flex-col sm:w-[70%] w-[60%]  justify-start items-start gap-2 flex py-[10px]">
           <div className="hidden sm:flex text-fuchsia-50 sm:text-[24px] text-[18px] font-normal leading-normal">

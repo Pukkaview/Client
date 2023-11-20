@@ -93,8 +93,8 @@ export default function MovieCard({data, playIcon}) {
     </Link>
     <div className={`lg:flex hidden items-center ${window.innerWidth < 1001 ? 'w-full' : ''}`}>
       <div style={{
-        width: divWidth -25,
-        height: divWidth - 20,
+        width: divWidth -20,
+        height: divWidth - 100,
         transition: 'all 0.3s ease',
       }} 
       onMouseEnter={handleMouseEnter}
