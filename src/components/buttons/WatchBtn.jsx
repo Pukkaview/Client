@@ -1,9 +1,9 @@
 import play from '../../assets/playwhite.svg'
-export default function WatchBtn() {
+export default function WatchBtn({className,textSize}) {
   return (
-    <button className='px-[18px] sm:px-[20px] sm:py-[14px] py-[14px] border-[1px] border-accent4 bg-primary hover:bg-accent2 transition duration-300 ease-in-out cursor-pointer flex sm:gap-[19px] gap-[10px] justify-center items-center rounded-[10px]'>
-    <img className='sm:flex hidden h-[14px]' src={play} alt="play" />
-    <span className='text-text-color sm:text-[14px] text-[12px] font-[Goemetric-415-Black-BT]'>Watch now</span>
+    <button className={`${className ? className : 'px-[18px] sm:px-[20px] sm:py-[14px] py-[14px]  sm:gap-[19px] gap-[10px] rounded-[10px]'} bg-primary hover:bg-accent2 transition duration-300 ease-in-out cursor-pointer flex justify-center items-center `}>
+    <img className={`sm:flex hidden ${ textSize ? 'h-[12px]' : ''}`} src={play} alt="play" />
+    <span className={`${textSize ? textSize : 'sm:text-[14px] text-[12px]'} text-text-color  font-[GeneralSans-Regular]`}>Watch now</span>
     </button>
   )
 }

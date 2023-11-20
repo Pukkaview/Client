@@ -18,12 +18,12 @@ export default {
       },
       colors: {
         primary: "#800080",
-        accent4: "#FFBDFF",
+        accent4: "#FFFF",
         accent3: "#FF8CFF",
         accent2: "#FF5AFF",
         accent1: "#C423C4",
         "text-color": "#FEF",
-        background: "#180018",
+        background: "#0A0A0A",
       },
 
       backgroundImage: {

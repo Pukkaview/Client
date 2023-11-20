@@ -6,14 +6,26 @@ import './moviecards.css'
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import logo from "../../assets/logoP.svg";
+import placeholder from "../../assets/placeholder.png";
 import ShareCard from './shareCard';
+import MoreInfoBtn from '../buttons/moreInfo';
+import MovieDetailCard from './MovieDetailsCard';
+import ShareCardModal from './shareCardModal';
 
 
 export default function MovieCard({data, playIcon}) {
   const [divWidth, setDivWidth] = useState(0);
   const [hovered, setHovered] = useState(false);
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+  const [openDetails, setOpenDetails] = useState(false)
 
+  const handleOpenDetails = () => {
+    setOpenDetails(true);
+  };
+
+  const handleCloseDetails = () => {
+    setOpenDetails(false);
+  };
   const handleMouseEnter = () => {
     const screenWidth = window.innerWidth;
     if(screenWidth < 1024){
@@ -34,13 +46,13 @@ export default function MovieCard({data, playIcon}) {
       let width = 0;
 
       if (screenWidth < 760) {
-        width = screenWidth / 2;
+        width = screenWidth / 3;
       } else if (screenWidth >= 761 && screenWidth < 1001) {
-        width = screenWidth / 2.2;
+        width = screenWidth / 4.6;
       }else if (screenWidth >= 1001 && screenWidth < 1280) {
-        width = screenWidth / 3.1;
+        width = screenWidth / 5.1;
       } else {
-        width = screenWidth / 4;
+        width = screenWidth / 6;
       }
 
       setDivWidth(width);
@@ -65,100 +77,50 @@ export default function MovieCard({data, playIcon}) {
   }
   return (
     <>
-    <Link to={`/play/${data.id}-${data.title}`} className={`lg:hidden sm:h-[199px] phone-sm:h-[180px] h-[180px] flex items-center ${window.innerWidth < 1001 ? 'w-full' : ''}`}>
-      <div style={{
-        width: hovered ? divWidth + 50 : divWidth - 30,
+    <Link to={`/play/${data.id}-${data.title}`} className={`lg:hidden flex items-center ${window.innerWidth < 1001 ? 'w-full' : ''}`}>
+    <div style={{
+        width: divWidth -25,
+        height: divWidth - 20,
         transition: 'all 0.3s ease',
       }} 
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-        className={`moviecard relative sm:h-[219px] phone-sm:h-[180px] h-[180px] lg:hover:h-[322px] duration-300 ease-in-out hover:lg:z-20 sm:rounded-[15px] rounded-[5px] flex justify-end items-center overflow-hidden`}>
+        className={`moviecard relative duration-300 ease-in-out hover:lg:z-20 rounded-[5px] flex  items-center overflow-hidden`}>
         <img className='h-full w-full absolute z-[-2]' src={encodeURI(data.thumbnaillink)} alt="" />
+        <img className='h-full w-full absolute z-[-3]' src={placeholder} alt="" />
         <img className='absolute z-[0] top-[10px] left-[10px] h-[20px]' src={logo} alt="" />
-        {playIcon && <Link to={`/play/${data.id}`} className='play absolute top-[40%] left-[40%] cursor-pointer z-10 '>
-          <PlayBtn/>
-        </Link>}
-        <div className='details absolute w-full text-text-color px-[18px] py-[33px] flex flex-col gap-[25px] left-0 justify-center'>
-          <div className='flex justify-between w-full'>
-            <div className='flex flex-col gap-[5px] w-[40%]'>
-              <span className='sm:text-[16px] text-[12px]'><b>Year:</b> 2019</span>
-              <span className='sm:text-[16px] text-[12px]'><b>Genre:</b> {data.genre}</span>
-            </div>
-            <div className='flex gap-[5px] w-[50%]'>
-              <span className='sm:text-[16px] text-[12px]'> <b>Casts:</b>  </span>
-              <div className='flex flex-wrap'>
-                
-                <span className='sm:text-[16px] text-[12px]'>{data.cast}</span>
-                {/* {data && data.casts.map(cast => (
-                ))} */}
-              </div>
-            </div>
-          </div>
-          <div>
-            <h2 className='uppercase sm:text-[18px] text-[16px] font-[700]'>{data.title.length > 60 ? `${data.title.slice(0, 60)}...` : data.title}</h2>
-            <p className='sm:text-[14px] text-[12px]'>{data.plot.length > 200 ? `${data.plot.slice(0, 200)}...` : data.plot}</p>
-          </div>
-          <div className='flex gap-[50px]'>
-            <Link to={`/play/${data.id}`}>
-              <WatchBtn/>
-            </Link>
-            <ShareBtn data={data} handleOpen={handleOpen}/>
-          </div>
-        </div>
-        {open &&
-          <div className='absolute z-[100] bottom-0 left-0'>
-            <ShareCard width={divWidth+50} handleClose={handleClose} data={data}/>
-          </div>
-          }
       </div>
     </Link>
-    <div className={`sm:h-[199px] phone-sm:h-[180px] h-[140px] lg:flex hidden items-center ${window.innerWidth < 1001 ? 'w-full' : ''}`}>
+    <div className={`lg:flex hidden items-center ${window.innerWidth < 1001 ? 'w-full' : ''}`}>
       <div style={{
-        width: hovered ? divWidth + 80 : divWidth - 40,
+        width: divWidth -20,
+        height: divWidth - 100,
         transition: 'all 0.3s ease',
       }} 
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-        className={`moviecard relative sm:h-[219px] phone-sm:h-[180px] h-[140px] lg:hover:h-[322px] duration-300 ease-in-out hover:lg:z-20 sm:rounded-[15px] rounded-[5px] flex justify-end items-center overflow-hidden`}>
+        className={`moviecard relative duration-300 ease-in-out hover:lg:z-20 rounded-[5px] flex  items-center overflow-hidden`}>
         <img className='h-full w-full absolute z-[-2]' src={encodeURI(data.thumbnaillink)} alt="" />
+        <img className='h-full w-full absolute z-[-3]' src={placeholder} alt="" />
         <img className='absolute z-[0] top-[10px] left-[10px] h-[20px]' src={logo} alt="" />
-        {playIcon && <Link to={`/play/${data.id}-${data.title}`} className='play absolute top-[40%] left-[40%] cursor-pointer z-10 '>
-          <PlayBtn/>
-        </Link>}
-        <div className='details absolute w-full text-text-color px-[18px] py-[33px] flex flex-col gap-[25px] left-0 justify-center'>
-          <div className='flex justify-between w-full'>
-            <div className='flex flex-col gap-[5px] w-[40%]'>
-              <span className='sm:text-[16px] text-[12px]'><b>Year:</b> 2019</span>
-              <span className='sm:text-[16px] text-[12px]'><b>Genre:</b> {data.genre}</span>
-            </div>
-            <div className='flex gap-[5px] w-[50%]'>
-              <span className='sm:text-[16px] text-[12px]'>  </span>
-              <div className='flex flex-wrap'>
-                
-                <span className='sm:text-[16px] text-[12px]'><b>Casts:</b> {data.cast}</span>
-                {/* {data && data.casts.map(cast => (
-                ))} */}
-              </div>
-            </div>
-          </div>
+        {hovered && 
+        <div className='w-full flex flex-col justify-center items-center gap-[10px]'>
           <div>
-            
-            <h2 className='uppercase sm:text-[18px] text-[16px] font-[700]'>{data.title.length > 60 ? `${data.title.slice(0, 60)}...` : data.title}</h2>
-            <p className='sm:text-[14px] text-[12px]'>{data.plot.length > 200 ? `${data.plot.slice(0, 200)}...` : data.plot}</p>
+            <span>{data.genre}</span>
           </div>
-          <div className='flex gap-[50px]'>
-            <Link to={`/play/${data.id}-${data.title}`}>
-              <WatchBtn/>
-            </Link>
-            <ShareBtn data={data} handleOpen={handleOpen}/>
-          </div>
+          <div className='flex justify-between w-full px-[10px]'>
+              <Link to={`/play/${data.id}-${data.title}`}>
+                <WatchBtn className='py-[5px] px-[8px] rounded-[5px] gap-[5px]' textSize='text-[12px]'/>
+              </Link>
+              <ShareBtn data={data} handleOpen={handleOpen} open={open} textSize='text-[12px]' width={divWidth+80} handleClose={handleClose}/>
+            </div>
+            <div onClick={() => handleOpenDetails()}>
+            <MoreInfoBtn textSize='text-[12px]' />
+            </div>
         </div>
-        {open &&
-          <div className='absolute z-[100] bottom-0 left-0 mx-auto w-full'>
-            <ShareCard width={divWidth+80} handleClose={handleClose} data={data}/>
-          </div>
-          }
+        }
       </div>
+      <MovieDetailCard open={openDetails} handleClose={handleCloseDetails} data={data}/>
     </div>
     </>
   )

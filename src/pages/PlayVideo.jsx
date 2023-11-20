@@ -79,7 +79,7 @@ const PlayVideo = () => {
     };
   }, [data]);
   return (
-      <div className={`${marquee ? '' : 'play_page'} bg-[#180018]`}>
+      <div className={`${marquee ? '' : 'play_page'} bg-background`}>
         <Navbar/>
         {!search && <>
           <CustomVideoPlayer data={data}/>
@@ -87,7 +87,7 @@ const PlayVideo = () => {
           <Disclaimer/>
           </div>
           <MovieDescription data={data}/>
-          <div className='mx-auto mt-[10px] sm:mt-[30px] md:px-[59px] px-[20px] flex lg:flex-row flex-col justify-between gap-[50px]'>
+          <div className='mx-auto mt-[10px] sm:mt-[30px] md:px-[30px] px-[20px] flex lg:flex-row flex-col justify-between gap-[50px]'>
             <Comment videoId={id}/>
             <PlayCat current={data.genre}/>
           </div>

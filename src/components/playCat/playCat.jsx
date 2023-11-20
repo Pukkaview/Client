@@ -32,7 +32,7 @@ export default function PlayCat({current}) {
   return (
     <div className="lg:w-[50%] flex flex-col gap-[37px]">
       <div className="flex justify-between items-center">
-        <span className="text-[20px] font-bold text-white">Watch More</span>
+        <span className="text-[18px] text-white">Watch More</span>
         {selectedOption && <CustomDropdown
           options={genreList}
           selectedOption={selectedOption}
