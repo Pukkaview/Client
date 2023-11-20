@@ -49,14 +49,14 @@ const Home = () => {
             </div>}
         { videos.length > 0 &&<IntroCard data={videos[0].videos[0]} tag="All" />}
         <Rate/>
-        <div className="md:px-[59px] px-[20px] pt-[30px] sm:pb-[65px] pb-[10px] text-text-color mx-auto">
+        <div className="md:px-[30px] px-[20px] sm:pb-[65px] pb-[10px] text-text-color mx-auto">
           <div className="bg-[#fff]">
             <MovieDetailCard />
           </div>
           {videos.length > 0 && videos.map((v, i) => (
-          <div>
+          <div className="my-[3vw]">
             <div className="w-full flex justify-between">
-              <h2 className="sm:text-[24px] text-[16px] font-goemetric font-[400]">{v.genre}</h2>
+              <h2 className="sm:text-[20px] text-[16px]">{v.genre}</h2>
               <div onClick={() => dispatch({type:'ACTIVE', payload:v.genre})}>
                 <ViewBtn />
               </div>

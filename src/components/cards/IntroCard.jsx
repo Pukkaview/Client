@@ -21,7 +21,7 @@ export default function IntroCard({data, tag}) {
     return <Skeleton animation="wave" variant="rectangular" className="mx-auto mt-[100px] rounded-[15px]" width={'90%'} height={'70vh'} sx={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', color: 'white', marginLeft: '' }} />
   }
   return (
-    <div className="contain sm:pt-[250px] pt-[100px] md:px-[59px] px-[10px] sm:pb-[95px] pb-[30px] text-text-color z-10 relative">
+    <div className="contain sm:pt-[250px] pt-[100px] md:px-[30px] px-[10px] sm:pb-[95px] pb-[30px] text-text-color z-10 relative">
         <img className='h-full w-full absolute top-0 left-0 z-[-2]' src={encodeURI(data.thumbnaillink)} alt="" />
         <div className='sm:max-w-[615px] max-w-[349px] flex flex-col sm:gap-[18px] gap-[10px] z-10'>
           <div className='flex gap-[18px] items-center'>
