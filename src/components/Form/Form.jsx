@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ContactImage from "../../assets/ContactImage.png";
+// import ContactImage from "../../assets/ContactImage.png";
 import Fetcher from "../../utils/fetcher";
 import { toast } from "react-toastify";
 const Form = () => {
@@ -59,7 +59,7 @@ const Form = () => {
     } catch (error) {
       handleError('Something went wrong, try again')
       console.error('Error adding comment:', error);
-      setLoading(false)
+      
     }
   };
   return (

@@ -29,6 +29,7 @@ export default {
       backgroundImage: {
         movieCardBg: "url('./assets/Cross.png')",
         contactPattern: "url('./assets/contactPattern.png')",
+        HeroBg: "url('./assets/HeroBg.png')",
         ContactImage:
           "linear-gradient(to right bottom,rgba(128, 0, 128, 0.4), rgba(128, 0, 128, 0.4)), url('./assets/ContactImage.png')",
       },
