@@ -75,6 +75,7 @@ const HeroCarousel = ({ data }) => {
       <Carousel
         showThumbs={false}
         autoPlay={true}
+        showStatus={false}  
         interval={3000}
         infiniteLoop={true}
         renderArrowPrev={(onClickHandler, hasPrev) =>
