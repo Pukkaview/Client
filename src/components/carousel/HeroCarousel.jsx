@@ -91,7 +91,9 @@ const HeroCarousel = ({ data }) => {
           />
         )}>
         <WelcomeCard />
-        <IntroCard data={data} tag="All" />
+        <IntroCard data={data[0]}  tag="All" />
+        <IntroCard data={data[1]}  tag="All" />
+        <IntroCard data={data[2]}  tag="All" />
       </Carousel>
     </div>
   );

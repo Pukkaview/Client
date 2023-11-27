@@ -101,7 +101,7 @@ const Home = () => {
                 </div>
               )}
               {videos.length > 0 && (
-                <HeroCarousel data={videos[0].videos[0]} tag="All" />
+                <HeroCarousel data={videos[0].videos} tag="All" />
               )}
 
               <Rate />
