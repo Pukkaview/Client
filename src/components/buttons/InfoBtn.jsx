@@ -1,13 +1,25 @@
-import infoW from '../../assets/infowhite.svg'
-import info from '../../assets/info.svg'
-import './button.css'
+import infoW from "../../assets/infowhite.svg";
+import info from "../../assets/info.svg";
+import "./button.css";
 
 export default function InfoBtn() {
   return (
-    <button className='infoBtn px-[18px] sm:px-[20px] sm:py-[14px] py-[14px] border-[1px] border-primary hover:border-accent2 hover:bg-accent2  transition duration-300 ease-in-out cursor-pointer flex sm:gap-[19px] gap-[10px] justify-center items-center rounded-[10px]'>
-    <img className='icon sm:flex hidden h-[14px]' src={info} alt="info" />
-    <img className='iconlight sm:flex hidden h-[14px]' src={infoW} alt="info" />
-    <span className='sm:text-[14px] text-[12px] font-[400] font-[GeneralSans-Medium]'>About Movie</span>
+    <button className="infoBtn px-[18px] sm:px-[20px] sm:py-[19px] py-[14px] border-[1px] border-primary hover:border-accent2 hover:bg-accent2  transition duration-300 ease-in-out cursor-pointer flex sm:gap-[19px] gap-[10px] justify-center items-center rounded-[10px]">
+      {/* <img className="icon sm:flex hidden h-[14px]" src={info} alt="info" /> */}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="25"
+        height="24"
+        viewBox="0 0 25 24"
+        fill="none">
+        <path
+          d="M12.5 2.25C10.5716 2.25 8.68657 2.82183 7.08319 3.89317C5.47982 4.96451 4.23013 6.48726 3.49218 8.26884C2.75422 10.0504 2.56114 12.0108 2.93735 13.9021C3.31355 15.7934 4.24215 17.5307 5.60571 18.8943C6.96928 20.2579 8.70656 21.1865 10.5979 21.5627C12.4892 21.9389 14.4496 21.7458 16.2312 21.0078C18.0127 20.2699 19.5355 19.0202 20.6068 17.4168C21.6782 15.8134 22.25 13.9284 22.25 12C22.2473 9.41498 21.2192 6.93661 19.3913 5.10872C17.5634 3.28084 15.085 2.25273 12.5 2.25ZM12.125 6.75C12.3475 6.75 12.565 6.81598 12.75 6.9396C12.935 7.06321 13.0792 7.23891 13.1644 7.44448C13.2495 7.65005 13.2718 7.87625 13.2284 8.09448C13.185 8.31271 13.0778 8.51316 12.9205 8.6705C12.7632 8.82783 12.5627 8.93498 12.3445 8.97838C12.1263 9.02179 11.9001 8.99951 11.6945 8.91436C11.4889 8.82922 11.3132 8.68502 11.1896 8.50002C11.066 8.31501 11 8.0975 11 7.875C11 7.57663 11.1185 7.29048 11.3295 7.0795C11.5405 6.86853 11.8266 6.75 12.125 6.75ZM13.25 17.25C12.8522 17.25 12.4706 17.092 12.1893 16.8107C11.908 16.5294 11.75 16.1478 11.75 15.75V12C11.5511 12 11.3603 11.921 11.2197 11.7803C11.079 11.6397 11 11.4489 11 11.25C11 11.0511 11.079 10.8603 11.2197 10.7197C11.3603 10.579 11.5511 10.5 11.75 10.5C12.1478 10.5 12.5294 10.658 12.8107 10.9393C13.092 11.2206 13.25 11.6022 13.25 12V15.75C13.4489 15.75 13.6397 15.829 13.7803 15.9697C13.921 16.1103 14 16.3011 14 16.5C14 16.6989 13.921 16.8897 13.7803 17.0303C13.6397 17.171 13.4489 17.25 13.25 17.25Z"
+          fill="#800080"
+        />
+      </svg>
+      <span className="sm:text-[14px] text-[12px] font-[400] font-[GeneralSans-Medium]">
+        About Movie
+      </span>
     </button>
-  )
+  );
 }

@@ -1,12 +1,12 @@
 import { Dialog, DialogContent } from '@mui/material';
 import PropTypes from 'prop-types';
 import cancel from '../../assets/cancel.svg'
-import WatchBtn from '../buttons/WatchBtn';
 import ShareBtn from '../buttons/ShareBtn';
 import './moviecards.css'
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import ShareCard from './shareCard';
+import WatchBtn from '../buttons/WatchBtn';
 
 export default function MovieDetailCard({open, handleClose, data}) {
   const [openShare, setOpenShare] = useState(false)
