@@ -45,7 +45,9 @@ export default function MovieCard({data, playIcon}) {
       const screenWidth = window.innerWidth;
       let width = 0;
 
-      if (screenWidth < 760) {
+      if (screenWidth < 500) {
+        width = screenWidth / 2.2;
+      } else if (screenWidth >=501 && screenWidth < 760) {
         width = screenWidth / 3;
       } else if (screenWidth >= 761 && screenWidth < 1001) {
         width = screenWidth / 4.6;
@@ -79,8 +81,8 @@ export default function MovieCard({data, playIcon}) {
     <>
     <Link to={`/play/${data.id}-${data.title}`} className={`lg:hidden flex items-center ${window.innerWidth < 1001 ? 'w-full' : ''}`}>
     <div style={{
-        width: divWidth -25,
-        height: divWidth - 20,
+        width: divWidth -20,
+        height: divWidth - 70,
         transition: 'all 0.3s ease',
       }} 
       onMouseEnter={handleMouseEnter}

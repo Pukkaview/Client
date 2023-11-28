@@ -44,7 +44,7 @@ const PlayVideo = () => {
     // Function to fetch the video URL
     const fetchVideoUrl = async () => {
       try {
-        const fetchResponse = await Fetcher(`https://api.pukkaview.com/videoplayer/${id}/play/`, {
+        const fetchResponse = await Fetcher(`https://api.pukkaview.com/videoplayer/${id}/stream/`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -83,7 +83,7 @@ const PlayVideo = () => {
         <Navbar/>
         {!search && <>
           <CustomVideoPlayer data={data}/>
-          <div className='mt-[75px]'>
+          <div className='sm:mt-[75px] mt-[300px]'>
           <Disclaimer/>
           </div>
           <MovieDescription data={data}/>

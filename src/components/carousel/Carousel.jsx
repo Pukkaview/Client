@@ -24,7 +24,7 @@ export default function Carousel({ children }) {
     dots: false,
     infinite: infinite,
     // centerMode: true,
-    centerPadding: '50px',
+    centerPadding: '150px',
     speed: 500,
     slidesToShow: 6,
     slidesToScroll: 1,
@@ -51,6 +51,13 @@ export default function Carousel({ children }) {
         breakpoint: 760,
         settings: {
           slidesToShow: 3, // Number of components to show for screen width <= 768px
+        },
+      },
+      {
+        breakpoint: 500,
+        settings: {
+          slidesToShow: 2, // Number of components to show for screen width <= 768px
+          // centerPadding: "100px"
         },
       },
     ],

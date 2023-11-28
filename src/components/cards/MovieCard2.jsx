@@ -34,7 +34,9 @@ export default function MovieCard2({data, playIcon}) {
       const screenWidth = window.innerWidth;
       let width = 0;
 
-      if (screenWidth < 760) {
+      if (screenWidth < 500) {
+        width = screenWidth / 2.2;
+      } else if (screenWidth >=501 && screenWidth < 760) {
         width = screenWidth / 3;
       } else if (screenWidth >= 761 && screenWidth < 1001) {
         width = screenWidth / 4.6;
@@ -67,7 +69,22 @@ export default function MovieCard2({data, playIcon}) {
   }
   return (
     <>
-    <div className={` flex items-center ${window.innerWidth < 1001 ? 'w-full' : ''}`}>
+    <Link to={`/play/${data.id}-${data.title}`} className={` lg:hidden flex items-center ${window.innerWidth < 1001 ? 'w-full' : ''}`}>
+      <div style={{
+        width: divWidth -20,
+        height: divWidth - 70,
+        transition: 'all 0.3s ease',
+      }} 
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+        className={`moviecard2 relative duration-300 ease-in-out hover:lg:z-[100] rounded-[5px] flex justify-end items-center overflow-hidden`}>
+     
+          <img className='h-full w-full absolute z-[0]' src={encodeURI(data.thumbnaillink)} alt="" />
+          <img className='h-full w-full absolute z-[-3]' src={placeholder} alt="" />
+          <img className='absolute z-[2] top-[10px] left-[10px] h-[20px]' src={logo} alt="" />
+      </div>
+    </Link>
+    <div className={` lg:flex hidden items-center ${window.innerWidth < 1001 ? 'w-full' : ''}`}>
       <div style={{
         width: divWidth -20,
         height: divWidth - 100,
